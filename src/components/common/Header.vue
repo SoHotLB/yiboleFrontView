@@ -5,7 +5,9 @@
             <i v-if="!collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
         </div>
-        <div class="logo">后台管理系统</div>
+        <div class="logo">医伯乐</div>
+
+
         <div class="header-right">
             <div class="header-user-con">
                 <!-- 全屏显示 -->

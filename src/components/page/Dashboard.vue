@@ -1,99 +1,178 @@
 <template>
-    <div class="search" style="margin-top: 15px;">
-        <el-cascader v-model="value"
-                     size='medium'
-                     style='width: 20%' :options="options"
-                     placeholder="职位类型"
-                     :props="{ expandTrigger: 'hover' }">
-        </el-cascader>
-        <el-input style='width: 80%' placeholder="请输入内容" size='medium' v-model="input3" class="input-with-select">
-            <el-button slot="append" icon="el-icon-search" type='primary'>搜索</el-button>
-        </el-input>
+    <div>
+        <div class="search" style="margin-right: 10%;margin-top: 15px;margin-left: 10%">
+            <el-cascader
+                clearable
+                class='card-emloyee'
+                v-model="value"
+                :options="options"
+                :props="{ expandTrigger: 'hover' }"
+                @change="handleChange">
+            </el-cascader>
+            <el-input style='width: 70%' clearable
+                      placeholder="请输入职位、公司" size='small'
+                      v-model="input3"
+                      class="input-with-select"/>
+            <el-button class='button' icon="el-icon-search">搜索</el-button>
+
+        </div>
+        <div class='link'>
+            <label style='font-size: 12px'>热门职位:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <el-link class='green' :underline="false">临床研究</el-link>&nbsp;
+            <el-link class='green' :underline="false">临床协调</el-link>&nbsp;
+            <el-link class='green' :underline="false">医学总监</el-link>&nbsp;
+            <el-link class='green' :underline="false">医生</el-link>&nbsp;
+            <el-link class='green' :underline="false">内科医生</el-link>&nbsp;
+            <el-link class='green' :underline="false">中医</el-link>&nbsp;
+            <el-link class='green' :underline="false">医学影像放射</el-link>&nbsp;
+        </div>
+
+        <el-row :gutter="20" style='margin-top: 20px'>
+            <el-col :span="8">
+                <div class='middle-left' style='margin-left: 20px;margin-top: 20px;'>
+                    <el-card>
+                        <dl>
+                            <dd>
+                                <i class="icon-arrow-right"></i>
+                                <b>热门职位</b>&nbsp;
+                                <el-link :underline="false" href="/c101250100-p210104/">药剂师</el-link>&nbsp;
+                                <el-link :underline="false" href="/c101250100-p210401/">营养师</el-link>&nbsp;
+                                <el-link :underline="false" href="/c101250100-p210105/">医疗器械研发</el-link>
+                            </dd>
+                            <hr class="style1_hr"/>
+                            <div class="menu-line"></div>
+                            <div class="menu-sub">
+                                <ul>
+                                    <li>
+                                        <h4>临床试验</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210120/">临床数据分析</el-link>&nbsp;
+                                                <el-link :underline="false" href="/c101250100-p210501/">医学总监</el-link>&nbsp;
+                                                <el-link :underline="false" href="/c101250100-p210119/">临床协调</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p211001/">临床项目经理</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">临床研究</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+                                    <li>
+                                        <h4>医生/医技</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210109/">验光师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210111/">检验科医师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210303/">心理医生</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210307/">全科医生</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210103/">医生</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210306/">内科医生</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210302/">中医</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210305/">康复治疗师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210304/">牙科医生</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210114/">B超医生</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210113/">医学影像/放射科医师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210104/">药剂师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210112/">医生助理</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+                                    <li>
+                                        <h4>护士/护理</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210202/">护士长</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210201/">护士</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210503/">导医</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+
+                                    <li>
+                                        <h4>健康整形</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210404/">针灸推拿</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210402/">整形师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210403/">理疗师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210499/">健康整形</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210401/">营养师</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+                                    <li>
+                                        <h4>生物制药</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210108/">医药研发</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210117/">药品生产</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210123/">医药项目经理</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210115/">生物制药</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210116/">药品注册</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+                                    <li>
+                                        <h4>医疗器械</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210121/">医疗器械注册</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210105/">医疗器械研发</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210122/">医疗器械生产/质量管理</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+                                    <li>
+                                        <h4>药店</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210803/">药店店员</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210802/">执业药师/驻店药师</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210801/">药店店长</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+                                    <li>
+                                        <h4>其他医疗健康职位</h4>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210701/">其他医疗健康职位</el-link>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </dl>
+                    </el-card>
+                </div>
+            </el-col>
+            <el-col :span="16">
+                <div class="block" style="margin-top: 20px;margin-left:10px;margin-right:10px;">
+                    <el-carousel trigger="click" height="400px">
+                        <el-carousel-item v-for="item in 4" :key="item">
+                            <h3 class="medium">{{ item }}</h3>
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+                <el-card shadow="hover" style="height:403px;">
+
+                    <el-table :show-header="false" :data="todoList" style="width:100%;">
+                        <el-table-column width="40">
+                            <template slot-scope="scope">
+                                <el-checkbox v-model="scope.row.status"></el-checkbox>
+                            </template>
+                        </el-table-column>
+                        <el-table-column>
+                            <template slot-scope="scope">
+                                <div
+                                    class="todo-item"
+                                    :class="{'todo-item-del': scope.row.status}"
+                                >{{scope.row.title}}</div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column width="60">
+                            <template>
+                                <i class="el-icon-edit"></i>
+                                <i class="el-icon-delete"></i>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-card>
+            </el-col>
+        </el-row>
+
+
+
     </div>
-
-    <!--        <el-row :gutter="20">-->
-    <!--            <el-col :span="8">-->
-
-
-    <!--            </el-col>-->
-    <!--            <el-col :span="16">-->
-    <!--                <el-row :gutter="20" class="mgb20">-->
-    <!--                    <el-col :span="8">-->
-    <!--&lt;!&ndash;                        <el-card shadow="hover" :body-style="{padding: '0px'}">&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <div class="grid-content grid-con-1">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <i class="el-icon-lx-people grid-con-icon"></i>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <div class="grid-cont-right">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    <div class="grid-num">1234</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    <div>用户访问量</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        </el-card>&ndash;&gt;-->
-    <!--                    </el-col>-->
-    <!--                    <el-col :span="8">-->
-    <!--&lt;!&ndash;                        <el-card shadow="hover" :body-style="{padding: '0px'}">&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <div class="grid-content grid-con-2">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <i class="el-icon-lx-notice grid-con-icon"></i>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <div class="grid-cont-right">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    <div class="grid-num">321</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    <div>系统消息</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        </el-card>&ndash;&gt;-->
-    <!--                    </el-col>-->
-    <!--                    <el-col :span="8">-->
-    <!--                        <el-card shadow="hover" :body-style="{padding: '0px'}">-->
-    <!--&lt;!&ndash;                            <div class="grid-content grid-con-3">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <i class="el-icon-lx-goods grid-con-icon"></i>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <div class="grid-cont-right">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    <div class="grid-num">5000</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    <div>数量</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-    <!--                        </el-card>-->
-    <!--                    </el-col>-->
-    <!--                </el-row>-->
-    <!--&lt;!&ndash;                <el-card shadow="hover" style="height:403px;">&ndash;&gt;-->
-    <!--&lt;!&ndash;                    <div slot="header" class="clearfix">&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <span>待办事项</span>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <el-button style="float: right; padding: 3px 0" type="text">添加</el-button>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    <el-table :show-header="false" :data="todoList" style="width:100%;">&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <el-table-column width="40">&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <template slot-scope="scope">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <el-checkbox v-model="scope.row.status"></el-checkbox>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            </template>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        </el-table-column>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <el-table-column>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <template slot-scope="scope">&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <div&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    class="todo-item"&ndash;&gt;-->
-    <!--&lt;!&ndash;                                    :class="{'todo-item-del': scope.row.status}"&ndash;&gt;-->
-    <!--&lt;!&ndash;                                >{{scope.row.title}}</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            </template>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        </el-table-column>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        <el-table-column width="60">&ndash;&gt;-->
-    <!--&lt;!&ndash;                            <template>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <i class="el-icon-edit"></i>&ndash;&gt;-->
-    <!--&lt;!&ndash;                                <i class="el-icon-delete"></i>&ndash;&gt;-->
-    <!--&lt;!&ndash;                            </template>&ndash;&gt;-->
-    <!--&lt;!&ndash;                        </el-table-column>&ndash;&gt;-->
-    <!--&lt;!&ndash;                    </el-table>&ndash;&gt;-->
-    <!--&lt;!&ndash;                </el-card>&ndash;&gt;-->
-    <!--            </el-col>-->
-    <!--        </el-row>-->
-    <!--        <el-row :gutter="20">-->
-    <!--            <el-col :span="12">-->
-    <!--                <el-card shadow="hover">-->
-    <!--                    <schart ref="bar" class="schart" canvasId="bar" :options="options"></schart>-->
-    <!--                </el-card>-->
-    <!--            </el-col>-->
-    <!--            <el-col :span="12">-->
-    <!--                <el-card shadow="hover">-->
-    <!--                    <schart ref="line" class="schart" canvasId="line" :options="options2"></schart>-->
-    <!--                </el-card>-->
-    <!--            </el-col>-->
-    <!--        </el-row>-->
-
 </template>
 
 <script>
@@ -104,7 +183,6 @@ export default {
     data() {
         return {
             input3: '',
-            select: '',
             value: [],
             options: [{
                 value: 'linchuangshiyan',
@@ -174,17 +252,7 @@ export default {
             }]
         }
     },
-    // created() {
-    //     this.handleListener();
-    //     this.changeDate();
-    // },
-    // activated() {
-    //     this.handleListener();
-    // },
-    // deactivated() {
-    //     window.removeEventListener('resize', this.renderChart);
-    //     bus.$off('collapse', this.handleBus);
-    // },
+
     methods: {
 
     }
@@ -221,6 +289,34 @@ export default {
     font-weight: bold;
 }
 
+.style1_hr{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px dashed #8c8b8b;
+    border-bottom: 1px dashed #fff;
+}
+
+.button{
+    border-radius: 6px;
+    cursor: pointer;
+    height: 33px;
+    font-size: 14px;
+    line-height: 12px;
+    background: #3cac9b;
+    color: #ffffff;
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+}
+
+.green{
+    color: #3cac9b;
+}
+
+.link{
+    margin-left: 30%;
+}
+
 .grid-con-icon {
     font-size: 50px;
     width: 100px;
@@ -232,6 +328,13 @@ export default {
 
 .grid-con-1 .grid-con-icon {
     background: rgb(45, 140, 240);
+}
+
+.text{
+    flex-direction: row;
+}
+.text>>>el-link{
+    margin-top: 5px;
 }
 
 .grid-con-1 .grid-num {
@@ -302,11 +405,38 @@ export default {
     text-decoration: line-through;
     color: #999;
 }
-.search>>>.el-input{
+.search>>el-input{
     border: 0;
+    margin: 0;
 }
 .schart {
     width: 100%;
     height: 300px;
+}
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+
+    line-height: 150px;
+    margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+}
+
+ul,li{
+    list-style: none;
+}
+
+
+.card-emloyee{
+    width: 20%;
+    height: 40px;
 }
 </style>

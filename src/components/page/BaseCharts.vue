@@ -1,149 +1,133 @@
 <template>
-    <div>
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item>
-                    <i class="el-icon-pie-chart"></i> schart图表
-                </el-breadcrumb-item>
-            </el-breadcrumb>
+    <div class="aboutus">
+        <div class="title">
+            <el-divider content-position="center">个人简历</el-divider>
+            <p><el-tag>xxxx大学</el-tag><el-tag>本科</el-tag></p>
         </div>
-        <div class="container">
-            <div class="plugins-tips">
-                vue-schart：vue.js封装sChart.js的图表组件。
-                访问地址：
-                <a
-                    href="https://github.com/lin-xin/vue-schart"
-                    target="_blank"
-                >vue-schart</a>
+        <el-card class="box-card" style="margin-bottom: 20px;">
+            <div class="text item">
+                <i class="el-icon-edit"></i>
+                <span style="font-size: 20px;">{{'name'}}</span>
+                <el-divider></el-divider>
+                <div class="grid-content bg-purple">
+                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
+                </div>
             </div>
-            <div class="schart-box">
-                <div class="content-title">柱状图</div>
-                <schart class="schart" canvasId="bar" :options="options1"></schart>
+            <div class="text item">
+                <i class="el-icon-edit"></i>
+                <span style="font-size: 20px;">{{'name'}}</span>
+                <el-divider></el-divider>
+                <div class="grid-content bg-purple">
+                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
+                </div>
             </div>
-            <div class="schart-box">
-                <div class="content-title">折线图</div>
-                <schart class="schart" canvasId="line" :options="options2"></schart>
+            <div class="text item">
+                <i class="el-icon-edit"></i>
+                <span style="font-size: 20px;">{{'name'}}</span>
+                <el-divider></el-divider>
+                <div class="grid-content bg-purple">
+                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
+                </div>
             </div>
-            <div class="schart-box">
-                <div class="content-title">饼状图</div>
-                <schart class="schart" canvasId="pie" :options="options3"></schart>
+            <div class="text item">
+                <i class="el-icon-edit"></i>
+                <span style="font-size: 20px;">{{'name'}}</span>
+                <el-divider></el-divider>
+                <div class="grid-content bg-purple">
+                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
+                </div>
             </div>
-            <div class="schart-box">
-                <div class="content-title">环形图</div>
-                <schart class="schart" canvasId="ring" :options="options4"></schart>
-            </div>
-        </div>
+            <div class='topMask square'></div><div class='topMask circular'></div>
+        </el-card>
     </div>
 </template>
-
 <script>
-import Schart from 'vue-schart';
 export default {
-    name: 'basecharts',
-    components: {
-        Schart
-    },
-    data() {
-        return {
-            options1: {
-                type: 'bar',
-                title: {
-                    text: '最近一周各品类销售图'
-                },
-                bgColor: '#fbfbfb',
-                labels: ['周一', '周二', '周三', '周四', '周五'],
-                datasets: [
-                    {
-                        label: '家电',
-                        fillColor: 'rgba(241, 49, 74, 0.5)',
-                        data: [234, 278, 270, 190, 230]
-                    },
-                    {
-                        label: '百货',
-                        data: [164, 178, 190, 135, 160]
-                    },
-                    {
-                        label: '食品',
-                        data: [144, 198, 150, 235, 120]
-                    }
-                ]
-            },
-            options2: {
-                type: 'line',
-                title: {
-                    text: '最近几个月各品类销售趋势图'
-                },
-                bgColor: '#fbfbfb',
-                labels: ['6月', '7月', '8月', '9月', '10月'],
-                datasets: [
-                    {
-                        label: '家电',
-                        data: [234, 278, 270, 190, 230]
-                    },
-                    {
-                        label: '百货',
-                        data: [164, 178, 150, 135, 160]
-                    },
-                    {
-                        label: '食品',
-                        data: [114, 138, 200, 235, 190]
-                    }
-                ]
-            },
-            options3: {
-                type: 'pie',
-                title: {
-                    text: '服装品类销售饼状图'
-                },
-                legend: {
-                    position: 'left'
-                },
-                bgColor: '#fbfbfb',
-                labels: ['T恤', '牛仔裤', '连衣裙', '毛衣', '七分裤', '短裙', '羽绒服'],
-                datasets: [
-                    {
-                        data: [334, 278, 190, 235, 260, 200, 141]
-                    }
-                ]
-            },
-            options4: {
-                type: 'ring',
-                title: {
-                    text: '环形三等分'
-                },
-                showValue: false,
-                legend: {
-                    position: 'bottom',
-                    bottom: 40
-                },
-                bgColor: '#fbfbfb',
-                labels: ['vue', 'react', 'angular'],
-                datasets: [
-                    {
-                        data: [500, 500, 500]
-                    }
-                ]
-            }
-        };
-    }
-};
-</script>
+    name: 'AboutUs'
+}
 
+</script>
+<style>
+.aboutus .grid-content.line{
+    border-right: 1px solid #ddd;
+    height: 150px;
+}
+.aboutus .el-card__header{
+    background: #545c64;
+}
+.aboutus .el-card__body{
+    padding: 50px 20px;
+}
+.aboutus .el-timeline-item__wrapper{
+    top: -8px;
+}
+.aboutus .title p .el-tag{
+    margin: 0px 5px;
+    cursor: pointer;
+}
+</style>
 <style scoped>
-.schart-box {
+.aboutus{
+    font-size: 14px;
+    text-align: left;
+    padding: 0px 100px;
+}
+.intro{
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.text {
+    font-size: 14px;
+    text-align: left;
+    line-height: 30px;
+    text-indent: 2em;
+}
+.box-card{
+    position: relative;
+}
+.item {
     display: inline-block;
-    margin: 20px;
+    margin: 30px 50px;
 }
-.schart {
-    width: 600px;
-    height: 400px;
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
 }
-.content-title {
-    clear: both;
-    font-weight: 400;
-    line-height: 50px;
-    margin: 10px 0;
-    font-size: 22px;
-    color: #1f2f3d;
+.clearfix:after {
+    clear: both
+}
+.clearfix span{
+    color: #fff;
+    font-weight: bold;
+}
+.title p{
+    color: #8c8888;
+    font-size: 15px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+.grid-content .large{
+    font-size: 16px;
+    color: #409EFF;
+    font-weight: bold;
+}
+.topMask{
+    width: 100px;
+    height: 100px;
+    background-color: rgba(68,138,255,0.2);
+    transform: rotate(45deg);
+    position: absolute;
+}
+.square{
+    border-radius: 5px;
+    top: 0px;
+}
+.circular{
+    border-radius: 50%;
+    top:80px;
+    left: 80%;
+    background-color: rgba(255, 208, 75,0.2);
 }
 </style>

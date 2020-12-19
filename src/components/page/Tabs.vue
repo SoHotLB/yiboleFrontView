@@ -1,129 +1,268 @@
 <template>
-    <div class="">
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-copy"></i> tab选项卡</el-breadcrumb-item>
-            </el-breadcrumb>
-        </div>
-        <div class="container">
-            <el-tabs v-model="message">
-                <el-tab-pane :label="`未读消息(${unread.length})`" name="first">
-                    <el-table :data="unread" :show-header="false" style="width: 100%">
-                        <el-table-column>
-                            <template slot-scope="scope">
-                                <span class="message-title">{{scope.row.title}}</span>
-                            </template>
-                        </el-table-column>
-                        <el-table-column prop="date" width="180"></el-table-column>
-                        <el-table-column width="120">
-                            <template slot-scope="scope">
-                                <el-button size="small" @click="handleRead(scope.$index)">标为已读</el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                    <div class="handle-row">
-                        <el-button type="primary">全部标为已读</el-button>
+    <div>
+        <el-breadcrumb separator="/" style="padding-left:10px;padding-bottom:10px;font-size:12px">
+            <el-breadcrumb-item :to="{ path: '/main' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/system' }">系统管理</el-breadcrumb-item>
+            <el-breadcrumb-item>职位管理</el-breadcrumb-item>
+        </el-breadcrumb>
+        <!--搜索框-->
+        <el-card class="box-card">
+            <el-row style="padding: 20px;margin: auto;width: 80%">
+                <el-col :span="10">
+                 <el-input placeholder="请输入职位名称搜索" v-model="name" class="handle-input mr10"></el-input>
+                </el-col>
+                <el-col :span="6">
+                    <el-button type="primary" icon="el-icon-search" @click="searchBook()">搜索</el-button>
+                </el-col>
+            </el-row>
+        </el-card>
+        <p></p>
+        <!-- 职位卡片 -->
+        <el-card class="box-card" style="padding-bottom: 10px;">
+            <el-form :inline="true" :model="formInline" ref="formInline" class="demo-form-inline" style="margin: auto;width: 80%">
+                <el-form-item label="职位选择" label-width="70px">
+                    <el-select clearable v-model="formInline.post" placeholder="请选择职位">
+                        <el-option v-for="item in posts" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="城市" label-width="70px">
+                    <el-select clearable v-model="formInline.city" placeholder="请选择职位所在城市">
+                        <el-option v-for="item in citys" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="学历" label-width="70px">
+                    <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">
+                        <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="性别" label-width="70px">
+                    <el-radio-group v-model="formInline.radio" label-width="70px">
+                        <el-radio :label="1">男</el-radio>
+                        <el-radio :label="2">女</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label-width="100px">
+                    <el-button type="primary" @click="selecetForm">搜索</el-button>
+                </el-form-item>
+            </el-form>
+            <!-- 表格显示区域 -->
+            <div class="" id="box">
+                <el-card class="box-card" v-for="v in tableData.list">
+                    <div slot="header" class="clearfix">
+				    <span>
+						 <el-link href="https://element.eleme.io" target="_blank">{{v.post}}</el-link>
+					</span>
+                        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
                     </div>
-                </el-tab-pane>
-                <el-tab-pane :label="`已读消息(${read.length})`" name="second">
-                    <template v-if="message === 'second'">
-                        <el-table :data="read" :show-header="false" style="width: 100%">
-                            <el-table-column>
-                                <template slot-scope="scope">
-                                    <span class="message-title">{{scope.row.title}}</span>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="date" width="150"></el-table-column>
-                            <el-table-column width="120">
-                                <template slot-scope="scope">
-                                    <el-button type="danger" @click="handleDel(scope.$index)">删除</el-button>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                        <div class="handle-row">
-                            <el-button type="danger">删除全部</el-button>
-                        </div>
-                    </template>
-                </el-tab-pane>
-                <el-tab-pane :label="`回收站(${recycle.length})`" name="third">
-                    <template v-if="message === 'third'">
-                        <el-table :data="recycle" :show-header="false" style="width: 100%">
-                            <el-table-column>
-                                <template slot-scope="scope">
-                                    <span class="message-title">{{scope.row.title}}</span>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="date" width="150"></el-table-column>
-                            <el-table-column width="120">
-                                <template slot-scope="scope">
-                                    <el-button @click="handleRestore(scope.$index)">还原</el-button>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                        <div class="handle-row">
-                            <el-button type="danger">清空回收站</el-button>
-                        </div>
-                    </template>
-                </el-tab-pane>
-            </el-tabs>
-        </div>
+                    <span>{{v.city}}</span>
+                    <span>{{v.education}}</span>
+                    <span>{{v.status}}</span>
+                </el-card>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <!-- 分页 -->
+            <el-pagination style="padding-top: 15px" @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
+                           :total="400">
+            </el-pagination>
+        </el-card>
+
+        <!--添加职位的弹出框 -->
+        <el-dialog title="职位信息" :visible.sync="dialogFormVisible">
+            <el-form :model="form">
+                <el-form ref="form" :model="form" label-width="80px">
+                    <el-form-item label="职位名称">
+                        <el-input v-model="form.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="职位地区">
+                        <el-select v-model="form.region" placeholder="请选择职位地区">
+                            <el-option label="重庆" value="重庆"></el-option>
+                            <el-option label="成都" value="成都"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-form>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="savePostJob">添加职位信息</el-button>
+            </div>
+        </el-dialog>
+
+        <!-- 修改职位信息的弹出框 -->
+        <el-dialog title="职位信息" :visible.sync="dialogFormVisible2">
+            <el-form :model="formInline">
+                <el-form ref="form" :model="formInline" label-width="80px">
+                    <el-form-item label="职位名称">
+                        <el-input v-model="formInline.post"></el-input>
+                    </el-form-item>
+                    <el-form-item label="职位区域">
+                        <el-select v-model="formInline.city" placeholder="请选择职位地区">
+                            <el-option label="重庆" value="重庆"></el-option>
+                            <el-option label="成都" value="成都"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="学历要求">
+                        <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">
+                            <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-form>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible2 = false">取 消</el-button>
+                <el-button type="primary" @click="updateJob">修改职位信息</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'tabs',
-        data() {
-            return {
-                message: 'first',
-                showHeader: false,
-                unread: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护',
-                },{
-                    date: '2018-04-19 21:00:00',
-                    title: '今晚12点整发大红包，先到先得',
-                }],
-                read: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护'
-                }],
-                recycle: [{
-                    date: '2018-04-19 20:00:00',
-                    title: '【系统通知】该系统将于今晚凌晨2点到5点进行升级维护'
+export default {
+    name: 'Position',
+    data () {
+        return {
+            value1: true,
+            formInline: {
+                positionId: '',
+                post: '', // 职位
+                city: '', // 城市
+                education: '', // 学历
+                radio: 2 // 性别
+
+            },
+            currentPage4: 4, // 分页
+            posts: [{
+                value: 'post1',
+                label: '开发'
+            }, {
+                value: 'post2',
+                label: '测试'
+            }],
+            citys: [{
+                value: 'city1',
+                label: '重庆'
+            }, {
+                value: 'city2',
+                label: '成都'
+            }],
+            educations: [{
+                value: '大专',
+                label: '大专'
+            }, {
+                value: '本科',
+                label: '本科'
+            }, {
+                value: '研究生',
+                label: '研究生'
+            }],
+            tableData: {
+                list: [{
+                    post: 'java工程师',
+                    city: '重庆',
+                    education: '大专',
+                    status: 1
+                }, {
+                    post: 'Linux工程师',
+                    city: '成都',
+                    education: '本科',
+                    status: 2
+                }, {
+                    post: 'C++工程师',
+                    city: '上海',
+                    education: '研究生',
+                    status: 2
+                }, {
+                    post: 'ptyhon工程师',
+                    city: '北京',
+                    education: '大专',
+                    status: 2
                 }]
-            }
-        },
-        methods: {
-            handleRead(index) {
-                const item = this.unread.splice(index, 1);
-                console.log(item);
-                this.read = item.concat(this.read);
             },
-            handleDel(index) {
-                const item = this.read.splice(index, 1);
-                this.recycle = item.concat(this.recycle);
-            },
-            handleRestore(index) {
-                const item = this.recycle.splice(index, 1);
-                this.read = item.concat(this.read);
-            }
-        },
-        computed: {
-            unreadNum(){
-                return this.unread.length;
+            // 添加职位信息的弹出框
+            dialogFormVisible: false,
+            // 修改职位信息的弹出框
+            dialogFormVisible2: false,
+            form: {
+                name: '',
+                region: '',
+                delivery: false,
+                type: [],
+                resource: '',
+                desc: ''
             }
         }
-    }
+    },
+    methods: {
+        getData(){
 
+        },
+        selecetForm () {
+            console.log(this.formInline)
+            this.formInline = {}
+        },
+        resetForm (formInline) {
+            console.log(this.formInline)
+            if (this.$refs[formInline] !== undefined) {
+                this.$refs[formInline].resetFields()
+            }
+        },
+        handleSizeChange (val) {
+            console.log(`每页 ${val} 条`)
+        },
+        handleCurrentChange (val) {
+            console.log(`当前页: ${val}`)
+        },
+        handleEdit (index, row) {
+            console.log(index, row)
+        },
+        handleDelete (index, row) {
+            console.log(index, row)
+        },
+
+        // 添加职位
+        // postJob() {
+        // 	this.dialogFormVisible = true;
+        // },
+        // savePostJob() {
+        // 	this.dialogFormVisible = false;
+        // 	console.log(this.form);
+        // 	this.form = {}
+        // },
+        // // 修改职位
+        // upJob(index, row) {
+        // 	this.dialogFormVisible2 = true;
+        // 	this.handleEdit(index, row);
+        // 	this.formInline = row;
+        // },
+        updateJob () {
+            this.dialogFormVisible2 = false
+            console.log(this.formInline)
+            this.formInline = {}
+        },
+        changeSwitch (row) {
+            console.log(row)
+        }
+
+    }
+}
 </script>
 
 <style>
-.message-title{
-    cursor: pointer;
+#box ul{
+    display: flex;
+    flex-wrap: wrap;
 }
-.handle-row{
-    margin-top: 30px;
+#box li{
+    padding: 3px;
+    width: 80%;
+    margin: auto;
+    list-style: none;
+    border: 1px solid #eee;
 }
 </style>
-

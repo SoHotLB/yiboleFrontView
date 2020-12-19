@@ -59,6 +59,12 @@ export default new Router({
                 },
                 {
                     // vue-schart组件
+                    path: '/jobinformation',
+                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/JobInformation.vue'),
+                    meta: { title: '公司信息' }
+                },
+                {
+                    // vue-schart组件
                     path: '/charts',
                     component: () => import(/* webpackChunkName: "chart" */ '../components/page/BaseCharts.vue'),
                     meta: { title: 'schart图表' }

@@ -53,9 +53,10 @@
                 <el-card class="box-card" v-for="v in tableData.list">
                     <div slot="header" class="clearfix">
 				    <span>
+
 						 <el-link href="https://element.eleme.io" target="_blank">{{v.post}}</el-link>
 					</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+                        <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
                     </div>
                     <span>{{v.city}}</span>
                     <span>{{v.education}}</span>

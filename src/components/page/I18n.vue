@@ -23,7 +23,6 @@
             </div>
         </div>-->
         <div>
-          <el-button type="primary" @click="$i18n.locale = $i18n.locale === 'zh'?'en':'zh';">{{$t('i18n.btn')}}</el-button>
           <el-card>
               <el-carousel :interval="4000" type="card" height="200px">
                 <el-carousel-item v-for="item in 6" :key="item">

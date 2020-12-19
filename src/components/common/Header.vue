@@ -24,7 +24,7 @@
                         :content="message?`查看简历`:`简历`"
                         placement="center"
                     >
-                        <router-link to="/tabs">
+                        <router-link to="/charts">
                             <label style='font-size: 15px;color: white'>简历</label>
                         </router-link>
                     </el-tooltip>

@@ -3,8 +3,8 @@
     <div class="sidebar">
         <el-menu
             class="sidebar-el-menu"
-            :default-active="onRoutes"
-            :collapse="collapse"
+            :default-active="activeIndex2"
+            mode='horizontal'
             background-color="#324157"
             text-color="#bfcbd9"
             active-text-color="#20a0ff"
@@ -56,6 +56,7 @@ export default {
     data() {
         return {
             collapse: false,
+            activeIndex2: '1',
             items: [
                 {
                     icon: 'el-icon-lx-home',
@@ -177,13 +178,13 @@ export default {
     display: block;
     position: absolute;
     left: 0;
-    top: 70px;
+    top: 50px;
     bottom: 0;
     overflow-y: scroll;
 }
-.sidebar::-webkit-scrollbar {
-    width: 0;
-}
+/*.sidebar::-webkit-scrollbar {*/
+/*    width: 0;*/
+/*}*/
 .sidebar-el-menu:not(.el-menu--collapse) {
     width: 250px;
 }

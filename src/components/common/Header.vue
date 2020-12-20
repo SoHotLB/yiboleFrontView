@@ -1,73 +1,116 @@
 <template>
     <div class="header">
-        <!-- 折叠按钮 -->
-        <div class="collapse-btn" @click="collapseChage">
-            <i v-if="!collapse" class="el-icon-s-fold"></i>
-            <i v-else class="el-icon-s-unfold"></i>
-        </div>
-        <div class="logo">医伯乐</div>
 
-
-        <div class="header-right">
-            <div class="header-user-con">
-                <!-- 全屏显示 -->
-                <div class="btn-fullscreen" @click="handleFullScreen">
-                    <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
-                        <i class="el-icon-rank"></i>
-                    </el-tooltip>
-                </div>
-                &nbsp;
-                <!-- 简历 -->
-                <div class="btn-message">
-                    <el-tooltip
-                        effect="dark"
-                        :content="message?`查看简历`:`简历`"
-                        placement="center"
-                    >
-                        <router-link to="/charts">
-                            <label style='font-size: 15px;color: white'>简历</label>
-                        </router-link>
-                    </el-tooltip>
-<!--                    <span class="btn-bell-badge" v-if="message">/span>-->
-                </div>
-                &nbsp;&nbsp;
-                <!-- 简历上传 -->
-                <div class="btn-message">
-                    <el-tooltip
-                        effect="dark"
-                        :content="message?`上传简历`:`简历`"
-                        placement="center"
-                    >
-                        <router-link to="/tabs">
-                            <label style='font-size: 15px;color: white'>上传</label>
-                        </router-link>
-                    </el-tooltip>
-                    <!--                    <span class="btn-bell-badge" v-if="message">/span>-->
-                </div>
-<!--                &lt;!&ndash; 用户头像 &ndash;&gt;-->
-<!--                <div class="user-avator">-->
-<!--                    <img src="../../assets/img/img.jpg" />-->
-<!--                </div>-->
-                <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
+        <div class="bar">
+            <div class="logo">医伯乐</div>
+            <el-menu
+                class="el-menu-demo"
+                :default-active="onRoutes"
+                mode="horizontal"
+                background-color="#324157"
+                text-color="#bfcbd9"
+                active-text-color="#20a0ff"
+                unique-opened
+                router
+            >
+                <template v-for="item in items">
+                    <template v-if="item.subs">
+                        <el-submenu :index="item.index" :key="item.index">
+                            <template slot="title">
+                                <i :class="item.icon"></i>
+                                <span slot="title">{{ item.title }}</span>
+                            </template>
+                            <template v-for="subItem in item.subs">
+                                <el-submenu
+                                    v-if="subItem.subs"
+                                    :index="subItem.index"
+                                    :key="subItem.index"
+                                >
+                                    <template slot="title">{{ subItem.title }}</template>
+                                    <el-menu-item
+                                        v-for="(threeItem,i) in subItem.subs"
+                                        :key="i"
+                                        :index="threeItem.index"
+                                    >{{ threeItem.title }}</el-menu-item>
+                                </el-submenu>
+                                <el-menu-item
+                                    v-else
+                                    :index="subItem.index"
+                                    :key="subItem.index"
+                                >{{ subItem.title }}</el-menu-item>
+                            </template>
+                        </el-submenu>
+                    </template>
+                    <template v-else>
+                        <el-menu-item :index="item.index" :key="item.index">
+                            <i :class="item.icon"></i>
+                            <span slot="title">{{ item.title }}</span>
+                        </el-menu-item>
+                    </template>
+                </template>
+            </el-menu>
+            <div class="header-right">
+                <div class="header-user-con">
+                    <!-- 全屏显示 -->
+                    <div class="btn-fullscreen" @click="handleFullScreen">
+                        <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
+                            <i class="el-icon-rank"></i>
+                        </el-tooltip>
+                    </div>
+                    &nbsp;
+                    <!-- 简历 -->
+                    <div class="btn-message">
+                        <el-tooltip
+                            effect="dark"
+                            :content="message?`查看简历`:`简历`"
+                            placement="center"
+                        >
+                            <router-link to="/charts">
+                                <label style='font-size: 15px;color: white'>简历</label>
+                            </router-link>
+                        </el-tooltip>
+                        <!--                    <span class="btn-bell-badge" v-if="message">/span>-->
+                    </div>
+                    &nbsp;&nbsp;
+                    <!-- 简历上传 -->
+                    <div class="btn-message">
+                        <el-tooltip
+                            effect="dark"
+                            :content="message?`上传简历`:`简历`"
+                            placement="center"
+                        >
+                            <router-link to="/tabs">
+                                <label style='font-size: 15px;color: white'>上传</label>
+                            </router-link>
+                        </el-tooltip>
+                        <!--                    <span class="btn-bell-badge" v-if="message">/span>-->
+                    </div>
+                    <!--                &lt;!&ndash; 用户头像 &ndash;&gt;-->
+                    <!--                <div class="user-avator">-->
+                    <!--                    <img src="../../assets/img/img.jpg" />-->
+                    <!--                </div>-->
+                    <!-- 用户名下拉菜单 -->
+                    <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
                         {{username}}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <a href="" target="_blank">
-                            <el-dropdown-item>个人中心</el-dropdown-item>
-                        </a>
-                      <router-link to="/icon">
-                        <el-dropdown-item divided command="usersetting">账号设置</el-dropdown-item>
-                      </router-link>
-                        <el-dropdown-item command="yssetting">隐私设置</el-dropdown-item>
-                        <el-dropdown-item divided command="switch">切换为招聘者</el-dropdown-item>
-                        <el-dropdown-item divided command="switch">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
+                        <el-dropdown-menu slot="dropdown">
+                            <a href="" target="_blank">
+                                <el-dropdown-item>个人中心</el-dropdown-item>
+                            </a>
+                            <router-link to="/icon">
+                                <el-dropdown-item divided command="usersetting">账号设置</el-dropdown-item>
+                            </router-link>
+                            <el-dropdown-item command="yssetting">隐私设置</el-dropdown-item>
+                            <el-dropdown-item divided command="switch">切换为招聘者</el-dropdown-item>
+                            <el-dropdown-item divided command="switch">退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
             </div>
         </div>
+
     </div>
 </template>
 <script>
@@ -78,13 +121,102 @@ export default {
             collapse: false,
             fullscreen: false,
             name: 'linxin',
-            message: 2
+            message: 2,
+            activeIndex2: '1',
+            items: [
+                {
+                    icon: 'el-icon-lx-home',
+                    index: 'dashboard',
+                    title: '系统首页'
+                },
+                {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'table',
+                    title: '基础表格'
+                },
+                {
+                    icon: 'el-icon-lx-copy',
+                    index: 'tabs',
+                    title: 'tab选项卡'
+                },
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: '3',
+                    title: '账号设置',
+                    subs: [
+                        {
+                            index: 'form',
+                            title: '手机账号'
+                        },
+                        {
+                            index: 'editor',
+                            title: '设置密码'
+                        },
+                        {
+                            index: 'markdown',
+                            title: '绑定微信号'
+                        },
+                        {
+                            index: 'upload',
+                            title: '常用语'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-emoji',
+                    index: 'icon',
+                    title: '自定义图标'
+                },
+                {
+                    icon: 'el-icon-pie-chart',
+                    index: 'charts',
+                    title: 'schart图表'
+                },
+                {
+                    icon: 'el-icon-rank',
+                    index: '6',
+                    title: '拖拽组件',
+                    subs: [
+                        {
+                            index: 'drag',
+                            title: '拖拽列表'
+                        },
+                        {
+                            index: 'dialog',
+                            title: '拖拽弹框'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-global',
+                    index: 'i18n',
+                    title: '国际化功能'
+                },
+                {
+                    icon: 'el-icon-lx-warn',
+                    index: '7',
+                    title: '错误处理',
+                    subs: [
+                        {
+                            index: 'permission',
+                            title: '权限测试'
+                        },
+                        {
+                            index: '404',
+                            title: '404页面'
+                        }
+                    ]
+                }
+            ]
         };
     },
     computed: {
         username() {
             let username = localStorage.getItem('ms_username');
             return username ? username : this.name;
+        },
+        onRoutes() {
+            return this.$route.path.replace('/', '');
         }
     },
     methods: {
@@ -94,6 +226,9 @@ export default {
                 localStorage.removeItem('ms_username');
                 this.$router.push('/login');
             }
+        },
+        handleSelect(key, keyPath) {
+            console.log(key, keyPath);
         },
         // 侧边栏折叠
         collapseChage() {
@@ -169,7 +304,7 @@ export default {
     margin-right: 5px;
     font-size: 24px;
 }
-.btn-bell,
+
 .btn-fullscreen {
     position: relative;
     width: 30px;

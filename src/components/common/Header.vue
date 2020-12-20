@@ -58,7 +58,9 @@
                         <a href="" target="_blank">
                             <el-dropdown-item>个人中心</el-dropdown-item>
                         </a>
+                      <router-link to="/icon">
                         <el-dropdown-item divided command="usersetting">账号设置</el-dropdown-item>
+                      </router-link>
                         <el-dropdown-item command="yssetting">隐私设置</el-dropdown-item>
                         <el-dropdown-item divided command="switch">切换为招聘者</el-dropdown-item>
                         <el-dropdown-item divided command="switch">退出登录</el-dropdown-item>

@@ -1,225 +1,90 @@
 <template>
-    <div>
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-emoji"></i> 自定义图标</el-breadcrumb-item>
-            </el-breadcrumb>
-        </div>
-        <div class="container">
-            <h2>使用方法</h2>
-            <p style="line-height: 50px;">
-                直接通过设置类名为 el-icon-lx-iconName 来使用即可。例如：（共{{iconList.length}}个图标）
-            </p>
-            <p class="example-p">
-                <i class="el-icon-lx-redpacket_fill" style="font-size: 30px;color: #ff5900"></i>
-                <span>&lt;i class=&quot;el-icon-lx-redpacket_fill&quot;&gt;&lt;/i&gt;</span>
-            </p>
-            <p class="example-p">
-                <i class="el-icon-lx-weibo" style="font-size: 30px;color:#fd5656"></i>
-                <span>&lt;i class=&quot;el-icon-lx-weibo&quot;&gt;&lt;/i&gt;</span>
-            </p>
-            <p class="example-p">
-                <i class="el-icon-lx-emojifill" style="font-size: 30px;color: #ffc300"></i>
-                <span>&lt;i class=&quot;el-icon-lx-emojifill&quot;&gt;&lt;/i&gt;</span>
-            </p>
-            <br>
-            <h2>图标</h2>
-            <div class="search-box">
-                <el-input class="search" size="large" v-model="keyword" clearable placeholder="请输入图标名称"></el-input>
-            </div>
-            <ul>
-                <li class="icon-li" v-for="(item,index) in list" :key="index">
-                    <div class="icon-li-content">
-                        <i :class="`el-icon-lx-${item}`"></i>
-                        <span>{{item}}</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-    </div>
+  <el-row class="tac">
+    <el-col :span="6">
+      <h5></h5>
+      <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose">
+        <el-menu-item index="1">
+          <i class="el-icon-location"></i>
+          <span slot="title">账号设置</span>
+        </el-menu-item>
+        <el-menu-item index="2">
+          <i class="el-icon-menu"></i>
+          <span slot="title">设置密码</span>
+        </el-menu-item>
+        <el-menu-item index="3">
+          <i class="el-icon-document"></i>
+          <span slot="title">隐私设置</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <i class="el-icon-setting"></i>
+          <span slot="title">常用语</span>
+        </el-menu-item>
+      </el-menu>
+    </el-col>
+    <el-col :span="18">
+      <h5></h5>
+      <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>卡片名称</span>
+            <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+          </div>
+          <div v-for="o in 4" :key="o" class="text item">
+            {{'列表内容 ' + o }}
+          </div>
+        </el-card>
+      </el-menu>
+    </el-col>
+  </el-row>
 </template>
-
 <script>
-    export default {
-        data: function(){
-            return {
-                keyword: '',
-                iconList: [
-                    'attentionforbid',
-                    'attentionforbidfill',
-                    'attention',
-                    'attentionfill',
-                    'tag',
-                    'tagfill',
-                    'people',
-                    'peoplefill',
-                    'notice',
-                    'noticefill',
-                    'mobile',
-                    'mobilefill',
-                    'voice',
-                    'voicefill',
-                    'unlock',
-                    'lock',
-                    'home',
-                    'homefill',
-                    'delete',
-                    'deletefill',
-                    'notification',
-                    'notificationfill',
-                    'notificationforbidfill',
-                    'like',
-                    'likefill',
-                    'comment',
-                    'commentfill',
-                    'camera',
-                    'camerafill',
-                    'warn',
-                    'warnfill',
-                    'time',
-                    'timefill',
-                    'location',
-                    'locationfill',
-                    'favor',
-                    'favorfill',
-                    'skin',
-                    'skinfill',
-                    'news',
-                    'newsfill',
-                    'record',
-                    'recordfill',
-                    'emoji',
-                    'emojifill',
-                    'message',
-                    'messagefill',
-                    'goods',
-                    'goodsfill',
-                    'crown',
-                    'crownfill',
-                    'move',
-                    'add',
-                    'hot',
-                    'hotfill',
-                    'service',
-                    'servicefill',
-                    'present',
-                    'presentfill',
-                    'pic',
-                    'picfill',
-                    'rank',
-                    'rankfill',
-                    'male',
-                    'female',
-                    'down',
-                    'top',
-                    'recharge',
-                    'rechargefill',
-                    'forward',
-                    'forwardfill',
-                    'info',
-                    'infofill',
-                    'redpacket',
-                    'redpacket_fill',
-                    'roundadd',
-                    'roundaddfill',
-                    'friendadd',
-                    'friendaddfill',
-                    'cart',
-                    'cartfill',
-                    'more',
-                    'moreandroid',
-                    'back',
-                    'right',
-                    'shop',
-                    'shopfill',
-                    'question',
-                    'questionfill',
-                    'roundclose',
-                    'roundclosefill',
-                    'roundcheck',
-                    'roundcheckfill',
-                    'global',
-                    'mail',
-                    'punch',
-                    'exit',
-                    'upload',
-                    'read',
-                    'file',
-                    'link',
-                    'full',
-                    'group',
-                    'friend',
-                    'profile',
-                    'addressbook',
-                    'calendar',
-                    'text',
-                    'copy',
-                    'share',
-                    'wifi',
-                    'vipcard',
-                    'weibo',
-                    'remind',
-                    'refresh',
-                    'filter',
-                    'settings',
-                    'scan',
-                    'qrcode',
-                    'cascades',
-                    'apps',
-                    'sort',
-                    'searchlist',
-                    'search',
-                    'edit'
-                ]
-            }
-        },
-        computed: {
-            list(){
-                return this.iconList.filter((item) => {
-                    return item.indexOf(this.keyword) !== -1;
-                })
-            }
-        }
+export default {
+  methods: {
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
     }
+  }
+}
 </script>
 
-<style scoped>
-.example-p{
-    height: 45px;
-    display: flex;
-    align-items: center;
+<style>
+.el-col{
+  padding-left: 0.625rem;
+  padding-right: 1.25rem;
+  padding-top: 1.25rem;
 }
-.search-box{
-    text-align: center;
-    margin-top: 10px;
+.text {
+  font-size: 25px;
 }
-.search{
-    width: 300px;
+
+.item {
+  margin-bottom:18px;
 }
-ul,li{
-    list-style: none;
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
 }
-.icon-li{
-    display: inline-block;
-    padding: 10px;
-    width: 120px;
-    height: 120px;
+.clearfix:after {
+  clear: both
 }
-.icon-li-content{
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-.icon-li-content i{
-    font-size: 36px;
-    color: #606266;
-}
-.icon-li-content span{
-    margin-top: 10px;
-    color: #787878;
+
+.box-card {
+  width: 100%;
 }
 </style>

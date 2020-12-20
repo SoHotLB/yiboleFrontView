@@ -75,29 +75,37 @@ export default {
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '3',
-                    title: '表单相关',
+                    title: '账号设置',
                     subs: [
                         {
                             index: 'form',
-                            title: '基本表单'
+                            title: '手机账号'
                         },
-                        {
-                            index: '3-2',
-                            title: '三级菜单',
-                            subs: [
-                                {
-                                    index: 'editor',
-                                    title: '富文本编辑器'
-                                },
-                                {
-                                    index: 'markdown',
-                                    title: 'markdown编辑器'
-                                }
-                            ]
-                        },
+                      {
+                        index: 'editor',
+                        title: '设置密码'
+                      },
+                      {
+                        index: 'markdown',
+                        title: '绑定微信号'
+                      },
+                        // {
+                        //     index: '3-2',
+                        //     title: '常用语',
+                        //     subs: [
+                        //         {
+                        //             index: 'editor',
+                        //             title: '富文本编辑器'
+                        //         },
+                        //         {
+                        //             index: 'markdown',
+                        //             title: 'markdown编辑器'
+                        //         }
+                        //     ]
+                        // },
                         {
                             index: 'upload',
-                            title: '文件上传'
+                            title: '常用语'
                         }
                     ]
                 },

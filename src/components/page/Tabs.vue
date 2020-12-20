@@ -53,14 +53,21 @@
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
                     <div slot="header" class="clearfix">
 				            <span>
-						            <el-link href="https://element.eleme.io" target="_blank">{{v.positionName}}</el-link>
+						            <el-link style='font-size: 30px;color: lightskyblue' href="https://element.eleme.io" target="_blank">{{v.positionName}}</el-link>
                     </span>
                         <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
                     </div>
-                    <span>{{v.jobRequirements}}</span>
-                    <span>{{v.location}}</span>
-                    <span>{{v.departmentName}}</span>
-                    <span>{{v.company}}</span>
+                    <div>
+                        <span style='padding: 6px;font-size: 25px'>{{v.jobRequirements}}</span>
+                        <span style='padding: 6px;font-size: 20px;padding-top: 10px'>{{v.location}}</span>
+                    </div>
+                    <div>
+                         <span style='padding:6px;font-size: 20px;color: #cf9236'>{{'['+v.salaryLimit+'-'+v.salaryCeiling+'k薪]'}}</span>
+                         <span style='padding: 6px;font-size: 20px'>{{v.departmentName}}</span>
+                    </div>
+                  <div>
+                    <span style='padding: 6px;font-size: 20px;padding-top: 3px'>{{v.company}}</span>
+                  </div>
                 </el-card>
             </div>
             <p></p>
@@ -129,7 +136,7 @@ export default {
     mounted() {
        this.getData()
     },
-    data () {
+    data (){
         return {
             tableData:[],
               // positionId:'',
@@ -214,7 +221,7 @@ export default {
             var that = this
             this.$axios.get('http://115.29.204.107:8084/yibole//getAllPositions')
                 .then(function(response) {
-                  that.tableData = response.data
+                  that.tableData = response.data.data
                 }).catch(function(error) {
 
             })

@@ -50,17 +50,17 @@
             </el-form>
             <!-- 表格显示区域 -->
             <div class="" id="box">
-                <el-card class="box-card" v-for="v in tableData.list">
+                <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
                     <div slot="header" class="clearfix">
-				    <span>
-
-						 <el-link href="https://element.eleme.io" target="_blank">{{v.post}}</el-link>
-					</span>
+				            <span>
+						            <el-link href="https://element.eleme.io" target="_blank">{{v.positionName}}</el-link>
+                    </span>
                         <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
                     </div>
-                    <span>{{v.city}}</span>
-                    <span>{{v.education}}</span>
-                    <span>{{v.status}}</span>
+                    <span>{{v.jobRequirements}}</span>
+                    <span>{{v.location}}</span>
+                    <span>{{v.departmentName}}</span>
+                    <span>{{v.company}}</span>
                 </el-card>
             </div>
             <p></p>
@@ -126,8 +126,18 @@
 <script>
 export default {
     name: 'Position',
+    mounted() {
+       this.getData()
+    },
     data () {
         return {
+            tableData:[],
+              // positionId:'',
+              // positionName:'',
+              // jobRequirements:'',
+              // location:'',
+              // departmentName:'',
+              // company:''
             value1: true,
             formInline: {
                 positionId: '',
@@ -162,29 +172,29 @@ export default {
                 value: '研究生',
                 label: '研究生'
             }],
-            tableData: {
-                list: [{
-                    post: 'java工程师',
-                    city: '重庆',
-                    education: '大专',
-                    status: 1
-                }, {
-                    post: 'Linux工程师',
-                    city: '成都',
-                    education: '本科',
-                    status: 2
-                }, {
-                    post: 'C++工程师',
-                    city: '上海',
-                    education: '研究生',
-                    status: 2
-                }, {
-                    post: 'ptyhon工程师',
-                    city: '北京',
-                    education: '大专',
-                    status: 2
-                }]
-            },
+            // tableData: {
+            //     list: [{
+            //         post: 'java工程师',
+            //         city: '重庆',
+            //         education: '大专',
+            //         status: 1
+            //     }, {
+            //         post: 'Linux工程师',
+            //         city: '成都',
+            //         education: '本科',
+            //         status: 2
+            //     }, {
+            //         post: 'C++工程师',
+            //         city: '上海',
+            //         education: '研究生',
+            //         status: 2
+            //     }, {
+            //         post: 'ptyhon工程师',
+            //         city: '北京',
+            //         education: '大专',
+            //         status: 2
+            //     }]
+            // },
             // 添加职位信息的弹出框
             dialogFormVisible: false,
             // 修改职位信息的弹出框
@@ -201,7 +211,14 @@ export default {
     },
     methods: {
         getData(){
+            var that = this
+            this.$axios.get('http://115.29.204.107:8084/yibole//getAllPositions')
+                .then(function(response) {
+                  that.tableData = response.data
+                }).catch(function(error) {
 
+            })
+          }
         },
         selecetForm () {
             console.log(this.formInline)
@@ -249,8 +266,6 @@ export default {
         changeSwitch (row) {
             console.log(row)
         }
-
-    }
 }
 </script>
 

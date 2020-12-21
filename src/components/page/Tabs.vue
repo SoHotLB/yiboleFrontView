@@ -9,10 +9,10 @@
         <el-card class="box-card" style="padding-bottom: 10px;">
             <el-row style="padding: 20px;margin: auto;width: 80%">
                 <el-col :span="10">
-                 <el-input placeholder="请输入职位名称搜索" v-model="name" class="handle-input mr10"></el-input>
+                 <el-input placeholder="请输入职位名称搜索" v-model="pname" class="handle-input mr10"></el-input>
                 </el-col>
                 <el-col :span="6">
-                    <el-button type="primary" icon="el-icon-search" @click="searchJob">搜索</el-button>
+                    <el-button type="primary" icon="el-icon-search" @click="searchJob()">搜索</el-button>
                 </el-col>
             </el-row>
         </el-card>
@@ -53,7 +53,7 @@
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
                     <div slot="header" class="clearfix">
 				            <span>
-						            <el-link style='font-size: 30px;color: lightskyblue' href="https://element.eleme.io" target="_blank">{{v.positionName}}</el-link>
+						            <el-link style='font-size: 30px;color: lightskyblue' href="" target="_blank">{{v.positionName}}</el-link>
                     </span>
                         <el-button style="float: right; padding: 3px 0" type="text">
                           <router-link style='font-size: 30px;color: lightskyblue' to="/jobinformation" >查看详情</router-link>
@@ -83,52 +83,52 @@
 <!--        </el-card>-->
 
         <!--添加职位的弹出框 -->
-        <el-dialog title="职位信息" :visible.sync="dialogFormVisible">
-            <el-form :model="form">
-                <el-form ref="form" :model="form" label-width="80px">
-                    <el-form-item label="职位名称">
-                        <el-input v-model="form.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="职位地区">
-                        <el-select v-model="form.region" placeholder="请选择职位地区">
-                            <el-option label="重庆" value="重庆"></el-option>
-                            <el-option label="成都" value="成都"></el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-form>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="savePostJob">添加职位信息</el-button>
-            </div>
-        </el-dialog>
+<!--        <el-dialog title="职位信息" :visible.sync="dialogFormVisible">-->
+<!--            <el-form :model="form">-->
+<!--                <el-form ref="form" :model="form" label-width="80px">-->
+<!--                    <el-form-item label="职位名称">-->
+<!--                        <el-input v-model="form.name"></el-input>-->
+<!--                    </el-form-item>-->
+<!--                    <el-form-item label="职位地区">-->
+<!--                        <el-select v-model="form.region" placeholder="请选择职位地区">-->
+<!--                            <el-option label="重庆" value="重庆"></el-option>-->
+<!--                            <el-option label="成都" value="成都"></el-option>-->
+<!--                        </el-select>-->
+<!--                    </el-form-item>-->
+<!--                </el-form>-->
+<!--            </el-form>-->
+<!--            <div slot="footer" class="dialog-footer">-->
+<!--                <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+<!--                <el-button type="primary" @click="savePostJob">添加职位信息</el-button>-->
+<!--            </div>-->
+<!--        </el-dialog>-->
 
         <!-- 修改职位信息的弹出框 -->
-        <el-dialog title="职位信息" :visible.sync="dialogFormVisible2">
-            <el-form :model="formInline">
-                <el-form ref="form" :model="formInline" label-width="80px">
-                    <el-form-item label="职位名称">
-                        <el-input v-model="formInline.post"></el-input>
-                    </el-form-item>
-                    <el-form-item label="职位区域">
-                        <el-select v-model="formInline.city" placeholder="请选择职位地区">
-                            <el-option label="重庆" value="重庆"></el-option>
-                            <el-option label="成都" value="成都"></el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="学历要求">
-                        <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">
-                            <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-form>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible2 = false">取 消</el-button>
-                <el-button type="primary" @click="updateJob">修改职位信息</el-button>
-            </div>
-        </el-dialog>
+<!--        <el-dialog title="职位信息" :visible.sync="dialogFormVisible2">-->
+<!--            <el-form :model="formInline">-->
+<!--                <el-form ref="form" :model="formInline" label-width="80px">-->
+<!--                    <el-form-item label="职位名称">-->
+<!--                        <el-input v-model="formInline.post"></el-input>-->
+<!--                    </el-form-item>-->
+<!--                    <el-form-item label="职位区域">-->
+<!--                        <el-select v-model="formInline.city" placeholder="请选择职位地区">-->
+<!--                            <el-option label="重庆" value="重庆"></el-option>-->
+<!--                            <el-option label="成都" value="成都"></el-option>-->
+<!--                        </el-select>-->
+<!--                    </el-form-item>-->
+<!--                    <el-form-item label="学历要求">-->
+<!--                        <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">-->
+<!--                            <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">-->
+<!--                            </el-option>-->
+<!--                        </el-select>-->
+<!--                    </el-form-item>-->
+<!--                </el-form>-->
+<!--            </el-form>-->
+<!--            <div slot="footer" class="dialog-footer">-->
+<!--                <el-button @click="dialogFormVisible2 = false">取 消</el-button>-->
+<!--                <el-button type="primary" @click="updateJob">修改职位信息</el-button>-->
+<!--            </div>-->
+<!--        </el-dialog>-->
     </div>
 </template>
 
@@ -138,128 +138,131 @@ export default {
     mounted() {
        this.getData()
     },
-    data (){
-        return {
-            name:'',
-            tableData:[],
-              // positionId:'',
-              // positionName:'',
-              // jobRequirements:'',
-              // location:'',
-              // departmentName:'',
-              // company:''
-            value1: true,
-            formInline: {
-                positionId: '',
-                post: '', // 职位
-                city: '', // 城市
-                education: '', // 学历
-                radio: 2 // 性别
-
-            },
-            currentPage4: 4, // 分页
-            posts: [{
-                value: 'post1',
-                label: '开发'
-            }, {
-                value: 'post2',
-                label: '测试'
-            }],
-            citys: [{
-                value: 'city1',
-                label: '重庆'
-            }, {
-                value: 'city2',
-                label: '成都'
-            }],
-            educations: [{
-                value: '大专',
-                label: '大专'
-            }, {
-                value: '本科',
-                label: '本科'
-            }, {
-                value: '研究生',
-                label: '研究生'
-            }],
-            // 添加职位信息的弹出框
-            dialogFormVisible: false,
-            // 修改职位信息的弹出框
-            dialogFormVisible2: false,
-            form: {
-                name: '',
-                region: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: ''
-            }
-        }
+    data () {
+      return {
+        pname: '',
+        tableData: [],
+        // positionId:'',
+        // positionName:'',
+        // jobRequirements:'',
+        // location:'',
+        // departmentName:'',
+        // company:''
+        value1: true,
+        currentPage4: 4, // 分页
+      }
     },
+    //         formInline: {
+    //             positionId: '',
+    //             post: '', // 职位
+    //             city: '', // 城市
+    //             education: '', // 学历
+    //             radio: 2 // 性别
+    //
+    //         },
+    //         posts: [{
+    //             value: 'post1',
+    //             label: '开发'
+    //         }, {
+    //             value: 'post2',
+    //             label: '测试'
+    //         }],
+    //         citys: [{
+    //             value: 'city1',
+    //             label: '重庆'
+    //         }, {
+    //             value: 'city2',
+    //             label: '成都'
+    //         }],
+    //         educations: [{
+    //             value: '大专',
+    //             label: '大专'
+    //         }, {
+    //             value: '本科',
+    //             label: '本科'
+    //         }, {
+    //             value: '研究生',
+    //             label: '研究生'
+    //         }],
+    //         // 添加职位信息的弹出框
+    //         dialogFormVisible: false,
+    //         // 修改职位信息的弹出框
+    //         dialogFormVisible2: false,
+    //         form: {
+    //             name: '',
+    //             region: '',
+    //             delivery: false,
+    //             type: [],
+    //             resource: '',
+    //             desc: ''
+    //         }
+    //     }
+    // },
     methods: {
-        getData(){
-            var that = this
-            this.$axios.get('http://115.29.204.107:8084/yibole//getAllPositions')
-                .then(function(response) {
-                  that.tableData = response.data.data
-                }).catch(function(error) {
-
-            })
-          }
-        },
-        searchJob() {
-           var that = this
-           this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + this.name).then(function(response) {
-           console.log(response.data)
-           that.tableData = response.data
-            }).catch(function(error) {that.$message.error(error.message);})
-        },
-        selecetForm () {
-            console.log(this.formInline)
-            this.formInline = {}
-        },
-        resetForm (formInline) {
-            console.log(this.formInline)
-            if (this.$refs[formInline] !== undefined) {
-                this.$refs[formInline].resetFields()
-            }
-        },
-        handleSizeChange (val) {
-            console.log(`每页 ${val} 条`)
-        },
-        handleCurrentChange (val) {
-            console.log(`当前页: ${val}`)
-        },
-        handleEdit (index, row) {
-            console.log(index, row)
-        },
-        handleDelete (index, row) {
-            console.log(index, row)
-        },
-
-        // 添加职位
-        // postJob() {
-        // 	this.dialogFormVisible = true;
-        // },
-        // savePostJob() {
-        // 	this.dialogFormVisible = false;
-        // 	console.log(this.form);
-        // 	this.form = {}
-        // },
-        // // 修改职位
-        // upJob(index, row) {
-        // 	this.dialogFormVisible2 = true;
-        // 	this.handleEdit(index, row);
-        // 	this.formInline = row;
-        // },
-        updateJob () {
-            this.dialogFormVisible2 = false
-            console.log(this.formInline)
-            this.formInline = {}
-        },
-        changeSwitch (row) {
-            console.log(row)
+      getData() {
+        var that = this
+        this.$axios.get('http://115.29.204.107:8084/yibole//getAllPositions')
+            .then(function(response) {
+              that.tableData = response.data.data
+            }).catch(function(error) {
+        })
+      },
+      searchJob() {
+        var that = this
+        this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + this.pname).then(function(response) {
+          console.log(response.data)
+          that.tableData = response.data.data
+        }).catch(function(error) {
+          that.$message.error(error.message);
+        })
+      },
+      // selecetForm() {
+      //   console.log(this.formInline)
+      //   this.formInline = {}
+      // },
+      resetForm(formInline) {
+        console.log(this.formInline)
+        if (this.$refs[formInline] !== undefined) {
+          this.$refs[formInline].resetFields()
         }
+      },
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`)
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`)
+      },
+      handleEdit(index, row) {
+        console.log(index, row)
+      },
+      handleDelete(index, row) {
+        console.log(index, row)
+      },
+
+      // 添加职位
+      // postJob() {
+      // 	this.dialogFormVisible = true;
+      // },
+      // savePostJob() {
+      // 	this.dialogFormVisible = false;
+      // 	console.log(this.form);
+      // 	this.form = {}
+      // },
+      // // 修改职位
+      // upJob(index, row) {
+      // 	this.dialogFormVisible2 = true;
+      // 	this.handleEdit(index, row);
+      // 	this.formInline = row;
+      // },
+      // updateJob() {
+      //   this.dialogFormVisible2 = false
+      //   console.log(this.formInline)
+      //   this.formInline = {}
+      // },
+      // changeSwitch(row) {
+      //   console.log(row)
+      // }
+    }
 }
 </script>
 

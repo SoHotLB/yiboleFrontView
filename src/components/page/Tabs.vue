@@ -6,48 +6,48 @@
             <el-breadcrumb-item>职位管理</el-breadcrumb-item>
         </el-breadcrumb>
         <!--搜索框-->
-        <el-card class="box-card">
+        <el-card class="box-card" style="padding-bottom: 10px;">
             <el-row style="padding: 20px;margin: auto;width: 80%">
                 <el-col :span="10">
                  <el-input placeholder="请输入职位名称搜索" v-model="name" class="handle-input mr10"></el-input>
                 </el-col>
                 <el-col :span="6">
-                    <el-button type="primary" icon="el-icon-search" @click="searchBook()">搜索</el-button>
+                    <el-button type="primary" icon="el-icon-search" @click="searchJob">搜索</el-button>
                 </el-col>
             </el-row>
         </el-card>
         <p></p>
         <!-- 职位卡片 -->
-        <el-card class="box-card" style="padding-bottom: 10px;">
-            <el-form :inline="true" :model="formInline" ref="formInline" class="demo-form-inline" style="margin: auto;width: 80%">
-                <el-form-item label="职位选择" label-width="70px">
-                    <el-select clearable v-model="formInline.post" placeholder="请选择职位">
-                        <el-option v-for="item in posts" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="城市" label-width="70px">
-                    <el-select clearable v-model="formInline.city" placeholder="请选择职位所在城市">
-                        <el-option v-for="item in citys" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="学历" label-width="70px">
-                    <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">
-                        <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="性别" label-width="70px">
-                    <el-radio-group v-model="formInline.radio" label-width="70px">
-                        <el-radio :label="1">男</el-radio>
-                        <el-radio :label="2">女</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label-width="100px">
-                    <el-button type="primary" @click="selecetForm">搜索</el-button>
-                </el-form-item>
-            </el-form>
+<!--        <el-card class="box-card" style="padding-bottom: 10px;">-->
+<!--            <el-form :inline="true" :model="formInline" ref="formInline" class="demo-form-inline" style="margin: auto;width: 80%">-->
+<!--                <el-form-item label="职位选择" label-width="70px">-->
+<!--                    <el-select clearable v-model="formInline.post" placeholder="请选择职位">-->
+<!--                        <el-option v-for="item in posts" :key="item.value" :label="item.label" :value="item.value">-->
+<!--                        </el-option>-->
+<!--                    </el-select>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="城市" label-width="70px">-->
+<!--                    <el-select clearable v-model="formInline.city" placeholder="请选择职位所在城市">-->
+<!--                        <el-option v-for="item in citys" :key="item.value" :label="item.label" :value="item.value">-->
+<!--                        </el-option>-->
+<!--                    </el-select>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="学历" label-width="70px">-->
+<!--                    <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">-->
+<!--                        <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">-->
+<!--                        </el-option>-->
+<!--                    </el-select>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label="性别" label-width="70px">-->
+<!--                    <el-radio-group v-model="formInline.radio" label-width="70px">-->
+<!--                        <el-radio :label="1">男</el-radio>-->
+<!--                        <el-radio :label="2">女</el-radio>-->
+<!--                    </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--                <el-form-item label-width="100px">-->
+<!--                    <el-button type="primary" @click="selecetForm">搜索</el-button>-->
+<!--                </el-form-item>-->
+<!--            </el-form>-->
             <!-- 表格显示区域 -->
             <div class="" id="box">
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
@@ -55,7 +55,9 @@
 				            <span>
 						            <el-link style='font-size: 30px;color: lightskyblue' href="https://element.eleme.io" target="_blank">{{v.positionName}}</el-link>
                     </span>
-                        <el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
+                        <el-button style="float: right; padding: 3px 0" type="text">
+                          <router-link style='font-size: 30px;color: lightskyblue' to="/jobinformation" >查看详情</router-link>
+                        </el-button>
                     </div>
                     <div>
                         <span style='padding: 6px;font-size: 25px'>{{v.jobRequirements}}</span>
@@ -78,7 +80,7 @@
                            :current-page="currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
                            :total="400">
             </el-pagination>
-        </el-card>
+<!--        </el-card>-->
 
         <!--添加职位的弹出框 -->
         <el-dialog title="职位信息" :visible.sync="dialogFormVisible">
@@ -138,6 +140,7 @@ export default {
     },
     data (){
         return {
+            name:'',
             tableData:[],
               // positionId:'',
               // positionName:'',
@@ -179,29 +182,6 @@ export default {
                 value: '研究生',
                 label: '研究生'
             }],
-            // tableData: {
-            //     list: [{
-            //         post: 'java工程师',
-            //         city: '重庆',
-            //         education: '大专',
-            //         status: 1
-            //     }, {
-            //         post: 'Linux工程师',
-            //         city: '成都',
-            //         education: '本科',
-            //         status: 2
-            //     }, {
-            //         post: 'C++工程师',
-            //         city: '上海',
-            //         education: '研究生',
-            //         status: 2
-            //     }, {
-            //         post: 'ptyhon工程师',
-            //         city: '北京',
-            //         education: '大专',
-            //         status: 2
-            //     }]
-            // },
             // 添加职位信息的弹出框
             dialogFormVisible: false,
             // 修改职位信息的弹出框
@@ -226,6 +206,13 @@ export default {
 
             })
           }
+        },
+        searchJob() {
+           var that = this
+           this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + this.name).then(function(response) {
+           console.log(response.data)
+           that.tableData = response.data
+            }).catch(function(error) {that.$message.error(error.message);})
         },
         selecetForm () {
             console.log(this.formInline)

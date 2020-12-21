@@ -1,13 +1,12 @@
 <template>
     <div>
-        <div class="search" style="margin-right: 10%;margin-top: 15px;margin-left: 10%">
+        <div class="search" style="margin-right: 10%;margin-top: 15px;margin-left: 15%">
             <el-cascader
                 clearable
                 class='card-emloyee'
                 v-model="value"
                 :options="options"
-                :props="{ expandTrigger: 'hover' }"
-                @change="handleChange">
+                :props="{ expandTrigger: 'hover' }">
             </el-cascader>
             <el-input style='width: 70%' clearable
                       placeholder="请输入职位、公司" size='small'
@@ -26,6 +25,7 @@
             <el-link class='green' :underline="false">中医</el-link>&nbsp;
             <el-link class='green' :underline="false">医学影像放射</el-link>&nbsp;
         </div>
+<!--        轮播-->
         <div class="block" style="margin-top: 20px;margin-left:10px;margin-right:10px;">
             <el-carousel :interval="5000" trigger="click" type='card' :height="bannerHeight+'px'">
                 <el-carousel-item v-for="item in carouselList" :key="item.key">
@@ -158,39 +158,17 @@
                     </el-card>
                 </div>
             </el-col>
-            <el-col :span="16">
+            <el-col :span="12">
                 <p style="font-size: 20px;color: #1f2f3d; padding-left: 42%;height:50px;margin-right: 10px;margin-left: 10px;margin-top: 20px">
                     热招职位
                 </p>
 
                     <el-col :span="32" style='display: flex'>
                         <el-row :gutter="20" class="mgb20">
-                            <el-col :span="13">
+                            <el-col :span="6">
                                 <el-card shadow="hover" :body-style="{padding: '0px'}">
                                     <div class="grid-content grid-con-1">
                                         <i class="el-icon-lx-people grid-con-icon"></i>
-                                        <div class="grid-cont-right">
-                                            <div class="grid-num">/</div>
-                                            <div>//</div>
-                                        </div>
-                                    </div>
-                                </el-card>
-                            </el-col>
-                            <el-col :span="13">
-                                <el-card shadow="hover" :body-style="{padding: '0px'}">
-                                    <div class="grid-content grid-con-2">
-                                        <i class="el-icon-lx-notice grid-con-icon"></i>
-                                        <div class="grid-cont-right">
-                                            <div class="grid-num">/</div>
-                                            <div>//</div>
-                                        </div>
-                                    </div>
-                                </el-card>
-                            </el-col>
-                            <el-col :span="13">
-                                <el-card shadow="hover" :body-style="{padding: '0px'}">
-                                    <div class="grid-content grid-con-3">
-                                        <i class="el-icon-lx-goods grid-con-icon"></i>
                                         <div class="grid-cont-right">
                                             <div class="grid-num">/</div>
                                             <div>//</div>
@@ -296,7 +274,6 @@ export default {
             }]
         }
     },
-
     methods: {
         imgLoad(){
             this.$nextTick(()=>{
@@ -508,7 +485,7 @@ ul,li{
 
 
 .card-emloyee{
-    width: 20%;
+    width: 15%;
     height: 40px;
 }
 

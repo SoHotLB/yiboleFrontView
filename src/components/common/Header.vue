@@ -297,6 +297,7 @@ export default {
     float: left;
     width: 150px;
     line-height: 60px;
+    font-weight: 700;
     font-family: Calibri;
     color: #fff;
 }

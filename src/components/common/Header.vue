@@ -1,5 +1,5 @@
 <template>
-    <div class="header" style='height: 70px'>
+    <div class="header" style='height: 80px'>
         <div class="bar">
             <div class="logo">医伯乐</div>
             <div class='top_bar' style='display: flex;width: 980px'>
@@ -8,8 +8,8 @@
                     :default-active="onRoutes"
                     mode="horizontal"
                     background-color="#242f42"
-                    text-color="#bfcbd9"
-                    active-text-color="#20a0ff"
+                    text-color="#fff"
+                    active-text-color="#ffd04b"
                     unique-opened
                     router
                 >
@@ -68,7 +68,7 @@
                                 placement="center"
                             >
                                 <router-link to="/charts">
-                                    <label style='font-size: 15px;color: white'>简历</label>
+                                    <label style='font-size: 12px;color: #fff ;line-height: 100px'>简历</label>
                                 </router-link>
                             </el-tooltip>
                             <!--                    <span class="btn-bell-badge" v-if="message">/span>-->
@@ -82,7 +82,7 @@
                                 placement="center"
                             >
                                 <router-link to="/tabs">
-                                    <label style='font-size: 15px;color: white'>上传</label>
+                                    <label style='font-size: 12px;color: #fff;line-height: 100px'>上传</label>
                                 </router-link>
                             </el-tooltip>
                             <!--                    <span class="btn-bell-badge" v-if="message">/span>-->
@@ -92,8 +92,8 @@
                         <!--                    <img src="../../assets/img/img.jpg" />-->
                         <!--                </div>-->
                         <!-- 用户名下拉菜单 -->
-                        <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
+                        <el-dropdown class="user-name" trigger="click" style='color: #fff' @command="handleCommand">
+                    <span class="el-dropdown-link" style='font-size: 14px;color: #fff'>
                         {{username}}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
@@ -275,12 +275,16 @@ export default {
 };
 </script>
 <style scoped>
+.el-menu-demo{
+    height: 70px;
+    color: #fff;
+}
 .header {
-    position: relative;
+    position: absolute;
     box-sizing: border-box;
     width: 100%;
     height: 70px;
-    font-size: 22px;
+    font-size: 20px;
     color: #fff;
 }
 .collapse-btn {
@@ -292,11 +296,13 @@ export default {
 .header .logo {
     float: left;
     width: 150px;
-    line-height: 70px;
+    line-height: 60px;
+    font-family: Calibri;
+    color: #fff;
 }
 .header-right {
     float: right;
-    padding-right: 50px;
+    padding-left: 10px;
 }
 .header-user-con {
     display: flex;

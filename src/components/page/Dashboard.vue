@@ -26,144 +26,182 @@
             <el-link class='green' :underline="false">中医</el-link>&nbsp;
             <el-link class='green' :underline="false">医学影像放射</el-link>&nbsp;
         </div>
-        <div>
-            <el-row :gutter="20" style='margin-top: 20px;width: 100%'>
-                <el-col :span="8">
-                    <div class='middle-left' style='margin-left: 20px;margin-top: 20px;'>
-                        <el-card>
-                            <dl>
-                                <dd>
-                                    <i class="icon-arrow-right"></i>
-                                    <b style='font-size: 14px'>热门职位</b>&nbsp;
-                                    <el-link :underline="false" href="/c101250100-p210104/">药剂师</el-link>&nbsp;
-                                    <el-link :underline="false" href="/c101250100-p210401/">营养师</el-link>&nbsp;
-                                    <el-link :underline="false" href="/c101250100-p210105/">医疗器械研发</el-link>
-                                </dd>
-                                <hr class="style1_hr"/>
-                                <div class="menu-line"></div>
-                                <div class="menu-sub">
-                                    <ul>
-                                        <li>
-                                            <b style='font-size: 14px'>门诊部</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210120/">内科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210501/">外科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210119/">儿科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p211001/">妇科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">眼科</el-link>
-                                                <el-link :underline="false" href="/c101250100-p210118/">耳鼻喉科</el-link>
-                                                <el-link :underline="false" href="/c101250100-p210118/">口腔科</el-link>
-                                                <el-link :underline="false" href="/c101250100-p210118/">皮肤科</el-link>
-                                                <el-link :underline="false" href="/c101250100-p210118/">中医科</el-link>
-                                                <el-link :underline="false" href="/c101250100-p210118/">针灸推拿科</el-link>
-                                                <el-link :underline="false" href="/c101250100-p210118/">心理咨询室</el-link>
-                                            </div>
-                                        </li>
-                                        <hr class="style1_hr"/>
-                                        <li>
-                                            <b style='font-size: 14px'>住院部</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210109/">呼吸内科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210111/">消化内科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210303/">泌尿内科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210307/">心内科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210103/">血液科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210306/">内分泌科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210302/">神经内科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210305/">小儿科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210304/">感染科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210114/">普外科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210113/">骨科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210104/">神经外科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210112/">肝胆外科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">泌尿外科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">烧伤科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">妇科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">产科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">血透室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">重症监护室</el-link>
-                                            </div>
-                                        </li>
-
-                                        <hr class="style2_hr"/>
-                                        <li>
-                                            <b style='font-size: 14px'>急诊部</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210202/">内科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210201/">外科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210503/">妇产科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">儿科</el-link>
-                                            </div>
-                                        </li>
-                                        <hr class="style2_hr" />
-                                        <li>
-                                            <b style='font-size: 14px'>药房</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210404/">门诊药房</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210402/">急诊药房</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210403/">住院药房</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210499/">药房仓库</el-link>&nbsp;
-                                            </div>
-                                        </li>
-                                        <hr class="style2_hr"/>
-                                        <li>
-                                            <b style='font-size: 14px'>收费室</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210108/">门诊收费窗口</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210117/">住院收费窗口</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210123/">急诊收费窗口</el-link>&nbsp;
-                                            </div>
-                                        </li>
-                                        <hr class="style2_hr"/>
-                                        <li>
-                                            <b style='font-size: 14px'>化验室</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210121/">生化室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210105/">检验室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210122/">病理室</el-link>
-                                            </div>
-                                        </li>
-                                        <hr class="style2_hr"/>
-                                        <li>
-                                            <b style='font-size: 14px'>放射科</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210803/">拍片室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210802/">CT室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210801/">透视室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">磁共振室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">ECT室</el-link>
-                                            </div>
-                                        </li>
-                                        <hr class="style2_hr"/>
-                                        <li>
-                                            <b style='font-size: 14px'>其他医疗健康职位</b>
-                                            <div class="text">
-                                                <el-link :underline="false" href="/c101250100-p210701/">手术室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">B超室</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">宣传科</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">防保人员</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">医保办</el-link>&nbsp;
-                                                <el-link :underline="false" href="/c101250100-p210118/">人事科</el-link>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </dl>
-                        </el-card>
-                    </div>
-                </el-col>
-                <el-col :span="16">
-                    <div class="block" style="margin-top: 20px;margin-left:10px;margin-right:10px;">
-                        <el-carousel trigger="click" height="360px">
-                            <el-carousel-item v-for="item in 4" :key="item">
-                                <h3 class="medium">{{ item }}</h3>
-                            </el-carousel-item>
-                        </el-carousel>
-                    </div>
-                </el-col>
-            </el-row>
+        <div class="block" style="margin-top: 20px;margin-left:10px;margin-right:10px;">
+            <el-carousel :interval="5000" trigger="click" type='card' :height="bannerHeight+'px'">
+                <el-carousel-item v-for="item in carouselList" :key="item.key">
+                    <img :src='item.src' class='image' alt="" @load="imgLoad" style='width: 100%' ref="bannerHeight">
+                </el-carousel-item>
+            </el-carousel>
         </div>
+        <el-row :gutter="20" style='margin-top: 20px'>
+            <el-col :span="8">
+                <div class='middle-left' style='margin-left: 20px;margin-top: 20px;'>
+                    <el-card>
+                        <dl>
+                            <dd>
+                                <i class="icon-arrow-right"></i>
+                                <b style='font-size: 14px'>热门职位</b>&nbsp;
+                                <el-link :underline="false" href="/c101250100-p210104/">药剂师</el-link>&nbsp;
+                                <el-link :underline="false" href="/c101250100-p210401/">营养师</el-link>&nbsp;
+                                <el-link :underline="false" href="/c101250100-p210105/">医疗器械研发</el-link>
+                            </dd>
+                            <hr class="style1_hr"/>
+                            <div class="menu-line"></div>
+                            <div class="menu-sub">
+                                <ul>
+                                    <li>
+                                        <b style='font-size: 14px'>门诊部</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210120/">内科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210501/">外科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210119/">儿科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p211001/">妇科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">眼科</el-link>
+                                            <el-link :underline="false" href="/c101250100-p210118/">耳鼻喉科</el-link>
+                                            <el-link :underline="false" href="/c101250100-p210118/">口腔科</el-link>
+                                            <el-link :underline="false" href="/c101250100-p210118/">皮肤科</el-link>
+                                            <el-link :underline="false" href="/c101250100-p210118/">中医科</el-link>
+                                            <el-link :underline="false" href="/c101250100-p210118/">针灸推拿科</el-link>
+                                            <el-link :underline="false" href="/c101250100-p210118/">心理咨询室</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style1_hr"/>
+                                    <li>
+                                        <b style='font-size: 14px'>住院部</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210109/">呼吸内科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210111/">消化内科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210303/">泌尿内科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210307/">心内科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210103/">血液科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210306/">内分泌科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210302/">神经内科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210305/">小儿科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210304/">感染科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210114/">普外科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210113/">骨科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210104/">神经外科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210112/">肝胆外科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">泌尿外科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">烧伤科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">妇科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">产科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">血透室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">重症监护室</el-link>
+                                        </div>
+                                    </li>
 
+                                    <hr class="style2_hr"/>
+                                    <li>
+                                        <b style='font-size: 14px'>急诊部</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210202/">内科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210201/">外科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210503/">妇产科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">儿科</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style2_hr" />
+                                    <li>
+                                        <b style='font-size: 14px'>药房</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210404/">门诊药房</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210402/">急诊药房</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210403/">住院药房</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210499/">药房仓库</el-link>&nbsp;
+                                        </div>
+                                    </li>
+                                    <hr class="style2_hr"/>
+                                    <li>
+                                        <b style='font-size: 14px'>收费室</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210108/">门诊收费窗口</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210117/">住院收费窗口</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210123/">急诊收费窗口</el-link>&nbsp;
+                                        </div>
+                                    </li>
+                                    <hr class="style2_hr"/>
+                                    <li>
+                                        <b style='font-size: 14px'>化验室</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210121/">生化室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210105/">检验室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210122/">病理室</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style2_hr"/>
+                                    <li>
+                                        <b style='font-size: 14px'>放射科</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210803/">拍片室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210802/">CT室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210801/">透视室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">磁共振室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">ECT室</el-link>
+                                        </div>
+                                    </li>
+                                    <hr class="style2_hr"/>
+                                    <li>
+                                        <b style='font-size: 14px'>其他医疗健康职位</b>
+                                        <div class="text">
+                                            <el-link :underline="false" href="/c101250100-p210701/">手术室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">B超室</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">宣传科</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">防保人员</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">医保办</el-link>&nbsp;
+                                            <el-link :underline="false" href="/c101250100-p210118/">人事科</el-link>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </dl>
+                    </el-card>
+                </div>
+            </el-col>
+            <el-col :span="16">
+                <p style="font-size: 20px;color: #1f2f3d; padding-left: 42%;height:50px;margin-right: 10px;margin-left: 10px;margin-top: 20px">
+                    热招职位
+                </p>
+
+                    <el-col :span="32" style='display: flex'>
+                        <el-row :gutter="20" class="mgb20">
+                            <el-col :span="13">
+                                <el-card shadow="hover" :body-style="{padding: '0px'}">
+                                    <div class="grid-content grid-con-1">
+                                        <i class="el-icon-lx-people grid-con-icon"></i>
+                                        <div class="grid-cont-right">
+                                            <div class="grid-num">/</div>
+                                            <div>//</div>
+                                        </div>
+                                    </div>
+                                </el-card>
+                            </el-col>
+                            <el-col :span="13">
+                                <el-card shadow="hover" :body-style="{padding: '0px'}">
+                                    <div class="grid-content grid-con-2">
+                                        <i class="el-icon-lx-notice grid-con-icon"></i>
+                                        <div class="grid-cont-right">
+                                            <div class="grid-num">/</div>
+                                            <div>//</div>
+                                        </div>
+                                    </div>
+                                </el-card>
+                            </el-col>
+                            <el-col :span="13">
+                                <el-card shadow="hover" :body-style="{padding: '0px'}">
+                                    <div class="grid-content grid-con-3">
+                                        <i class="el-icon-lx-goods grid-con-icon"></i>
+                                        <div class="grid-cont-right">
+                                            <div class="grid-num">/</div>
+                                            <div>//</div>
+                                        </div>
+                                    </div>
+                                </el-card>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
@@ -174,6 +212,20 @@ export default {
     name: 'dashboard',
     data() {
         return {
+            bannerHeight:"",
+            carouselList:[{
+                key: 'img1',
+                src:require("../../assets/img/1.jpg")
+            },{
+                key: 'img2',
+                src:require("../../assets/img/2.jpg")
+            },{
+                key: 'img3',
+                src:require("../../assets/img/3.jpg")
+            },{
+                key: 'img4',
+                src:require("../../assets/img/4.jpg")
+            }],
             input3: '',
             value: [],
             options: [{
@@ -246,12 +298,22 @@ export default {
     },
 
     methods: {
-        onMouseOver() {
-            this.seen = true
-        },
-        onMouseOut() {
-            this.seen=false
+        imgLoad(){
+            this.$nextTick(()=>{
+                this.bannerHeight=this.$refs.bannerHeight[0].height;
+                console.log(this.$refs.bannerHeight[0].height);
+                // document.getElementsByClassName拿到的是数组并非某一个对象
+                // var testH=document.getElementById("test-div");
+                // testH.style.height= this.bannerHeight+"px";
+            })
         }
+    },
+    mounted() {
+        this.imgLoad();
+        window.addEventListener('resize',() =>{
+            this.bannerHeight=this.$refs.bannerHeight[0].height;
+            this.imgLoad();
+        },false)
     }
 };
 </script>
@@ -321,6 +383,9 @@ export default {
     color: #3cac9b;
 }
 
+.link{
+    margin-left: 30%;
+}
 
 .grid-con-icon {
     font-size: 50px;

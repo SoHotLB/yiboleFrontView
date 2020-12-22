@@ -93,13 +93,21 @@
 <template>
   <section class="main">
   <div>
-    <el-card>
-      <el-carousel :interval="4000" type="card" height="200px">
-        <el-carousel-item v-for="item in 6" :key="item">
-          <h3 class="medium">{{ item }}</h3>
-        </el-carousel-item>
-      </el-carousel>
-    </el-card>
+      <div class="block" style="margin-top: 20px;margin-left:10px;margin-right:10px;">
+        <el-carousel :interval="5000" trigger="click" type='card' :height="bannerHeight+'px'">
+          <el-carousel-item v-for="item in carouselList" :key="item.key">
+            <img :src='item.src' class='image' alt="" @load="imgLoad" style='width: 100%' ref="bannerHeight">
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+<!--     <el-card> -->
+<!--      <el-carousel :interval="4000" type="card" height="200px">-->
+<!--        <el-carousel-item v-for="item in carouselList" :key="item">-->
+<!--          <h3 class="medium">{{ item }}</h3>-->
+<!--        </el-carousel-item>-->
+<!--      </el-carousel>-->
+<!--    </el-card>-->
+
     <div style='width:80%;margin: auto;padding: 10px'>
       <el-card>
         <h1 style='padding-bottom: 20px;color: #324157'>面试黑话：面试官向你传达的不能说的秘密</h1>
@@ -132,6 +140,22 @@
 export default {
   data(){
     return {
+      carouselList:[{
+        key: 'img1',
+        src:require("../../assets/img/zixun1.png")
+      },{
+        key: 'img2',
+        src:require("../../assets/img/zhixun2.jpg")
+      },{
+        key: 'img3',
+        src:require("../../assets/img/zhixun4.jpg")
+      },{
+        key: 'img4',
+        src:require("../../assets/img/zhixun5.jpg")
+      },{
+        key: 'img5',
+        src:require("../../assets/img/zhixun6.jpg")
+      }],
     }
   }
 }

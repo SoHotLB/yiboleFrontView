@@ -51,32 +51,43 @@
             <!-- 表格显示区域 -->
             <div class="" id="box">
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
-                    <div slot="header" class="clearfix">
+                    <div slot="header" class="clearfix" style='padding-bottom: 20px'>
 				            <span>
-                        <el-popover
-                            placement="bottom"
-                            title="标题"
-                            width="200"
-                            trigger="click"
-                            content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-                        <el-button slot="reference">{{v.recruitmentPositionName}}</el-button>
-                        </el-popover>
-<!--						            <el-link style='font-size:20px;color: lightskyblue' href="" target="_blank">{{v.recruitmentPositionName}}</el-link>-->
+						            <el-link style='font-size:20px;color: lightskyblue' href="" target="_blank">{{v.recruitmentPositionName}}</el-link>
                     </span>
-                        <el-button style="float: right; padding: 3px 0" type="text">
-                          <router-link style='font-size: 18px;color: lightskyblue' to ="/jobinformation" >{{v.company}}</router-link>
-                        </el-button>
                     </div>
-                    <div>
+                    <div style='padding-bottom: 20px'>
                         <span style='padding:6px;font-size: 18px;color: #cf9236'>{{'['+v.salaryLimit+'-'+v.salaryCeiling+'k薪]'}}</span>
                         <span style='padding: 6px;font-size: 18px;padding-top: 10px'>{{v.location}}</span>
+                        <span style='padding-right: 20px'>
+                          <el-button style="float: right; padding: 3px 0" type="text">
+                          <router-link style='font-size: 18px;color: lightskyblue' to ="/jobinformation" >{{v.company}}</router-link>
+                        </el-button>
+                        </span>
                     </div>
 <!--                    <div>-->
 <!--                         <span style='padding: 6px;font-size: 18px'>{{v.departmentName}}</span>-->
 <!--                    </div>-->
-                  <div>
-                    <span style='padding: 6px;font-size: 18px;padding-top: 3px'>{{v.jobRequirements}}</span>
-                  </div>
+                     <div style='padding-bottom: 20px'>
+                         <span style='font-size: 18px;padding-top:10px'>{{v.jobRequirements}}</span>
+                     </div>
+                     <div style='padding:10px'>
+                       <el-popover
+                           placement="right-start"
+                           width="200"
+                           trigger="hover">
+                         <span style='padding:6px;font-size: 18px;color: #324157;'>{{v.recruitmentPositionName}}</span>
+                         <el-divider>职位信息</el-divider>
+                         <span style='padding:6px;font-size: 18px;color: #cf9236'><p>{{'['+v.salaryLimit+'-'+v.salaryCeiling+'k薪]'}}</p></span>
+                         <span><p>职位要求：{{v.jobRequirements}}</p></span>
+                         <span><p>地址：{{v.location}}</p></span>
+                         <el-divider>公司</el-divider>
+                         <span><p>公司名称：{{v.company}}</p></span>
+                         <span><p>法人代表：{{v.recruiterName}}</p></span>
+                         <span><p>公司介绍：{{v.companyIntroduction}}</p></span>
+                         <el-button slot="reference" >查看职位详情</el-button>
+                       </el-popover>
+                     </div>
                 </el-card>
             </div>
             <p></p>

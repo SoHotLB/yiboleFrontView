@@ -53,22 +53,29 @@
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
                     <div slot="header" class="clearfix">
 				            <span>
-						            <el-link style='font-size: 30px;color: lightskyblue' href="" target="_blank">{{v.positionName}}</el-link>
+                        <el-popover
+                            placement="bottom"
+                            title="标题"
+                            width="200"
+                            trigger="click"
+                            content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+                        <el-button slot="reference">{{v.recruitmentPositionName}}</el-button>
+                        </el-popover>
+<!--						            <el-link style='font-size:20px;color: lightskyblue' href="" target="_blank">{{v.recruitmentPositionName}}</el-link>-->
                     </span>
                         <el-button style="float: right; padding: 3px 0" type="text">
-                          <router-link style='font-size: 30px;color: lightskyblue' to="/jobinformation" >查看详情</router-link>
+                          <router-link style='font-size: 18px;color: lightskyblue' to ="/jobinformation" >{{v.company}}</router-link>
                         </el-button>
                     </div>
                     <div>
-                        <span style='padding: 6px;font-size: 25px'>{{v.jobRequirements}}</span>
-                        <span style='padding: 6px;font-size: 20px;padding-top: 10px'>{{v.location}}</span>
+                        <span style='padding:6px;font-size: 18px;color: #cf9236'>{{'['+v.salaryLimit+'-'+v.salaryCeiling+'k薪]'}}</span>
+                        <span style='padding: 6px;font-size: 18px;padding-top: 10px'>{{v.location}}</span>
                     </div>
-                    <div>
-                         <span style='padding:6px;font-size: 20px;color: #cf9236'>{{'['+v.salaryLimit+'-'+v.salaryCeiling+'k薪]'}}</span>
-                         <span style='padding: 6px;font-size: 20px'>{{v.departmentName}}</span>
-                    </div>
+<!--                    <div>-->
+<!--                         <span style='padding: 6px;font-size: 18px'>{{v.departmentName}}</span>-->
+<!--                    </div>-->
                   <div>
-                    <span style='padding: 6px;font-size: 20px;padding-top: 3px'>{{v.company}}</span>
+                    <span style='padding: 6px;font-size: 18px;padding-top: 3px'>{{v.jobRequirements}}</span>
                   </div>
                 </el-card>
             </div>
@@ -201,7 +208,7 @@ export default {
     methods: {
       getData() {
         var that = this
-        this.$axios.get('http://115.29.204.107:8084/yibole//getAllPositions')
+        this.$axios.get('http://115.29.204.107:8084/yibole/getAllRecruitmentInformations')
             .then(function(response) {
               that.tableData = response.data.data
             }).catch(function(error) {
@@ -273,7 +280,7 @@ export default {
 }
 #box li{
     padding: 3px;
-    width: 80%;
+    width:100%;
     margin: auto;
     list-style: none;
     border: 1px solid #eee;

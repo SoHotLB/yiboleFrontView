@@ -65,7 +65,13 @@ export default {
       activeNames: ['1']
     }
   },
+  created() {
+    // console.log(this.query.company);
+  },
   methods: {
+    getpanyData(){
+
+    },
     handleChange (val) {
       console.log(val)
     }

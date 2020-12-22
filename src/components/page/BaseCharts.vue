@@ -43,8 +43,28 @@
 </template>
 <script>
 export default {
-    name: 'AboutUs'
+    name: 'AboutUs',
+    mounted() {
+      this.getData()
+    },
+    data () {
+      return{
+        tableData:[],
+      }
+    },
+    methods: {
+      getData()
+      {
+        var that = this
+        this.$axios.get('http://115.29.204.107:8084/yibole//searchResumeById/ac64c245-a11b-477f-adbf-e5c2a85a5655')
+            .then(function(response) {
+              that.tableData = response.data.data
+            }).catch(function(error) {
+        })
+      }
+    }
 }
+
 
 </script>
 <style>

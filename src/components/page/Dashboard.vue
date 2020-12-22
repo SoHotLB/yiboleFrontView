@@ -1,5 +1,6 @@
 <template>
     <div>
+<!--        搜索-->
         <div class="search" style="margin-right: 10%;margin-top: 15px;margin-left: 15%">
             <el-cascader
                 clearable
@@ -32,6 +33,7 @@
                     <img :src='item.src' class='image' alt="" @load="imgLoad" style='width: 100%' ref="bannerHeight">
                 </el-carousel-item>
             </el-carousel>
+
         </div>
         <el-row :gutter="20" style='margin-top: 20px'>
             <el-col :span="8">
@@ -158,28 +160,81 @@
                     </el-card>
                 </div>
             </el-col>
-            <el-col :span="12">
-                <p style="font-size: 20px;color: #1f2f3d; padding-left: 42%;height:50px;margin-right: 10px;margin-left: 10px;margin-top: 20px">
-                    热招职位
-                </p>
 
-                    <el-col :span="32" style='display: flex'>
-                        <el-row :gutter="20" class="mgb20">
-                            <el-col :span="6">
-                                <el-card shadow="hover" :body-style="{padding: '0px'}">
-                                    <div class="grid-content grid-con-1">
-                                        <i class="el-icon-lx-people grid-con-icon"></i>
-                                        <div class="grid-cont-right">
-                                            <div class="grid-num">/</div>
-                                            <div>//</div>
-                                        </div>
-                                    </div>
-                                </el-card>
-                            </el-col>
-                        </el-row>
-                    </el-col>
+            <el-col :span="16">
+                <p style="font-size: 20px;color: #1f2f3d; padding-left: 45%;margin-right: 10px;margin-left: 10px;margin-top: 20px">
+                    <b>热招职位</b>
+                </p>
+                <div>
+                    <el-row :gutter="20">
+                        <el-col :span="8" v-for="item in positionList">
+                            <div class="grid-content bg-purple" style='margin-top: 10px'>
+
+                                  <el-card shadow="hover"
+                                           :positionName='item.positionName'
+                                           :jobRequirements='item.jobRequirements'
+                                           :salaryCeiling='item.salaryCeiling'
+                                           :salaryLimit='item.salaryLimit'
+                                           :location='item.location'
+                                           :company='item.company'
+                                           :body-style="{padding: '0px'}">
+
+                                      <div class="grid-cont-right clearfix" slot="header" style='display: flex'>
+                                          <div class="grid-name">{{item.positionName}}</div>
+                                          <div class='right_one'>{{item.salaryCeiling}}</div><br/>
+                                          <div>{{item.jobRequirements}}</div>
+                                      </div>
+                                      <div class='bottom clearfix' style='height: 40%'>
+                                          <div>{{item.copmany}}</div>
+                                          <div>{{item.location}}</div>
+                                      </div>
+                                  </el-card>
+                            </div>
+                        </el-col>
+
+                    </el-row>
+
+                </div>
+
             </el-col>
+
         </el-row>
+        <el-col :span="24">
+            <p style="font-size: 20px;color: #1f2f3d; padding-left: 45%;margin-right: 10px;margin-left: 10px;margin-top: 20px">
+                <b>热门企业</b>
+            </p>
+            <div>
+                <el-row :gutter="20">
+                    <el-col :span="12"  v-for="(item,index) in companylist" v-if='index < 8'>
+                        <div class="grid-company-content bg-purple" style='margin-top: 10px'>
+
+                            <el-card shadow="hover"
+                                     :positionName='item.company'
+                                     :jobRequirements='item.jobRequirements'
+                                     :salaryCeiling='item.legalRepresentative'
+                                     :salaryLimit='item.companyType'
+                                     :location='item.companyLocation'
+                                     :company='item.setupTime'
+                                     :body-style="{padding: '0px'}">
+
+                                <div class="grid-cont-right clearfix" slot="header" style='display: flex'>
+                                    <div class="grid-company-name">{{item.company}}</div>
+                                    <div class='right_one'>{{item.legalRepresentative}}</div><br/>
+                                </div>
+                                <div class='bottom clearfix' style='height: 40%'>
+                                    <div>成立时间：{{item.setupTime}}</div>
+                                    <div>{{item.companyType}}</div>
+                                    <div>{{item.companyLocation}}</div>
+                                </div>
+                            </el-card>
+                        </div>
+                    </el-col>
+
+                </el-row>
+
+            </div>
+
+        </el-col>
     </div>
 </template>
 
@@ -190,6 +245,8 @@ export default {
     name: 'dashboard',
     data() {
         return {
+            positionList:[],
+            companylist:[],
             bannerHeight:"",
             carouselList:[{
                 key: 'img1',
@@ -283,10 +340,34 @@ export default {
                 // var testH=document.getElementById("test-div");
                 // testH.style.height= this.bannerHeight+"px";
             })
+        },
+        searchJob() {
+            var that = this
+            this.$axios.post('http://115.29.204.107:8084/yibole/searchTopPosition').then(function(response) {
+                console.log(response.data.data)
+                that.tableData = response.data.data
+                that.positionList = response.data.data
+                console.log(that.positionList)
+            }).catch(function(error) {
+                that.$message.error(error.message);
+            })
+        },
+        searchCompany() {
+            var that = this
+            this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
+                console.log(response.data.data)
+                that.tableData = response.data.data
+                that.companylist = response.data.data
+                console.log(that.positionList)
+            }).catch(function(error) {
+                that.$message.error(error.message);
+            })
         }
     },
     mounted() {
+        this.searchJob();
         this.imgLoad();
+        this.searchCompany();
         window.addEventListener('resize',() =>{
             this.bannerHeight=this.$refs.bannerHeight[0].height;
             this.imgLoad();
@@ -311,18 +392,33 @@ export default {
     display: flex;
     align-items: center;
     height: 100px;
+    width: 280px;
+}
+.grid-company-content{
+    height: 200px;
+}
+.bottom{
+    display: flex;
+    align-items: center;
+    height: 50%;
+    width: 280px;
 }
 
 .grid-cont-right {
-    flex: 1;
-    text-align: center;
-    font-size: 14px;
-    color: #999;
+    height: 60%;
 }
 
-.grid-num {
-    font-size: 30px;
-    font-weight: bold;
+.grid-name {
+    font-size: 17px;
+}
+.grid-company-name{
+    font-size: 17px;
+}
+.grid-company-content:hover .grid-company-name{
+    color: #3cac9b;
+}
+.grid-content:hover .grid-name{
+    color: #3cac9b;
 }
 
 .style1_hr{
@@ -335,11 +431,6 @@ export default {
     margin-top: 15px;
     margin-bottom: 15px;
     border-top: 1px dashed #8c8b8b;
-    border-bottom: 1px dashed #fff;
-}
-.style3_hr{
-    margin-top: 15px;
-    border-top: 1px dashed #bdbdbd;
     border-bottom: 1px dashed #fff;
 }
 
@@ -419,6 +510,15 @@ export default {
     height: 120px;
     border-radius: 50%;
 }
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
 
 .user-info-cont {
     padding-left: 50px;
@@ -443,7 +543,7 @@ export default {
 }
 
 .mgb20 {
-    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 .todo-item {
@@ -457,6 +557,11 @@ export default {
 .search>>el-input{
     border: 0;
     margin: 0;
+}
+
+.right_one{
+    float: right;
+    padding: 3px 0;
 }
 .schart {
     width: 100%;
@@ -482,7 +587,6 @@ export default {
 ul,li{
     list-style: none;
 }
-
 
 .card-emloyee{
     width: 15%;

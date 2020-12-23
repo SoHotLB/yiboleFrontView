@@ -3,16 +3,14 @@
     <div class="wrapper">
         <v-head></v-head>
 <!--        <v-side></v-side>-->
-        <div class="content-box" :class="{'content-collapse':collapse}">
-<!--            <v-tags></v-tags>-->
+        <div class='content-box' >
             <div class="content">
                 <transition name="move" mode="out-in">
-                    <keep-alive :include="tagsList">
-                        <router-view></router-view>
-                    </keep-alive>
+                    <router-view></router-view>
                 </transition>
                 <el-backtop target=".content"></el-backtop>
             </div>
+
         </div>
     </div>
 </template>

@@ -1,112 +1,114 @@
 <template>
     <div>
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 基础表格
-                </el-breadcrumb-item>
-            </el-breadcrumb>
-        </div>
-        <div class="container">
-            <div class="handle-box">
-                <el-button
-                    type="primary"
-                    icon="el-icon-delete"
-                    class="handle-del mr10"
-                    @click="delAllSelection"
-                >批量删除</el-button>
-                <el-select v-model="query.address" placeholder="地址" class="handle-select mr10">
-                    <el-option key="1" label="广东省" value="广东省"></el-option>
-                    <el-option key="2" label="湖南省" value="湖南省"></el-option>
-                </el-select>
-                <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
-                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+        <div class="job-content" ref="contentId">
+            <div class="company-wrapper">
+                <div class="company-body">
+                    <div class="conpany-content">
+<!--                        <div class="choseBody">-->
+<!--                            <h5>融资阶段</h5>-->
+<!--                            <div class="chose">-->
+<!--                                <span :class="getClass(option1.check)" @click="choseAll(option1)">{{option1.optionName}}</span>-->
+<!--                                <span @click=selectedOption(option)-->
+<!--                                      :class="getClass(option.check)"-->
+<!--                                      v-for ='option in options.option1'>-->
+<!--                                {{option.optionName}}-->
+<!--                            </span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="choseBody">
+                            <h5>人员规模</h5>
+                            <div class="chose">
+                                <span :class="getClass(option2.check)" @click="choseAll(option2)">{{option2.optionName}}</span>
+                                <span v-for ='option in options.option2'
+                                      @click=selectedOption(option)
+                                      :class="getClass(option.check)">
+                              {{option.optionName}}
+                            </span>
+                            </div>
+                        </div>
+                        <div class="choseBody">
+                            <h5>公司地点</h5>
+                            <div class="chose">
+                                <span :class="getClass(option3.check)" @click="choseAll(option3)">{{option3.optionName}}</span>
+                                <span v-for ='option in options.option3'
+                                      @click=selectedOption(option)
+                                      :class="getClass(option.check)">
+                              {{option.optionName}}
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <el-table
-                :data="tableData"
-                border
-                class="table"
-                ref="multipleTable"
-                header-cell-class-name="table-header"
-                @selection-change="handleSelectionChange"
-            >
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
-                <el-table-column prop="name" label="用户名"></el-table-column>
-                <el-table-column label="账户余额">
-                    <template slot-scope="scope">￥{{scope.row.money}}</template>
-                </el-table-column>
-                <el-table-column label="头像(查看大图)" align="center">
-                    <template slot-scope="scope">
-                        <el-image
-                            class="table-td-thumb"
-                            :src="scope.row.thumb"
-                            :preview-src-list="[scope.row.thumb]"
-                        ></el-image>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="address" label="地址"></el-table-column>
-                <el-table-column label="状态" align="center">
-                    <template slot-scope="scope">
-                        <el-tag
-                            :type="scope.row.state==='成功'?'success':(scope.row.state==='失败'?'danger':'')"
-                        >{{scope.row.state}}</el-tag>
-                    </template>
-                </el-table-column>
-
-                <el-table-column prop="date" label="注册时间"></el-table-column>
-                <el-table-column label="操作" width="180" align="center">
-                    <template slot-scope="scope">
-                        <el-button
-                            type="text"
-                            icon="el-icon-edit"
-                            @click="handleEdit(scope.$index, scope.row)"
-                        >编辑</el-button>
-                        <el-button
-                            type="text"
-                            icon="el-icon-delete"
-                            class="red"
-                            @click="handleDelete(scope.$index, scope.row)"
-                        >删除</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <div class="pagination">
-                <el-pagination
-                    background
-                    layout="total, prev, pager, next"
-                    :current-page="query.pageIndex"
-                    :page-size="query.pageSize"
-                    :total="pageTotal"
-                    @current-change="handlePageChange"
-                ></el-pagination>
+            <div class="search" style="margin-right: 10%;margin-top: 15px;margin-left: 15%">
+                <el-cascader
+                    clearable
+                    class='card-emloyee'
+                    v-model="value"
+                    :options="options"
+                    :props="{ expandTrigger: 'hover' }">
+                </el-cascader>
+                <el-input style='width: 70%' clearable
+                          placeholder="请输入职位、公司" size='small'
+                          v-model="input3"
+                          class="input-with-select"/>
+                <el-button class='button' icon="el-icon-search">搜索</el-button>
             </div>
-        </div>
+            <div>
+                <ul class="job-items">
+                    <li v-for="company in companies" class="job-item">
+                        <p class="title-wrapper">
+                            <span class="title">{{company.company}}</span>
+                            <span class="price">{{company.companyLocation}}</span>
+                        </p>
+                        <div class="clear"></div>
+                        <div class="content-wrapper">
+                            <p class="content">
+                                {{company.legalRepresentative}} {{company.companyType}}
+                            </p>
+                            <p class="content-detail">
+                                <i class="icon-location2">
+                                </i>
+                                <span>
+                               {{company.setupTime}}
+                            </span>
 
-        <!-- 编辑弹出框 -->
-        <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-            <el-form ref="form" :model="form" label-width="70px">
-                <el-form-item label="用户名">
-                    <el-input v-model="form.name"></el-input>
-                </el-form-item>
-                <el-form-item label="地址">
-                    <el-input v-model="form.address"></el-input>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit">确 定</el-button>
-            </span>
-        </el-dialog>
+                            </p>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
     </div>
 </template>
 
 <script>
 import { fetchData } from '../../api/index';
+import {jobData} from '../../components/common/jobData';
 export default {
     name: 'basetable',
     data() {
         return {
+            companies:[],
+            option1:{
+                optionName:"全部",
+                check:true,
+                type:0,
+            },
+            option2:{
+                optionName:"全部",
+                check:true,
+                type:1,
+            },
+            option3:{
+                optionName:"全部",
+                check:true,
+                type:2,
+            },
+            options:jobData,
+            activeNames: ['1'],
             query: {
                 address: '',
                 name: '',
@@ -126,7 +128,82 @@ export default {
     created() {
         this.getData();
     },
+    computed:{
+        getChose(){
+            let p1L = this.options.option1.filter((item)=>{
+                return item.check === true;
+            }).length;
+            let p2L = this.options.option2.filter((item)=>{
+                return item.check === true;
+            }).length;
+            let p3L = this.options.option3.filter((item)=>{
+                return item.check === true;
+            }).length;
+            return p1L+p2L+p3L;
+        }
+    },
+    mounted() {
+        this.searchCompany();
+    },
     methods: {
+        searchCompany() {
+            var that = this
+            this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
+                console.log(response.data.data)
+                that.tableData = response.data.data
+                that.companies = response.data.data
+                console.log(that.positionList)
+            }).catch(function(error) {
+                that.$message.error(error.message);
+            })
+        },
+        resetChose(){
+            this.option1.check = true;
+            this.option2.check = true;
+            this.option3.check = true;
+            this.options.option1.forEach((item)=>{
+                item.check = false;
+            })
+            this.options.option2.forEach((item)=>{
+                item.check = false;
+            })
+            this.options.option3.forEach((item)=>{
+                item.check = false;
+            })
+        },
+        getClass(check){
+            if(check){
+                return 'checkClass';
+            }
+        },
+        choseAll(option){
+            option.check = true;
+            if(option.type===0){
+                this.options.option1.forEach((item)=>{
+                    item.check = false;
+                })
+            }else if(option.type ===1){
+                this.options.option2.forEach((item)=>{
+                    item.check = false;
+                })
+            }else if(option.type ===2){
+                this.options.option3.forEach((item)=>{
+                    item.check = false;
+                })
+            }
+        },
+        selectedOption(option){
+            option.check = !option.check;
+            if(option.check){
+                if(option.type ===0){
+                    this.option1.check = false;
+                }else if(option.type ===1){
+                    this.option2.check = false;
+                }else{
+                    this.option3.check = false;
+                }
+            }
+        },
         // 获取 easy-mock 的模拟数据
         getData() {
             fetchData(this.query).then(res => {
@@ -188,6 +265,133 @@ export default {
 </script>
 
 <style scoped>
+.company-wrapper{
+    width: 100%;
+    background-color:white;
+    z-index:100;
+}
+.company-body{
+    font-size:0;
+    padding-top:15px;
+    padding-bottom: 15px;
+    padding-right: 40px;
+    padding-left: 40px;
+    max-height:300px;
+    overflow:auto;
+}
+h5{
+    font-size:14px;
+    margin-bottom:10px;
+    color:rgba(7,17,27,0.7);
+}
+.chose span{
+    display:inline-block;
+    margin:0 5px 5px 0;
+    font-size:12px;
+    line-height:20px;
+    border:1px solid #eee;
+    padding:3px 5px;
+    border-radius:4px;
+    color:rgba(7,17,27,0.8);
+}
+.bottom{
+    line-height:36px;
+    height:36px;
+    /*border:1px solid #eee;*/
+    font-size:16px;
+    display:flex;
+}
+.bottom span{
+    flex:1;
+    text-align:center;
+}
+.reset{
+    border-top:1px solid #eee;
+}
+.sure{
+    background-color: #6ADBCF;
+    color:#fff;
+}
+.sure:active{
+    background-color: #5bb6aa;
+}
+.choseBody{
+    margin-bottom:20px;
+}
+.choseBody:last-child{
+    margin-bottom:0 ! important;
+}
+.checkClass{
+    background-color:#6ADBCF;
+    color:#fff ! important;
+}
+.reset:active{
+    background-color: #b4b4b4;
+}
+.job-content{
+    position:fixed;
+    top:60px;
+    bottom:48px;
+    left:0;
+    font-size:0;
+    width:100%;
+    overflow:auto;
+}
+.job-items{
+    padding:6px;
+    background-color:#eee;
+}
+.job-item{
+    background-color:white;
+    padding: 10px;
+    margin-bottom:6px;
+}
+.title{
+    font-size:16px;
+}
+.price{
+    color:red;
+    font-size:14px;
+    float:right;
+}
+.content{
+    margin:10px 0;
+    font-size:14px;
+    color:rgba(7,17,27,0.7);
+}
+.content-wrapper{
+}
+.content-detail{
+    margin-bottom:10px;
+}
+.content-detail span{
+    font-size:10px;
+    margin-right:10px;
+}
+.content-footer{
+    border-top:1px solid #eee;
+    padding-top:10px;
+}
+.hr-img{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    margin-right:10px;
+    vertical-align:middle;
+}
+.footer-text{
+    vertical-align:middle;
+    color:#6ADBCF;
+    font-size:14px;
+}
+.clear{
+    clear:both;
+}
+.chose-text{
+    font-size:10px;
+    margin-bottom:10px;
+    color:rgba(7,17,27,0.6);
+}
 .handle-box {
     margin-bottom: 20px;
 }

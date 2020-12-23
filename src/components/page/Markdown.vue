@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='job-content'>
             <el-button class="editor-btn" type="primary" @click="submit">提交</el-button>
     </div>
 </template>
@@ -50,5 +50,14 @@
 <style scoped>
     .editor-btn{
         margin-top: 20px;
+    }
+    .job-content{
+      position:fixed;
+      top:60px;
+      bottom:48px;
+      left:0;
+      font-size:0;
+      width:100%;
+      overflow:auto;
     }
 </style>

@@ -1,24 +1,37 @@
 <template>
-    <div>
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item>
-                    <i class="el-icon-lx-calendar"></i> 表单
-                </el-breadcrumb-item>
-                <el-breadcrumb-item>基本表单</el-breadcrumb-item>
-            </el-breadcrumb>
-        </div>
-        <div class="container">
-            <div class="form-box">
-                  <h1>当前账号:{{"1677953017"}}</h1>
-                  <p>修改手机号，请到APP端"我的-设置"中，选择账号与绑定，进行修改</p>
-                  <h>注：</h
-                  <h>修改手机号后，可以使用新手机登录BOSS直聘；聊天时“交换电话” 功能的手机号会一同修改</h>
-            </div>
-        </div>
+    <div class='job-content'>
+      <el-card >
+        嗯嗯
+      </el-card>
+<!--        <div>-->
+<!--            <el-breadcrumb separator="/">-->
+<!--                <el-breadcrumb-item>-->
+<!--                    <i class="el-icon-lx-calendar"></i> 表单-->
+<!--                </el-breadcrumb-item>-->
+<!--                <el-breadcrumb-item>基本表单</el-breadcrumb-item>-->
+<!--            </el-breadcrumb>-->
+<!--        </div>-->
+<!--        <div >-->
+<!--            <div >-->
+<!--                  <h1>当前账号:{{"1677953017"}}</h1>-->
+<!--                  <p>修改手机号，请到APP端"我的-设置"中，选择账号与绑定，进行修改</p>-->
+<!--                  <h>注：</h>-->
+<!--                  <h>修改手机号后，可以使用新手机登录BOSS直聘；聊天时“交换电话” 功能的手机号会一同修改</h>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </template>
-
+<style>
+.job-content{
+  position:fixed;
+  top:60px;
+  bottom:48px;
+  left:0;
+  font-size:0;
+  width:100%;
+  overflow:auto;
+}
+</style>
 <script>
 export default {
     name: 'baseform',
@@ -96,3 +109,4 @@ export default {
     }
 };
 </script>
+

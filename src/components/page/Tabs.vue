@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='job-content'>
         <el-breadcrumb separator="/" style="padding-left:10px;padding-bottom:10px;font-size:12px">
             <el-breadcrumb-item :to="{ path: '/main' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item :to="{ path: '/system' }">系统管理</el-breadcrumb-item>
@@ -74,9 +74,9 @@
                      <div style='padding:10px'>
                        <el-popover
                            placement="right-start"
-                           width="200"
+                           width="400"
                            trigger="hover">
-                         <span style='padding:6px;font-size: 18px;color: #324157;'>{{v.recruitmentPositionName}}</span>
+                         <span style='padding:6px;font-size: 20px;color: #324157;text-align: center'>{{v.recruitmentPositionName}}</span>
                          <el-divider>职位信息</el-divider>
                          <span style='padding:6px;font-size: 18px;color: #cf9236'><p>{{'['+v.salaryLimit+'-'+v.salaryCeiling+'k薪]'}}</p></span>
                          <span><p>职位要求：{{v.jobRequirements}}</p></span>
@@ -98,9 +98,7 @@
                            :current-page="currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
                            :total="400">
             </el-pagination>
-<!--        </el-card>-->
-
-        <!--添加职位的弹出框 -->
+<!--      -->
 <!--        <el-dialog title="职位信息" :visible.sync="dialogFormVisible">-->
 <!--            <el-form :model="form">-->
 <!--                <el-form ref="form" :model="form" label-width="80px">-->
@@ -295,5 +293,14 @@ export default {
     margin: auto;
     list-style: none;
     border: 1px solid #eee;
+}
+.job-content{
+  position:fixed;
+  top:60px;
+  bottom:48px;
+  left:0;
+  font-size:0;
+  width:100%;
+  overflow:auto;
 }
 </style>

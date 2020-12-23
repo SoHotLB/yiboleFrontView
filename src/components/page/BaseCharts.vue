@@ -7,36 +7,42 @@
         <el-card class="box-card" style="margin-bottom: 20px;">
             <div class="text item">
                 <i class="el-icon-edit"></i>
-                <span style="font-size: 20px;">{{'name'}}</span>
+                <span style="font-size: 20px;">基本信息</span>
                 <el-divider></el-divider>
                 <div class="grid-content bg-purple">
-                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
+                  <div>
+                    <span><el-avatar shape="square" :size="100" :fit="fit" :src="url"></el-avatar></span>
+                    <span style='padding-left: 20px;font-size: 40px;padding-bottom: 10px'>{{"姓名"}}</span>
+                  </div>
+                  <div>
+                    <span>于2005.07月毕业于某喵喵喵大学，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。</span>
+                  </div>
                 </div>
             </div>
-            <div class="text item">
-                <i class="el-icon-edit"></i>
-                <span style="font-size: 20px;">{{'name'}}</span>
-                <el-divider></el-divider>
-                <div class="grid-content bg-purple">
-                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
-                </div>
-            </div>
-            <div class="text item">
-                <i class="el-icon-edit"></i>
-                <span style="font-size: 20px;">{{'name'}}</span>
-                <el-divider></el-divider>
-                <div class="grid-content bg-purple">
-                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
-                </div>
-            </div>
-            <div class="text item">
-                <i class="el-icon-edit"></i>
-                <span style="font-size: 20px;">{{'name'}}</span>
-                <el-divider></el-divider>
-                <div class="grid-content bg-purple">
-                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。
-                </div>
-            </div>
+<!--            <div class="text item">-->
+<!--                <i class="el-icon-edit"></i>-->
+<!--                <span style="font-size: 20px;">{{'name'}}</span>-->
+<!--                <el-divider></el-divider>-->
+<!--                <div class="grid-content bg-purple">-->
+<!--                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="text item">-->
+<!--                <i class="el-icon-edit"></i>-->
+<!--                <span style="font-size: 20px;">{{'name'}}</span>-->
+<!--                <el-divider></el-divider>-->
+<!--                <div class="grid-content bg-purple">-->
+<!--                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="text item">-->
+<!--                <i class="el-icon-edit"></i>-->
+<!--                <span style="font-size: 20px;">{{'name'}}</span>-->
+<!--                <el-divider></el-divider>-->
+<!--                <div class="grid-content bg-purple">-->
+<!--                    于2005.07月毕业于<span class="large">某喵喵喵大学</span>，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。-->
+<!--                </div>-->
+<!--            </div>-->
             <div class='topMask square'></div><div class='topMask circular'></div>
         </el-card>
     </div>

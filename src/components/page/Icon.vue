@@ -111,8 +111,9 @@
     <div style='width:80%;margin: auto;padding: 10px'>
       <el-card>
         <h1 style='padding-bottom: 20px;color: #324157'>面试黑话：面试官向你传达的不能说的秘密</h1>
-        <p><el-link href="https://www.zhipin.com/article/96.html?ka=article-list-title-detail1" target="_blank">在面试中，除了注意自己一言一行，我们还能关注面试官的回应，既可以提前大概判断自己的面试结
-          果，也能从他们的话语中获取有用的信息。尤其对于久居海外的留学生们，回国求职一定有很多你不懂的面试官黑话，向你传达</el-link></p>
+        <p>在面试中，除了注意自己一言一行，我们还能关注面试官的回应，既可以提前大概判断自己的面试结
+          果，也能从他们的话语中获取有用的信息。尤其对于久居海外的留学生们，回国求职一定有很多你不懂的面试官黑话，向你传达</p>
+        <el-button type="text" @click="outerVisible = true">点击打开外层 Dialog</el-button>
       </el-card>
       <el-card >
         <h1 style='padding-bottom: 20px;color: #324157'>远程面试前做哪些准备工作才能顺利拿到Offer</h1>
@@ -132,6 +133,22 @@
         <p>如何用好Bullet Points写一份要点分明的简历，让你的简历对招聘者“一击入魂”？名企的热门岗位有大量求职者参与竞争，100：1的录用比例已经屡见不鲜。激烈的竞争意味着招聘者或HR花费在一份简历</p>
       </el-card>
     </div>
+    <div>
+
+    </div>
+    <div>
+      <el-drawer
+          title="我嵌套了表格!"
+          :visible.sync="table"
+          direction="rtl"
+          size="50%">
+        <el-table :data="gridData">
+          <el-table-column property="date" label="日期" width="150"></el-table-column>
+          <el-table-column property="name" label="姓名" width="200"></el-table-column>
+          <el-table-column property="address" label="地址"></el-table-column>
+        </el-table>
+      </el-drawer>
+    </div>
   </div>
   </section>
 </template>
@@ -140,6 +157,8 @@
 export default {
   data(){
     return {
+      outerVisible: false,
+      innerVisible: false,
       carouselList:[{
         key: 'img1',
         src:require("../../assets/img/zixun1.png")
@@ -157,6 +176,8 @@ export default {
         src:require("../../assets/img/zhixun6.jpg")
       }],
     }
+  },
+  methods: {
   }
 }
 </script>

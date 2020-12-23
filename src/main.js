@@ -11,6 +11,10 @@ import './assets/css/icon.css';
 import './components/common/directives';
 import 'babel-polyfill';
 import axios from 'axios'
+import * as filter from './filter'
+Object.keys(filter).forEach(key => {
+    Vue.filter(key, filter[key])
+})
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 Vue.use(VueI18n);

@@ -1,8 +1,8 @@
 <template>
-    <div class="header" style='height: 80px'>
+    <div class="header" style='height: 80px;width: 100%'>
         <div class="bar">
             <div class="logo">医伯乐</div>
-            <div class='top_bar' style='display: flex;width: 980px'>
+            <div class='top_bar' style='display: flex;'>
                 <el-menu
                     class="el-menu-demo"
                     :default-active="onRoutes"

@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div class="search" style="margin-right: 10%;margin-top: 15px;margin-left: 15%">
+            <div class="search" style="margin-right: 10%;margin-left: 15%">
                 <el-cascader
                     clearable
                     class='card-emloyee'
@@ -49,10 +49,10 @@
                     :props="{ expandTrigger: 'hover' }">
                 </el-cascader>
                 <el-input style='width: 70%' clearable
-                          placeholder="请输入职位、公司" size='small'
-                          v-model="input3"
+                          placeholder="请输入公司" size='small'
+                          v-model="cinput"
                           class="input-with-select"/>
-                <el-button class='button' icon="el-icon-search">搜索</el-button>
+                <el-button class='button' icon="el-icon-search" @click='searchCompanyByName'>搜索</el-button>
             </div>
             <div>
                 <ul class="job-items">
@@ -63,16 +63,15 @@
                         </p>
                         <div class="clear"></div>
                         <div class="content-wrapper">
-                            <p class="content">
-                                {{company.legalRepresentative}} {{company.companyType}}
+                            <p class="content-middle">
+                                招聘专员&nbsp;{{company.legalRepresentative}}&nbsp;&nbsp; {{company.companyType}}
                             </p>
                             <p class="content-detail">
                                 <i class="icon-location2">
                                 </i>
                                 <span>
-                               {{company.setupTime}}
-                            </span>
-
+                                    成立时间&nbsp;&nbsp;{{company.setupTime | dateParse}}
+                                </span>
                             </p>
 
                         </div>
@@ -91,6 +90,7 @@ export default {
     name: 'basetable',
     data() {
         return {
+            cinput: '',
             companies:[],
             option1:{
                 optionName:"全部",
@@ -143,10 +143,10 @@ export default {
         }
     },
     mounted() {
-        this.searchCompany();
+        this.getAllCompanies();
     },
     methods: {
-        searchCompany() {
+        getAllCompanies() {
             var that = this
             this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
                 console.log(response.data.data)
@@ -156,6 +156,23 @@ export default {
             }).catch(function(error) {
                 that.$message.error(error.message);
             })
+        },
+        searchCompanyByName() {
+            var that = this
+            let val = this.cinput
+            if(val=null){
+                this.getAllCompanies()
+            }else{
+                this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByName/' + val).then(function(response) {
+                    console.log(response.data)
+                    that.tableData = response.data.data
+                    that.companies = response.data.data
+                    that.cinput.value = ''
+                }).catch(function(error) {
+                    that.$message.error(error.message);
+                })
+            }
+
         },
         resetChose(){
             this.option1.check = true;
@@ -338,8 +355,21 @@ h5{
     overflow:auto;
 }
 .job-items{
+    margin-top: 10px;
     padding:6px;
     background-color:#eee;
+}
+.job-item:hover .title{
+    color: #3cac9b;
+}
+.job-item:hover{
+    /*-webkit-transform: translateY(-3px);*/
+    /*-ms-transform: translateY(-3px);*/
+    /*transform: translateY(-3px);*/
+    -webkit-box-shadow: 0 0 6px #999;
+    box-shadow: 0 0 6px #999;
+    -webkit-transition: all .5s ease-out;
+    transition: all .5s ease-out;
 }
 .job-item{
     background-color:white;
@@ -350,14 +380,15 @@ h5{
     font-size:16px;
 }
 .price{
-    color:red;
-    font-size:14px;
+    color: #ffaa00;
+    font-size:16px;
     float:right;
 }
-.content{
+.content-middle{
     margin:10px 0;
     font-size:14px;
     color:rgba(7,17,27,0.7);
+    /*font-weight: 700;*/
 }
 .content-wrapper{
 }
@@ -367,6 +398,18 @@ h5{
 .content-detail span{
     font-size:10px;
     margin-right:10px;
+}
+.button{
+    border-radius: 6px;
+    cursor: pointer;
+    height: 33px;
+    font-size: 14px;
+    line-height: 12px;
+    background: #3cac9b;
+    color: #ffffff;
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    transition: all .3s ease-in;
 }
 .content-footer{
     border-top:1px solid #eee;
@@ -413,6 +456,10 @@ h5{
 }
 .mr10 {
     margin-right: 10px;
+}
+.card-emloyee{
+    width: 15%;
+    height: 40px;
 }
 .table-td-thumb {
     display: block;

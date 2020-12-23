@@ -588,10 +588,6 @@ ul,li{
     list-style: none;
 }
 
-.input-with-select:hover{
-    border: #3cac9b 1px solid;
-    border-radius: 8px;
-}
 .card-emloyee{
     width: 15%;
     height: 40px;

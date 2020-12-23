@@ -134,10 +134,16 @@ export default {
                     title: '首页'
                 },
                 {
+                    icon: 'el-icon-s-goods',
+                    index: 'market',
+                    title: '周边商城'
+                },
+                {
                     icon: 'el-icon-lx-cascades',
                     index: 'table',
                     title: '公司'
                 },
+
                 {
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',

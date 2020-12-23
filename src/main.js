@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import ElementUI from 'element-ui';
 import VueI18n from 'vue-i18n';
-
+import store from './store/store.js'//1、引入vuex配置文件
 import { messages } from './components/common/i18n';
 import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 // import './assets/css/theme-green/index.css'; // 浅绿色主题
@@ -49,6 +49,7 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
     router,
+    store,// 2、vue实例中使用
     i18n,
     render: h => h(App)
 }).$mount('#app');

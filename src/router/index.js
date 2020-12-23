@@ -10,6 +10,10 @@ export default new Router({
             redirect: '/dashboard'
         },
         {
+            path: '/market',
+            component: () => import(/* webpackChunkName: "home" */ '../components/integrationMall/integrationMall.vue'),
+        },
+        {
             path: '/',
             component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),
             meta: { title: '自述文件' },

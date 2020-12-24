@@ -24,8 +24,7 @@
                                     <el-submenu
                                         v-if="subItem.subs"
                                         :index="subItem.index"
-                                        :key="subItem.index"
-                                    >
+                                        :key="subItem.index">
                                         <template slot="title">{{ subItem.title }}</template>
                                         <el-menu-item
                                             v-for="(threeItem,i) in subItem.subs"
@@ -149,38 +148,43 @@ export default {
                     index: 'tabs',
                     title: '职位'
                 },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: '3',
-                    title: '账号设置',
-                    subs: [
-                        {
-                            index: 'form',
-                            title: '手机账号'
-                        },
-                        {
-                            index: 'editor',
-                            title: '设置密码'
-                        },
-                        {
-                            index: 'markdown',
-                            title: '绑定微信号'
-                        },
-                        {
-                            index: 'upload',
-                            title: '常用语'
-                        }
-                    ]
-                },
+              {
+                icon: 'el-icon-lx-calendar',
+                index: 'editor',
+                title: '个人中心'
+              },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: '3',
+                //     title: '账号设置',
+                //     subs: [
+                //         {
+                //             index: 'form',
+                //             title: '手机账号'
+                //         },
+                //         {
+                //             index: 'editor',
+                //             title: '设置密码'
+                //         },
+                //         {
+                //             index: 'markdown',
+                //             title: '绑定微信号'
+                //         },
+                //         {
+                //             index: 'upload',
+                //             title: '常用语'
+                //         }
+                //     ]
+                // },
                 {
                     icon: 'el-icon-lx-emoji',
                     index: 'icon',
-                    title: '自定义图标'
+                    title: '咨询'
                 },
                 {
                     icon: 'el-icon-pie-chart',
                     index: 'charts',
-                    title: 'schart图表'
+                    title: '个人简历'
                 },
                 // {
                 //     icon: 'el-icon-rank',

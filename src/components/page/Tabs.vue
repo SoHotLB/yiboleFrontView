@@ -12,11 +12,10 @@
                  <el-input placeholder="请输入职位名称搜索" v-model="pname" class="handle-input mr10"></el-input>
                 </el-col>
                 <el-col :span="6">
-                    <el-button type="primary" icon="el-icon-search" @click="searchJob()">搜索</el-button>
+                    <el-button style='color: white;background-color: #3cac9b;border-radius: 8px' icon="el-icon-search" @click="searchJob()">搜索</el-button>
                 </el-col>
             </el-row>
         </el-card>
-        <p></p>
         <!-- 职位卡片 -->
 <!--        <el-card class="box-card" style="padding-bottom: 10px;">-->
 <!--            <el-form :inline="true" :model="formInline" ref="formInline" class="demo-form-inline" style="margin: auto;width: 80%">-->
@@ -147,8 +146,16 @@
 export default {
     name: 'Position',
     mounted() {
-       this.getData()
-        this.getRouterData()
+        if(this.$route.params.value1 + this.$route.params.value2){
+            this.pname=this.$route.params.value1 + this.$route.params.value2
+            console.log("-------****"+this.pname);
+            this.searchJob()
+
+        }else{
+            this.getData()
+            // this.getRouterData()
+        }
+
     },
     data () {
       return {
@@ -221,23 +228,25 @@ export default {
         },
         getRouterData() {
             var that = this
-            let value = this.$route.params.val3
-            var res = 0
-            if (value.length!=0){//传参不为0则搜索
-                this.pname = value
-                let val = value.replace(/\s*/g,'')
-                this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + val).then(function(response) {
+            let value = this.$route.params.value1+this.$route.params.value2
+            // var res = 0
+            // if (this.pname.length!=0){//传参不为0则搜索
+            //     // this.pname = value
+            //     // let val = value.replace(/\s*/g,'')
+            //
+            // }
+            this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + value)
+                .then(function(response) {
                     console.log(response.data.data)
-                    let dat = response.data.data
-                    if(dat!=null){
-                        that.tableData = dat
-                    }else{
-                        this.$router.push({name:'table',params:{value:value}})
-                    }
+                    this.tableData = response.data.data
+                    // if(dat!=null){
+                    //     that.tableData = dat
+                    // }else{
+                    //     this.$router.push({name:'table',params:{value:value}})
+                    // }
                 }).catch(function(error) {
-                    that.$message.error(error.message);
-                })
-            }
+                that.$message.error(error.message);
+            })
         },
 
         searchJob() {

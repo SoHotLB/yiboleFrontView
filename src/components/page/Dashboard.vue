@@ -374,14 +374,14 @@ export default {
             // let val3 = this.input3
             // let select = this.value
 
-                if (this.value.length==0) {
-                    // console.log("name")
-                    // console.log(this.SearchCondition)
-                    this.$router.push({
-                        name:'tabs',
-                        params:{val3:this.searchInput}
-                    })
-                } else {
+                // if (this.value.length==0) {
+                //     // console.log("name")
+                //     // console.log(this.SearchCondition)
+                //     this.$router.push({
+                //         name:'tabs',
+                //         params:{val3:this.searchInput}
+                //     })
+                // } else {
                     // let selectValue = this.value.strip('/')
                     // let v = this.value[1]
                     // let inputValue = this.input3
@@ -394,7 +394,7 @@ export default {
                     // }, (err) => {
                     //     console.log(err)
                     // })
-                }
+                // }
             // }
         }
     },

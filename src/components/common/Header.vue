@@ -148,11 +148,6 @@ export default {
                     index: 'tabs',
                     title: '职位'
                 },
-              {
-                icon: 'el-icon-lx-calendar',
-                index: 'editor',
-                title: '个人中心'
-              },
                 // {
                 //     icon: 'el-icon-lx-calendar',
                 //     index: '3',
@@ -179,12 +174,17 @@ export default {
                 {
                     icon: 'el-icon-lx-emoji',
                     index: 'icon',
-                    title: '咨询'
+                    title: '咨讯'
                 },
                 {
                     icon: 'el-icon-pie-chart',
                     index: 'charts',
                     title: '个人简历'
+                },
+                {
+                icon: 'el-icon-lx-calendar',
+                index: 'editor',
+                title: '个人中心'
                 },
                 // {
                 //     icon: 'el-icon-rank',

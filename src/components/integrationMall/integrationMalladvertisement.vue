@@ -22,7 +22,7 @@ export default {
 
 <style scoped>
 	#advister{
-		margin-top: 50px;
+
 
 	}
 .el-carousel__item image {

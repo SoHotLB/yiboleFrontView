@@ -10,9 +10,13 @@
                 <span style="font-size: 20px;">基本信息</span>
                 <el-divider></el-divider>
                 <div class="grid-content bg-purple">
-                  <div>
+                    <div>
                     <span><el-avatar shape="square" :size="100" :fit="fit" :src="url"></el-avatar></span>
                     <span style='padding-left: 20px;font-size: 40px;padding-bottom: 10px'>{{"姓名"}}</span>
+                    <el-col>
+                        <span><label>名字</label><el-input style='width: 60%'></el-input></span>
+                        <span><label>邮箱</label><el-input></el-input></span>
+                    </el-col>
                   </div>
                   <div>
                     <span>于2005.07月毕业于某喵喵喵大学，本科学历。在校专业为xxxxxxx，主修课程为xxxx、xxxx、xx和xxxx等课程。在校期间主要技能为java和php语言,和实验室小伙伴一起完成过内部管理平台(成员在线时长记录、周计划制定和组长评价)、纳新面试系统等。</span>

@@ -1,10 +1,10 @@
 <template>
     <div class='job-content'>
-        <el-breadcrumb separator="/" style="padding-left:10px;padding-bottom:10px;font-size:12px">
-            <el-breadcrumb-item :to="{ path: '/main' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '/system' }">系统管理</el-breadcrumb-item>
-            <el-breadcrumb-item>职位管理</el-breadcrumb-item>
-        </el-breadcrumb>
+<!--        <el-breadcrumb separator="/" style="padding-left:10px;padding-bottom:10px;font-size:12px">-->
+<!--            <el-breadcrumb-item :to="{ path: '/main' }">首页</el-breadcrumb-item>-->
+<!--            <el-breadcrumb-item :to="{ path: '/system' }">系统管理</el-breadcrumb-item>-->
+<!--            <el-breadcrumb-item>职位管理</el-breadcrumb-item>-->
+<!--        </el-breadcrumb>-->
         <!--搜索框-->
         <el-card class="box-card" style="padding-bottom: 10px;">
             <el-row style="padding: 20px;margin: auto;width: 80%">
@@ -240,7 +240,7 @@ export default {
 
         searchJob() {
         var that = this
-        this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + this.pname).then(function(response) {
+        this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByPositionName/' + this.pname).then(function(response) {
           console.log(response.data)
           that.tableData = response.data.data
         }).catch(function(error) {

@@ -91,9 +91,8 @@
 <!--</style>-->
 
 <template>
-  <section class="main">
   <div>
-      <div class="block" style="margin-top: 20px;margin-left:10px;margin-right:10px;">
+      <div class="block"style="margin-top: 20px;margin-left:10px;margin-right:10px;">
         <el-carousel :interval="5000" trigger="click" type='card' :height="bannerHeight+'px'">
           <el-carousel-item v-for="item in carouselList" :key="item.key">
             <img :src='item.src' class='image' alt="" @load="imgLoad" style='width: 100%' ref="bannerHeight">
@@ -108,28 +107,27 @@
 <!--      </el-carousel>-->
 <!--    </el-card>-->
 
-    <div style='width:80%;margin: auto;padding: 10px'>
+    <div style='width:100%;margin: auto;padding: 10px'>
       <el-card>
-        <h1 style='padding-bottom: 20px;color: #324157'>面试黑话：面试官向你传达的不能说的秘密</h1>
+          <h1 style='padding-bottom: 20px;color: #324157'><router-link to="/zixun1" style='padding-right:5px'>面试黑话：</router-link>面试官向你传达的不能说的秘密</h1>
         <p>在面试中，除了注意自己一言一行，我们还能关注面试官的回应，既可以提前大概判断自己的面试结
           果，也能从他们的话语中获取有用的信息。尤其对于久居海外的留学生们，回国求职一定有很多你不懂的面试官黑话，向你传达</p>
-        <el-button type="text" @click="outerVisible = true">点击打开外层 Dialog</el-button>
       </el-card>
       <el-card >
-        <h1 style='padding-bottom: 20px;color: #324157'>远程面试前做哪些准备工作才能顺利拿到Offer</h1>
+          <h1 style='padding-bottom: 20px;color: #324157'><router-link to="/zixun2" style='padding-right:5px'>远程面试：</router-link>远程面试前做哪些准备工作才能顺利拿到Offer</h1>
         <p>疫情当下，目前有招聘需求的公司几乎都选择了“无接触式招聘”——所有招聘流程都在线上完成。而远程面试——视频/电话面试是其中最重要的环节。对很多还没有回国留学生来讲，大批公司采用远程面试是一个比较好的机</p>
       </el-card>
       <el-card >
-        <h1 style='padding-bottom: 20px;color: #324157'>求职必读 面试官故意刁难？解析压力面试的判断依据及应对策略</h1>
+          <h1 style='padding-bottom: 20px;color: #324157'><router-link to="/zixun3" style='padding-right:5px'>求职必读</router-link>面试官故意刁难？解析压力面试的判断依据及应对策略</h1>
         <p>面试经验丰富的同学应该都遇到过下列类似问题：“说说你的缺点吧？”，“你认为你比别的应聘者优秀在哪里？”，“你之前面了几个公司？为什么别人不要你呢？”，“你如何评价自己的今天面试表现？”……当遇到这样的</p>
       </el-card>
       <el-card >
-        <h1 style='padding-bottom: 20px;color: #324157'>求职必读
+          <h1 style='padding-bottom: 20px;color: #324157'><router-link to="/zixun4" style='padding-right:5px'>求职必读</router-link>
           外企面试技巧与8大高频问题解题思路</h1>
         <p>外企可以说是留学生们最感兴趣的企业类型之一了，每年有大量的留学生进入或者尝试进入外企工作。选择去外企工作的主要原因，除了期待外企的工作环境、氛围，还有就是能发挥留学的语言优势。虽然很多留学生英语都讲的</p>
       </el-card>
       <el-card >
-        <h1 style='padding-bottom: 20px;color: #324157'>个人简历怎么写？用好Bullet Points，简历才能一击入魂</h1>
+          <h1 style='padding-bottom: 20px;color: #324157'><router-link to="/zixun5" style='padding-right:5px'>个人简历怎么写？</router-link>用好Bullet Points，简历才能一击入魂</h1>
         <p>如何用好Bullet Points写一份要点分明的简历，让你的简历对招聘者“一击入魂”？名企的热门岗位有大量求职者参与竞争，100：1的录用比例已经屡见不鲜。激烈的竞争意味着招聘者或HR花费在一份简历</p>
       </el-card>
     </div>
@@ -150,7 +148,6 @@
       </el-drawer>
     </div>
   </div>
-  </section>
 </template>
 
 <script>

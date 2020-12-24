@@ -108,6 +108,31 @@ export default new Router({
                     path: '/403',
                     component: () => import(/* webpackChunkName: "403" */ '../components/page/403.vue'),
                     meta: { title: '403' }
+                },
+                {
+                    path: '/zixun1',
+                    component: () => import(/* webpackChunkName: "403" */ '../components/page/zixun1.vue'),
+                    meta: { title: 'zixun1' }
+                },
+                {
+                    path: '/zixun2',
+                    component: () => import(/* webpackChunkName: "403" */ '../components/page/zixun2.vue'),
+                    meta: { title: 'zixun2' }
+                },
+                {
+                    path: '/zixun3',
+                    component: () => import(/* webpackChunkName: "403" */ '../components/page/zixun3.vue'),
+                    meta: { title: 'zixun3' }
+                },
+                {
+                    path: '/zixun4',
+                    component: () => import(/* webpackChunkName: "403" */ '../components/page/zixun4.vue'),
+                    meta: { title: 'zixun4' }
+                },
+                {
+                    path: '/zixun5',
+                    component: () => import(/* webpackChunkName: "403" */ '../components/page/zixun5.vue'),
+                    meta: { title: 'zixun5' }
                 }
             ]
         },

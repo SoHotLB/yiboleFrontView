@@ -388,9 +388,9 @@ export default {
                     //     console.log(err)
                     // })
                 } else {
-                    let selectValue = this.value.replace("//",'')
+                    let selectValue = this.value.strip('/')
                     let inputValue = this.input3
-                    let value1 = (selectValue+inputValue).replace(/\s*/g,'');
+                    let value1 = (inputValue).replace(/\s*/g,'');
                     // console.log("position")
                     this.$router.push({name:'tabs',params:{value1:value1}})
                     // this.$axios.post(this.$store.state.URL + "searchPositionByName/" + value).then((res) => {

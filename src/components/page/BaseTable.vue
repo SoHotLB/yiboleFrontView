@@ -125,8 +125,11 @@ export default {
         }
     },
     mounted() {
+        let val = this.$route.params.value
         this.getAllCompanies()
-        this.getRouterVal()
+        if(val!=null){
+            this.getRouterVal()
+        }
     },
     methods: {
         getAllCompanies() {

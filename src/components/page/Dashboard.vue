@@ -265,27 +265,27 @@ export default {
             }],
             value: [],
             options: [{
-                value: 'linchuangshiyan',
-                label: '临床试验',
+                value: '内科',
+                label: '内科',
                 children: [{
-                    value: 'linchuangyanjiu',
-                    label: '临床研究'
+                    value: '内科医生',
+                    label: '内科医生'
                 }, {
-                    value: 'linchuangzhuli',
-                    label: '临床助理'
+                    value: '呼吸内科医生',
+                    label: '呼吸内科医生'
                 },{
-                    value: 'linchuangshujufenxi',
-                    label: '临床数据分析'
+                    value: '内分泌科医生',
+                    label: '内分泌科医生'
                 },{
-                    value: 'linchuangxiangmujingli',
+                    value: 'lcxmjl',
                     label: '临床项目经理'
                 },{
                     value: 'yixuezongjie',
                     label: '医学总结'
                 }]
             }, {
-                value: 'yisheng/yiji',
-                label: '医生/医技',
+                value: '门诊部',
+                label: '门诊部',
                 children: [{
                     value: 'yisheng',
                     label: '医生'
@@ -293,32 +293,32 @@ export default {
                     value: 'yishnegzhuli',
                     label: '医生助理'
                 }, {
-                    value: 'neikeyisheng',
+                    value: '内科医生',
                     label: '内科医生'
                 }, {
-                    value: 'quankeyisheng',
+                    value: '全科医生',
                     label: '全科医生'
                 }, {
-                    value: 'Bchaoyisheng',
+                    value: 'B超医生',
                     label: 'B超医生'
                 }, {
-                    value: 'zhongyi',
+                    value: '中医',
                     label: '中医'
                 },{
-                    value: 'xinliyisheng',
+                    value: '心理医生',
                     label: '心理医生'
                 },{
-                    value: 'yaojishi',
-                    label: '药剂师'
+                    value: '口腔医生',
+                    label: '口腔医生'
                 },{
-                    value: 'yakeyisheng',
+                    value: '牙科医生',
                     label: '牙科医生'
                 },{
                     value: 'kangfuzhiliaoshi',
                     label: '康复治疗师'
                 },{
                     value: 'yanguangshi',
-                    label: '验光师'
+                    label: '骨科医生'
                 },{
                     value: 'jianyankeyishi',
                     label: '检验科医师'
@@ -388,13 +388,17 @@ export default {
                     //     console.log(err)
                     // })
                 } else {
-                    console.log("position")
-                    this.$axios.post(this.$store.state.URL + "searchPositionByName/" + this.SearchCondition).then((res) => {
-                        console.log(res.data.data)
-                        this.tableData = res.data.data
-                    }, (err) => {
-                        console.log(err)
-                    })
+                    let selectValue = this.value.replace("//",'')
+                    let inputValue = this.input3
+                    let value1 = (selectValue+inputValue).replace(/\s*/g,'');
+                    // console.log("position")
+                    this.$router.push({name:'tabs',params:{value1:value1}})
+                    // this.$axios.post(this.$store.state.URL + "searchPositionByName/" + value).then((res) => {
+                    //     console.log(res.data.data)
+                    //     this.tableData = res.data.data
+                    // }, (err) => {
+                    //     console.log(err)
+                    // })
                 }
             // }
         }

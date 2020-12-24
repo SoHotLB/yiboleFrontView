@@ -125,13 +125,14 @@ export default {
         }
     },
     mounted() {
-        this.getAllCompanies();
+        this.getAllCompanies()
+        this.getRouterVal()
     },
     methods: {
         getAllCompanies() {
             var that = this
             this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
-                console.log(response.data.data)
+                console.log(response.data)
                 that.tableData = response.data.data
                 that.companies = response.data.data
                 console.log(that.positionList)
@@ -139,23 +140,34 @@ export default {
                 that.$message.error(error.message);
             })
         },
+        getRouterVal(){
+            var that = this
+            let val = this.$route.params.value
+            this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByName/' + val).then(function(response) {
+                console.log(response.data.data)
+                that.tableData = response.data.data
+                that.companies = response.data.data
+                that.cinput.value = ''
+            }).catch(function(error) {
+                // that.$message.error(error.message);
+            })
+        },
         searchCompanyByName() {
             var that = this
-            let select = get
-            let val = this.cinput
-            if(val.length==0){
+            // let select = get
+            // let val = this.cinput
+            if(this.cinput.length==0){
                 this.getAllCompanies()
             }else{
-                this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByName/' + val).then(function(response) {
+                this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByName/' + this.cinput).then(function(response) {
                     console.log(response.data.data)
                     that.tableData = response.data.data
                     that.companies = response.data.data
                     that.cinput.value = ''
                 }).catch(function(error) {
-                    that.$message.error(error.message);
+                    // that.$message.error(error.message);
                 })
             }
-
         },
         resetChose(){
             this.option1.check = true;

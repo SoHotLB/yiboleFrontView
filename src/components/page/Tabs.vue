@@ -227,11 +227,18 @@ export default {
         getRouterData() {
             var that = this
             let value = this.$route.params.val3
+            var res = 0
             if (value.length!=0){//传参不为0则搜索
                 this.pname = value
-                this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + this.pname).then(function(response) {
-                    console.log(response.data)
-                    that.tableData = response.data.data
+                let val = value.replace(/\s*/g,'')
+                this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + val).then(function(response) {
+                    console.log(response.data.data)
+                    let dat = response.data.data
+                    if(dat!=null){
+                        that.tableData = dat
+                    }else{
+                        this.$router.push({name:'table',params:{value:value}})
+                    }
                 }).catch(function(error) {
                     that.$message.error(error.message);
                 })

@@ -12,7 +12,7 @@
             </el-cascader>
             <el-input style='width: 70%' clearable
                       placeholder="请输入职位、公司" size='small'
-                      v-model="input3"
+                      v-model="searchInput"
                       class="input-with-select"/>
             <el-button class='button' icon="el-icon-search" @click='handleSearch'>搜索</el-button>
 
@@ -246,6 +246,7 @@ export default {
     name: 'dashboard',
     data() {
         return {
+            searchInput:'',
             input3: '',
             positionList:[],
             companylist:[],
@@ -268,13 +269,13 @@ export default {
                 value: '内科',
                 label: '内科',
                 children: [{
-                    value: '内科医生',
+                    value: '内科',
                     label: '内科医生'
                 }, {
-                    value: '呼吸内科医生',
-                    label: '呼吸内科医生'
+                    value: '呼吸',
+                    label: '呼吸科医生'
                 },{
-                    value: '内分泌科医生',
+                    value: '内',
                     label: '内分泌科医生'
                 },{
                     value: 'lcxmjl',
@@ -293,31 +294,31 @@ export default {
                     value: 'yishnegzhuli',
                     label: '医生助理'
                 }, {
-                    value: '内科医生',
+                    value: '内科',
                     label: '内科医生'
                 }, {
-                    value: '全科医生',
+                    value: '全科',
                     label: '全科医生'
                 }, {
-                    value: 'B超医生',
+                    value: 'B超',
                     label: 'B超医生'
                 }, {
                     value: '中医',
                     label: '中医'
                 },{
-                    value: '心理医生',
+                    value: '心理',
                     label: '心理医生'
                 },{
-                    value: '口腔医生',
+                    value: '口腔科',
                     label: '口腔医生'
                 },{
-                    value: '牙科医生',
+                    value: '牙科',
                     label: '牙科医生'
                 },{
                     value: 'kangfuzhiliaoshi',
                     label: '康复治疗师'
                 },{
-                    value: 'yanguangshi',
+                    value: '骨科',
                     label: '骨科医生'
                 },{
                     value: 'jianyankeyishi',
@@ -341,6 +342,7 @@ export default {
         },
         searchJob() {
             var that = this
+
             this.$axios.post('http://115.29.204.107:8084/yibole/searchTopPosition').then(function(response) {
                 console.log(response.data.data)
                 that.tableData = response.data.data
@@ -363,36 +365,29 @@ export default {
         },
         //根据职位或者医院来实现模糊查询
         handleSearch() {
+            console.log("---------------");
+            console.log(this.value[1]);
+            console.log(this.value.length);
+            console.log(this.searchInput);
+            console.log("---------------");
             var that = this
-            let val3 = this.input3
-            let select = this.value
-            // if (val.length==0) {
-            //     this.$message({
-            //         message: '请输入查询条件',
-            //         type: 'warning'
-            //     });
-            // } else
-            //     {
-                if (select.length==0) {
+            // let val3 = this.input3
+            // let select = this.value
+
+                if (this.value.length==0) {
                     // console.log("name")
                     // console.log(this.SearchCondition)
                     this.$router.push({
                         name:'tabs',
-                        params:{val3:val3}
+                        params:{val3:this.searchInput}
                     })
-                    // this.$axios.post(this.$store.state.URL + "searchPositionByCompanyName/" + val).then((res) => {
-                    //     console.log(res.data.data)
-                    //     this.tableData = res.data.data
-                    // },
-                    //     (err) => {
-                    //     console.log(err)
-                    // })
                 } else {
-                    let selectValue = this.value.strip('/')
-                    let inputValue = this.input3
-                    let value1 = (inputValue).replace(/\s*/g,'');
+                    // let selectValue = this.value.strip('/')
+                    // let v = this.value[1]
+                    // let inputValue = this.input3
+                    // let value1 = (v+inputValue).replace(/\s*/g,'').replace(/\//g,'');
                     // console.log("position")
-                    this.$router.push({name:'tabs',params:{value1:value1}})
+                    this.$router.push({name:'tabs',params:{value1:this.value[1],value2:this.searchInput}})
                     // this.$axios.post(this.$store.state.URL + "searchPositionByName/" + value).then((res) => {
                     //     console.log(res.data.data)
                     //     this.tableData = res.data.data

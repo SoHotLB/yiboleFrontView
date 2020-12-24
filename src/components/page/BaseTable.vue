@@ -162,7 +162,7 @@ export default {
             if(this.cinput.length==0){
                 this.getAllCompanies()
             }else{
-                this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByName/' + this.cinput).then(function(response) {
+                this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByName/' + this.cinput.replace(/\s*/g,'')).then(function(response) {
                     console.log(response.data.data)
                     that.tableData = response.data.data
                     that.companies = response.data.data

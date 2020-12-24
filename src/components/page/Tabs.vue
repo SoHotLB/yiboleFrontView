@@ -52,8 +52,8 @@
             <div class="" id="box">
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
                     <div slot="header" class="clearfix" style='padding-bottom: 20px'>
-				            <span>
-						            <el-link style='font-size:20px;color: lightskyblue' href="" target="_blank">{{v.recruitmentPositionName}}</el-link>
+                    <span>
+                            <el-link style='font-size:20px;color: lightskyblue' href="" target="_blank">{{v.recruitmentPositionName}}</el-link>
                     </span>
                     </div>
                     <div style='padding-bottom: 20px'>
@@ -153,6 +153,7 @@ export default {
     name: 'Position',
     mounted() {
        this.getData()
+        this.getRouterData()
     },
     data () {
       return {
@@ -215,15 +216,29 @@ export default {
     //     }
     // },
     methods: {
-      getData() {
-        var that = this
-        this.$axios.get('http://115.29.204.107:8084/yibole/getAllRecruitmentInformations')
-            .then(function(response) {
-              that.tableData = response.data.data
-            }).catch(function(error) {
-        })
-      },
-      searchJob() {
+        getData() {
+            var that = this
+            this.$axios.get('http://115.29.204.107:8084/yibole/getAllRecruitmentInformations')
+                .then(function(response) {
+                    that.tableData = response.data.data
+                }).catch(function(error) {
+            })
+        },
+        getRouterData() {
+            var that = this
+            let value = this.$route.params.val3
+            if (value.length!=0){//传参不为0则搜索
+                this.pname = value
+                this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + this.pname).then(function(response) {
+                    console.log(response.data)
+                    that.tableData = response.data.data
+                }).catch(function(error) {
+                    that.$message.error(error.message);
+                })
+            }
+        },
+
+        searchJob() {
         var that = this
         this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + this.pname).then(function(response) {
           console.log(response.data)

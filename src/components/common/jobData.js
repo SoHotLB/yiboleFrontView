@@ -4,40 +4,40 @@
 let jobData = {
       option1:[
         {
-          optionName:'未融资',
+          optionName:'私立医院',
           check:false,
           type:0,
         },{
-          optionName:'天使轮',
-          check:false,
-          type:0,
-        },{
-          optionName:'A轮',
-          check:false,
-          type:0,
-        },{
-          optionName:'B轮',
-          check:false,
-          type:0,
-        },{
-          optionName:'C轮',
-          check:false,
-          type:0,
-        },{
-          optionName:'D轮及以上',
-          check:false,
-          type:0,
-        },{
-          optionName:'已上市',
-          check:false,
-          type:0,
-        },{
-          optionName:'不需要融资',
+          optionName:'公立医院',
           check:false,
           type:0,
         }
       ],
-      option2:[
+      option2:[,{
+          optionName:'A轮',
+          check:false,
+          type:0,
+      },{
+          optionName:'B轮',
+          check:false,
+          type:0,
+      },{
+          optionName:'C轮',
+          check:false,
+          type:0,
+      },{
+          optionName:'D轮及以上',
+          check:false,
+          type:0,
+      },{
+          optionName:'已上市',
+          check:false,
+          type:0,
+      },{
+          optionName:'不需要融资',
+          check:false,
+          type:0,
+      },
       {
         optionName:'0-20人',
         check:false,
@@ -66,10 +66,6 @@ let jobData = {
       ],
       option3:[
       {
-        optionName:'全国',
-        check:false,
-        type:2,
-      },{
         optionName:'北京',
         check:false,
         type:2,
@@ -78,23 +74,15 @@ let jobData = {
         check:false,
         type:2,
       },{
-        optionName:'广州',
+        optionName:'淮南',
         check:false,
         type:2,
       },{
-        optionName:'深圳',
+        optionName:'郑州',
         check:false,
         type:2,
       },{
-        optionName:'杭州',
-        check:false,
-        type:2,
-      },{
-        optionName:'天津',
-        check:false,
-        type:2,
-      },{
-        optionName:'西安',
+        optionName:'合肥',
         check:false,
         type:2,
       },{
@@ -107,10 +95,6 @@ let jobData = {
         type:2,
       },{
         optionName:'成都',
-        check:false,
-        type:2,
-      },{
-        optionName:'重庆',
         check:false,
         type:2,
       }

@@ -51,10 +51,8 @@
             <!-- 表格显示区域 -->
             <div class="" id="box">
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
-                    <div slot="header" class="clearfix" style='padding-bottom: 20px'>
-                    <span>
-                            <el-link style='font-size:20px;color: lightskyblue' href="" target="_blank">{{v.recruitmentPositionName}}</el-link>
-                    </span>
+                    <div slot="header" class="clearfix" style='padding-bottom: 15px;font-size:20px;color:lightskyblue'>
+                      <span>{{v.recruitmentPositionName}}</span>
                     </div>
                     <div style='padding-bottom: 20px'>
                         <span style='padding:6px;font-size: 18px;color: #cf9236'>{{'['+v.salaryLimit+'-'+v.salaryCeiling+'k薪]'}}</span>
@@ -90,9 +88,6 @@
                      </div>
                 </el-card>
             </div>
-            <p></p>
-            <p></p>
-            <p></p>
             <!-- 分页 -->
             <el-pagination style="padding-top: 15px" @size-change="handleSizeChange" @current-change="handleCurrentChange"
                            :current-page="currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"

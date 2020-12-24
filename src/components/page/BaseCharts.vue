@@ -9,7 +9,7 @@
                 <div class="grid-content bg-purple">
                     <div>
                     <span><el-avatar shape="square" :size="100" :fit="fit" :src="url"></el-avatar></span>
-                    <span style='padding-left:30%;padding-bottom:50px;font-size: 40px;margin: auto'>{{"employName"}}</span>
+                    <span style='padding-left:30%;padding-bottom:50px;font-size: 40px;margin: auto' v-model='getData'>{{employName}}</span>
                       <p style='padding-left: 38%'>{{"邮箱"}}|{{"地址"}}|{{"学历"}}</p>
 <!--                      <span>{{"邮箱"}}|{{"地址"}}</span>-->
                   </div>
@@ -20,7 +20,7 @@
                 <p><span>性别：{{"男"}}</span><span style='padding-left: 30%'>年龄：{{"employA"}}</span></p>
                 <p><span>电话：{{"employTel"}}</span><span style='padding-left: 30%'>邮箱：{{"employEmail"}}</span></p>
                 <p><span>政治面貌：{{"employTel"}}</span><span style='padding-left: 30%'>民族：{{"employNation"}}</span></p>
-                <p><span>现在地址：{{"employTel"}}</span></p>
+                <p><span>当前地址：{{"employTel"}}</span></p>
                 <p></p>
               </div>
               </span>

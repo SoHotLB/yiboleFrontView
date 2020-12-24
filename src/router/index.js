@@ -10,6 +10,16 @@ export default new Router({
             redirect: '/dashboard'
         },
         {
+            path:'/bossRegister',
+            name:'bossRegister',
+            component:()=>import("../components/register/bossRegister")
+        },
+        {
+            path:'/employRegister',
+            name:'employRegister',
+            component:()=>import("../components/register/employRegister")
+        },
+        {
             path: '/login',
             component: () => import(/* webpackChunkName: "home" */ '../components/login/loginMain'),
             redirect: '/employLoginForm',
@@ -23,7 +33,8 @@ export default new Router({
                     path: '/bossLoginForm',
                     name:"bossLoginForm",
                     component:()=>import("../components/login/bossForm"),
-                }
+                },
+
             ]
         },
         {

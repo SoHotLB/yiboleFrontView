@@ -86,41 +86,88 @@
                             </el-tooltip>
                             <!--                    <span class="btn-bell-badge" v-if="message">/span>-->
                         </div>
-                        <!--                &lt;!&ndash; 用户头像 &ndash;&gt;-->
-                        <!--                <div class="user-avator">-->
-                        <!--                    <img src="../../assets/img/img.jpg" />-->
-                        <!--                </div>-->
-                        <!-- 用户名下拉菜单 -->
-                        <el-dropdown class="user-name" trigger="click" style='color: #fff' @command="handleCommand">
-                    <span class="el-dropdown-link" style='font-size: 14px;color: #fff'>
-                        {{username}}
+
+<!--                        已经登录-->
+                        <div id="right" style="display: flex;margin-left: 15px" v-if="this.account!=''" >
+                            <!-- 用户头像 -->
+                            <div  class="login" style="display: flex;" >
+                                <div class="user-avator">
+                                    <img src="../../assets/img/img.png" />
+                                </div>
+                                <!-- 用户名下拉菜单 -->
+                                <el-dropdown class="user-name"  style="margin-top: 10px" trigger="click" @command="handleCommand">
+                    <span class="el-dropdown-link">
+<!--                        {{this.account}}-->
+                        {{this.employAccount}}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
-                            <el-dropdown-menu slot="dropdown">
-                                <a href="" target="_blank">
-                                    <el-dropdown-item>个人中心</el-dropdown-item>
-                                </a>
-                                <router-link to="/icon">
-                                    <el-dropdown-item divided command="usersetting">账号设置</el-dropdown-item>
-                                </router-link>
-                                <el-dropdown-item command="yssetting">隐私设置</el-dropdown-item>
-                                <el-dropdown-item divided command="switch">切换为招聘者</el-dropdown-item>
-                                <el-dropdown-item divided command="switch">退出登录</el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
+                                    <el-dropdown-menu slot="dropdown" style="margin-bottom: 5px">
+                                        <a href="https://gitee.com/hnucm/dashboard/programs/140463/projects/hnucm/medicine-recruit-wechat/" target="_blank">
+                                            <el-dropdown-item>个人中心</el-dropdown-item>
+                                        </a>
+                                        <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            </div>
+
+                        </div>
+                        <!--  //未登录状态-->
+                        <div style="margin-left: 100px;margin-top: 1px" v-else >
+                            <el-button type="info" icon="el-icon-message" circle></el-button>
+                            <el-button type="text"  id="login" v-on:click="loginBtn">登录</el-button>
+<!--                            <el-button type="text"  id="register" v-on:click="registerBtn">注册</el-button>-->
+                        </div>
                     </div>
+
+                </div>
                 </div>
             </div>
 
         </div>
 
-    </div>
+
 </template>
 <script>
 import bus from '../common/bus';
+import employForm from '@/components/login/employForm';
 export default {
     data() {
         return {
+          // 用户的数据信息
+
+            employAccount:"",
+            company:"",
+            employAddress:"",
+            employAge:"",
+            employBackground:"",
+            employEmail:"",
+            employGraduationTime:"",
+            employId:"",
+            employIntegration:"",
+            employIsMarried:"",
+            employMajor:"",
+            employName:"",
+            employPassword:"",
+            employSchool:"",
+            employSex:"",
+            employTel:"",
+
+         //
+
+            //招聘者的数据
+            recruiterId:"",
+            recruiterName:"",
+            companys:"",
+            recruiterAccount:"",
+            recruiterPassword:"",
+            recruiterAge:"",
+            recruiterSex:"",
+            recruiterEmail:"",
+            recruiterTel:"",
+            recruiterIntegration:"",
+
+            flag:"",
+            account:"",
             collapse: false,
             fullscreen: false,
             name: 'linxin',
@@ -186,59 +233,40 @@ export default {
                 index: 'editor',
                 title: '个人中心'
                 },
-                // {
-                //     icon: 'el-icon-rank',
-                //     index: '6',
-                //     title: '拖拽组件',
-                //     subs: [
-                //         {
-                //             index: 'drag',
-                //             title: '拖拽列表'
-                //         },
-                //         {
-                //             index: 'dialog',
-                //             title: '拖拽弹框'
-                //         }
-                //     ]
-                // },
-                // {
-                //     icon: 'el-icon-lx-global',
-                //     index: 'i18n',
-                //     title: '国际化功能'
-                // },
-                // {
-                //     icon: 'el-icon-lx-warn',
-                //     index: '7',
-                //     title: '错误处理',
-                //     subs: [
-                //         {
-                //             index: 'permission',
-                //             title: '权限测试'
-                //         },
-                //         {
-                //             index: '404',
-                //             title: '404页面'
-                //         }
-                //     ]
-                // }
+
             ]
         };
     },
     computed: {
-        username() {
-            let username = localStorage.getItem('ms_username');
-            return username ? username : this.name;
-        },
+        // username() {
+        //     let username = localStorage.getItem('ms_username');
+        //     return username ? username : this.name;
+        // },
         onRoutes() {
             return this.$route.path.replace('/', '');
         }
     },
     methods: {
+        //注册
+        registerBtn(){
+
+        },
+        //进入登录界面
+        loginBtn(){
+            this.$router.push({path:'/login'})
+            console.log("login")
+        },
         // 用户名下拉菜单选择事件
         handleCommand(command) {
             if (command == 'loginout') {
-                localStorage.removeItem('ms_username');
-                this.$router.push('/login');
+                this.flag="",
+                    this.account=""
+                this.$message({
+                    message: '恭喜你，退出成功',
+                    type: 'success'
+                });
+                // localStorage.removeItem('ms_username');
+                // this.$router.push('/login');
             }
         },
         handleSelect(key, keyPath) {
@@ -275,12 +303,78 @@ export default {
                 }
             }
             this.fullscreen = !this.fullscreen;
-        }
+        },
+        //根据登录穿过来的用户值进行查询
+        searchInfo(){
+            console.log("searchInfo");
+            console.log(this.flag);
+            //应聘者
+            if(this.flag=="employ"){
+
+                this.$axios.post(this.$store.state.URL+"searchEmployByTel/"+ this.account).then((res)=>{
+                    console.log("应聘者+------");
+                    console.log(res.data.data);
+                    this.employId=res.data.data.employId,
+                        this.employName=res.data.data.employName,
+                        this.employAccount=res.data.data.employAccount,
+                        this.employPassword=res.data.data.employPassword,
+                        this.employSex=res.data.data.employSex,
+                        this.employIsMarried=res.data.data.employIsMarried,
+                        this.employAge=res.data.data.employAge,
+                        this.employEmail=res.data.data.employEmail,
+                        this.employTel=res.data.data.employTel,
+                        this.employBackground=res.data.data.employBackground
+                        this.employMajor=res.data.data.employMajor,
+                            this.employSchool=res.data.data.employSchool,
+                            this.employAddress=res.data.data.employAddress
+                    this.employIntegration=res.data.data.employIntegration
+                    this.employGraduationTime=res.data.data.employGraduationTime
+                },(err)=>{
+                    console.log(err);
+                })
+            }
+            //招聘者
+            else if(this.flag=="boss"){
+
+                this.$axios.post(this.$store.state.URL+"searchRecruiterByTel/"+ this.account).then((res)=>{
+                    console.log("招聘者+------");
+                    console.log(res.data.data);
+
+                    this.recruiterId=res.data.data.recruiterId,
+                        this.recruiterName=res.data.data.recruiterName,
+                        this.companys=res.data.data.company,
+                        this.recruiterAccount=res.data.data.recruiterAccount,
+                        this. recruiterPassword=res.data.data.recruiterPassword,
+                        this.recruiterAge=res.data.data.recruiterAge,
+                        this. recruiterSex=res.data.data.recruiterSex,
+                        this.recruiterEmail=res.data.data.recruiterEmail,
+                        this.recruiterTel=res.data.data.recruiterTel,
+                        this.recruiterIntegration=res.data.data.recruiterIntegration
+
+                },(err)=>{
+                    console.log(err);
+                })
+            }
     },
+    },
+
     mounted() {
         if (document.body.clientWidth < 1500) {
             this.collapseChage();
         }
+        //flag用于判断是招聘者还是应聘者
+        console.log(this.flag);
+       //将登录传过来的参数拿到
+        console.log(this.$route.query);
+        // this.searchInfo();
+    },
+    created() {
+        this.account=this.$route.query.account;
+        this.flag=this.$route.query.flag
+        this.searchInfo();
+        console.log("this.Info");
+        console.log(this.Info);
+
     }
 };
 </script>

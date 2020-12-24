@@ -9,7 +9,23 @@ export default new Router({
             path: '/',
             redirect: '/dashboard'
         },
-
+        {
+            path: '/login',
+            component: () => import(/* webpackChunkName: "home" */ '../components/login/loginMain'),
+            redirect: '/employLoginForm',
+            children:[
+                {
+                    path: '/employLoginForm',
+                    name:"employLoginForm",
+                    component:()=>import("../components/login/employForm"),
+                },
+                {
+                    path: '/bossLoginForm',
+                    name:"bossLoginForm",
+                    component:()=>import("../components/login/bossForm"),
+                }
+            ]
+        },
         {
             path: '/',
             component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),

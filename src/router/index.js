@@ -31,11 +31,13 @@ export default new Router({
                 },
                 {
                     path: '/table',
+                    name: 'table',
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
                     meta: { title: '公司' }
                 },
                 {
                     path: '/tabs',
+                    name: 'tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
                     meta: { title: '职位信息' }
                 },

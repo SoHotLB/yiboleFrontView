@@ -4,26 +4,15 @@
             <div class="company-wrapper">
                 <div class="company-body">
                     <div class="conpany-content">
-<!--                        <div class="choseBody">-->
-<!--                            <h5>融资阶段</h5>-->
-<!--                            <div class="chose">-->
-<!--                                <span :class="getClass(option1.check)" @click="choseAll(option1)">{{option1.optionName}}</span>-->
-<!--                                <span @click=selectedOption(option)-->
-<!--                                      :class="getClass(option.check)"-->
-<!--                                      v-for ='option in options.option1'>-->
-<!--                                {{option.optionName}}-->
-<!--                            </span>-->
-<!--                            </div>-->
-<!--                        </div>-->
                         <div class="choseBody">
                             <h5>人员规模</h5>
                             <div class="chose">
-                                <span :class="getClass(option2.check)" @click="choseAll(option2)">{{option2.optionName}}</span>
-                                <span v-for ='option in options.option2'
+                                <span :class="getClass(option1.check)" @click="choseAll(option1)">{{option1.optionName}}</span>
+                                <span v-for ='option in options.option1'
                                       @click=selectedOption(option)
                                       :class="getClass(option.check)">
-                              {{option.optionName}}
-                            </span>
+                                    {{option.optionName}}
+                                </span>
                             </div>
                         </div>
                         <div class="choseBody">
@@ -33,21 +22,14 @@
                                 <span v-for ='option in options.option3'
                                       @click=selectedOption(option)
                                       :class="getClass(option.check)">
-                              {{option.optionName}}
-                            </span>
+                                    {{option.optionName}}
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="search" style="margin-right: 10%;margin-left: 15%">
-                <el-cascader
-                    clearable
-                    class='card-emloyee'
-                    v-model="value"
-                    :options="options"
-                    :props="{ expandTrigger: 'hover' }">
-                </el-cascader>
                 <el-input style='width: 70%' clearable
                           placeholder="请输入公司" size='small'
                           v-model="cinput"
@@ -139,7 +121,7 @@ export default {
             let p3L = this.options.option3.filter((item)=>{
                 return item.check === true;
             }).length;
-            return p1L+p2L+p3L;
+            return p1L+p3L;
         }
     },
     mounted() {
@@ -159,12 +141,13 @@ export default {
         },
         searchCompanyByName() {
             var that = this
+            let select = get
             let val = this.cinput
-            if(val=null){
+            if(val.length==0){
                 this.getAllCompanies()
             }else{
                 this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByName/' + val).then(function(response) {
-                    console.log(response.data)
+                    console.log(response.data.data)
                     that.tableData = response.data.data
                     that.companies = response.data.data
                     that.cinput.value = ''
@@ -214,13 +197,12 @@ export default {
             if(option.check){
                 if(option.type ===0){
                     this.option1.check = false;
-                }else if(option.type ===1){
-                    this.option2.check = false;
                 }else{
                     this.option3.check = false;
                 }
             }
         },
+
         // 获取 easy-mock 的模拟数据
         getData() {
             fetchData(this.query).then(res => {

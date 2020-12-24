@@ -7,13 +7,14 @@
                 class='card-emloyee'
                 v-model="value"
                 :options="options"
+                placeholder='职位类型'
                 :props="{ expandTrigger: 'hover' }">
             </el-cascader>
             <el-input style='width: 70%' clearable
                       placeholder="请输入职位、公司" size='small'
                       v-model="input3"
                       class="input-with-select"/>
-            <el-button class='button' icon="el-icon-search">搜索</el-button>
+            <el-button class='button' icon="el-icon-search" @click='handleSearch'>搜索</el-button>
 
         </div>
         <div class='link'>
@@ -245,6 +246,7 @@ export default {
     name: 'dashboard',
     data() {
         return {
+            input3: '',
             positionList:[],
             companylist:[],
             bannerHeight:"",
@@ -261,7 +263,6 @@ export default {
                 key: 'img4',
                 src:require("../../assets/img/4.jpg")
             }],
-            input3: '',
             value: [],
             options: [{
                 value: 'linchuangshiyan',
@@ -325,9 +326,6 @@ export default {
                     value: 'qita',
                     label: '其他医生职位'
                 }]
-            }, {
-                value: 'ziyuan',
-                label: '资源'
             }]
         }
     },
@@ -362,16 +360,53 @@ export default {
             }).catch(function(error) {
                 that.$message.error(error.message);
             })
+        },
+        //根据职位或者医院来实现模糊查询
+        handleSearch() {
+            var that = this
+            let val3 = this.input3
+            let select = this.value
+            // if (val.length==0) {
+            //     this.$message({
+            //         message: '请输入查询条件',
+            //         type: 'warning'
+            //     });
+            // } else
+            //     {
+                if (select.length==0) {
+                    // console.log("name")
+                    // console.log(this.SearchCondition)
+                    this.$router.push({
+                        name:'tabs',
+                        params:{val3:val3}
+                    })
+                    // this.$axios.post(this.$store.state.URL + "searchPositionByCompanyName/" + val).then((res) => {
+                    //     console.log(res.data.data)
+                    //     this.tableData = res.data.data
+                    // },
+                    //     (err) => {
+                    //     console.log(err)
+                    // })
+                } else {
+                    console.log("position")
+                    this.$axios.post(this.$store.state.URL + "searchPositionByName/" + this.SearchCondition).then((res) => {
+                        console.log(res.data.data)
+                        this.tableData = res.data.data
+                    }, (err) => {
+                        console.log(err)
+                    })
+                }
+            // }
         }
     },
     mounted() {
         this.searchJob();
         this.imgLoad();
         this.searchCompany();
-        window.addEventListener('resize',() =>{
-            this.bannerHeight=this.$refs.bannerHeight[0].height;
-            this.imgLoad();
-        },false)
+        // window.addEventListener('resize',() =>{
+        //     this.bannerHeight=this.$refs.bannerHeight[0].height;
+        //     this.imgLoad();
+        // },false)
     }
 };
 </script>

@@ -1,58 +1,78 @@
 <template>
-<div id="mallList">
-	<div id="mall">
-		<i class="el-icon-message-solid"></i>积分兑换商城
-	</div>
-	<div >
-		<img src="../../assets/img/background.jpg"   id="image"/>
-	</div>
-  <div id="list">
-	  <el-row :gutter="20">
-	    <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list1.png"/></el-col>
-	    <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list2.png"/></el-col>
-	    <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list3.png"/></el-col>
-	    <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list4.png"/></el-col>
-	  </el-row>
-  </div>
-  <div id="mall1">
-  	<i class="el-icon-message-solid"></i>商品详情
-  </div>
-  <div id="mallList1" style="border: #5daf34 5px solid;margin-top: 2%">
-	  <el-row :gutter="20">
-	    <el-col :span="8" v-for="item in MallList" >
-			 <el-card id="card" :body-style="{ padding: '0px' }" shadow="hover">
-			      <img :src="item.goodsImage"  style="width: 300px;height:150px" class="image">
-			      <div style="padding: 14px;">
-<!--              <span>{{item.goodsDetail}}</span>-->
-<!--              <div style="position: relative ;top: -180px;left: -120px;background: #FF8282;width: 100px;text-align: right;border-radius: 15px;margin-left:70px;font-family: 华文宋体 ;color: white">{{item.goodsIntegral}}积分</div>-->
-			        <div class="bottom clearfix">
 
-				   <el-button type="primary"  style="width: 210px; margin-top: 5px;" v-on:click="buyBtn(item.goodsImage)">兑换</el-button>
-			        </div>
-			      </div>
-			    </el-card>
+  <el-container style="margin-top: 3px">
+    <el-header>
+      <div id="mall">
+      <i class="el-icon-message-solid"></i>积分兑换商城
+      </div>
+    </el-header>
+<!--    <div >-->
+<!--      <img src="../../assets/img/background.jpg"   id="image"/>-->
+<!--    </div>-->
+    <el-main>
+      <div id="mallList">
 
-		</el-col>
 
-	  </el-row>
-  </div>
+        <div id="list">
+          <el-row :gutter="20">
 
-<!--  兑画框-->
-  <el-dialog
-      title="医伯乐兑换中心"
-      :visible.sync="dialogVisible"
-      width="50%"
+            <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list1.png"/></el-col>
+            <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list2.png"/></el-col>
+            <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list3.png"/></el-col>
+            <el-col :span="6"><img class="grid-content bg-purple" src="../../assets/img/list4.png"/></el-col>
+          </el-row>
+        </div>
+        <div id="mall1" style="margin-top: 30px">
+          <i class="el-icon-message-solid"></i>商品详情
+        </div>
+        <div id="mallList1" style="margin-top: 2%">
+          <el-row :gutter="20">
+            <el-col :span="8" v-for="item in MallList" >
+              <el-card id="card" :body-style="{ padding: '0px' }" shadow="hover">
+                <img :src="item.goodsImage"  style="width: 300px;height:150px" class="image">
+                <div style="padding: 14px;">
 
-      :before-close="handleClose">
-    <div style="border: #8c939d 2px solid">
-    <img  style="width: 100%;height:200px;" :src="formImg"/>
-    </div>
-    <span slot="footer" class="dialog-footer">
+                                <span style="text-align: center ; margin-left:80px;height:30px;line-height:30px;">{{item.goodsName}}</span>
+                                <div style="position: relative ;top: -150px;left: -100px;background: #ff8282;width: 100px;text-align: right;border-radius: 15px;margin-left:70px;font-family: 华文宋体 ;color: white">{{item.goodsIntegral}}积分</div>
+                  <div class="bottom clearfix">
+
+                    <el-button type="primary"  style="width: 210px; margin-top: 5px; margin-left: 30px" v-on:click="buyBtn(item.goodsImage,item.goodsDetail,item.goodsIntegral)">兑换</el-button>
+                  </div>
+                </div>
+              </el-card>
+
+            </el-col>
+
+          </el-row>
+        </div>
+
+        <!--  兑画框-->
+        <el-dialog
+            title="医伯乐兑换中心"
+            :visible.sync="dialogVisible"
+            width="50%"
+
+            :before-close="handleClose">
+          <div >
+            <img  style="width: 100%;height:250px;" :src="formImg"/>
+          </div>
+          <div style="margin-top: 2%">
+            <div style="font-size: larger;font-weight: 300;font-family: 'arial black' ;font-weight: bold">商品详情</div>
+            {{formDetai}}
+          </div>
+          <div style="float: right">
+            <div style="font-size: larger;font-weight: 300;font-family: 'arial black' ;font-weight: bold;color: #dd6161">{{goodsIntegral}}积分</div>
+<!--            {{formDetai}}-->
+          </div>
+          <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
   </span>
-  </el-dialog>
-</div>
+        </el-dialog>
+      </div>
+    </el-main>
+  </el-container>
+
 </template>
 
 <script>
@@ -65,7 +85,9 @@ data(){
 		MallList:[],
 		//测试
    MallNum:16,
-    formImg:""
+    formImg:"",
+    formDetai:"",
+    goodsIntegral:""
 	}
 
 },
@@ -96,9 +118,12 @@ data(){
        console.log(this.MallList)
   },
     //兑换
-    buyBtn(res){
+    buyBtn(res,detail,goodsIntegral){
      console.log(res)
+      console.log(detail)
       this.formImg=res
+      this.formDetai=detail
+      this.goodsIntegral=goodsIntegral
       this.dialogVisible=true
     }
   }
@@ -107,48 +132,20 @@ data(){
 </script>
 
 <style scoped>
+#mallList{
+
+  width: 100%;
+  /*border: 10px salmon solid;*/
+}
 #mall{
+  width: 100%;
 	font-size: larger;
 	font-weight: 300;
 
 	font-family: "arial black";
 }
-#image{
-	margin-top: 30px;
-	width: 1000px;
-	height: 300px;
-}
 
-.el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
-  .button {
-      padding: 0;
-      float: right;
-    }
+
   .clearfix:before,
     .clearfix:after {
         display: table;

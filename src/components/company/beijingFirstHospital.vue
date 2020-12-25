@@ -68,7 +68,20 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;北大医院创建于1915年，是我国最早创办的国立医院，也是国内首批建立的临床医学院之一。北大医院前身为民国教育部批准北京医科专门学校设立附属诊察所；1946年随北京医学院与北京大学合并，由此得名“北大医院”；此后经历院系调整，2000年北京大学与北京医科大学两校再次合并，医院随之更名为“北京大学第一医院”。2008年成为中央保健基地医院。
                 </p>
             </div><br>
-            <b style='font-size: 20px;color: #1f2f3d;margin-right: 10px;margin-left: 10px;margin-top: 10px'>地图</b>
+<!--            <b><img src="./src/assets/img/map.png"></b>-->
+
+            <b style='font-size: 20px;color: #1f2f3d;margin-right: 10px;margin-left: 10px;margin-top: 10px'>{{this.com}}</b>
+
+                <el-card class="box-card">
+
+                    <div style="color: #8c8b8b">
+                        <img style="width: 20px;height: 20px" src="http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png">
+                        <span style="font-size: larger">北京市, 北京市, 西城区, 地安门西大街, 甲147号</span></div>
+                    <baidu-map :center="center" :zoom="zoom" @ready="handler" style="height:500px;" @click="getClickInfo" :scroll-wheel-zoom='true'>
+                    </baidu-map>
+                </el-card>
+
+
 
         </el-col>
 
@@ -80,10 +93,18 @@
 </template>
 
 <script>
+
 export default {
     name: 'beijingFirstHospital',
+
     data() {
         return {
+
+
+            markerIcon:"http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png",
+            center: {lng: 116.387052, lat: 39.938046},
+            zoom: 20,
+            com:this.$route.params.com+"地址",
             positions:[],
             items: [
                 {
@@ -112,8 +133,33 @@ export default {
         console.log("-----****" + this.$route.params.com);
         console.log("******"+ this.$route.params.name);
         // this.searchCompanyByRouteParams()
+
     },
     methods: {
+        getClickInfo(e) {
+            console.log(e.point.lng)
+            console.log(e.point.lat)
+            this.center.lng = e.point.lng
+            this.center.lat = e.point.lat
+            this.$message({
+                message: '北京大学第一医院经度'+e.point.lng+"纬度："+e.point.lat,
+                type: 'success'
+            });
+        },
+        handler({ BMap, map }) {
+            var point = new BMap.Point(116.387052, 39.938046)
+            map.centerAndZoom(point, 18)
+            var marker = new BMap.Marker(point) // 创建标注
+            map.addOverlay(marker) // 将标注添加到地图中
+            var circle = new BMap.Circle(point, 6, {
+                strokeColor: 'Red',
+                strokeWeight: 6,
+                strokeOpacity: 1,
+                Color: 'Red',
+                fillColor: '#f03'
+            })
+            map.addOverlay(circle)
+        },
         getPosition() {
           var that = this
             this.$axios.post('http://115.29.204.107:8084/yibole/getAllPositions')
@@ -152,6 +198,10 @@ export default {
 </script>
 
 <style scoped>
+.map {
+    width: 100%;
+    height: 500px;
+}
 .grid-company-name{
     font-size: 17px;
 }

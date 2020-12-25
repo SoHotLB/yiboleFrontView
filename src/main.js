@@ -12,9 +12,18 @@ import './components/common/directives';
 import 'babel-polyfill';
 import axios from 'axios'
 import * as filter from './filter'
+import BaiduMap from "vue-baidu-map";
 Object.keys(filter).forEach(key => {
     Vue.filter(key, filter[key])
 })
+//百度地图
+
+Vue.use(BaiduMap, {
+    // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+    ak: 'twsjGRCEccKGpfRm01jjKa4HWtbqkrPv'
+})
+
+
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 Vue.use(VueI18n);

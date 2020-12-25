@@ -70,7 +70,16 @@
                     湘雅医院始终坚持公立医院公益性，率先构建“合作办院、协作指导、远程指导、专科联盟、航空医疗联盟、区域医联体”六位一体的医联体“湘雅模式”，率先在国内开办皮肤病互联网医院，优质医疗资源可及性不断提高，引领区域医疗水平提升的能力日益增强。
                 </p>
             </div><br>
-            <b style='font-size: 20px;color: #1f2f3d;margin-right: 10px;margin-left: 10px;margin-top: 10px'>地图</b>
+            <b style='font-size: 20px;color: #1f2f3d;margin-right: 10px;margin-left: 10px;margin-top: 10px'>{{this.com}}</b>
+
+            <el-card class="box-card">
+
+                <div style="color: #8c8b8b">
+                    <img style="width: 20px;height: 20px" src="http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png">
+                    <span style="font-size: larger">湖南省长沙市开福区湘雅路87号</span></div>
+                <baidu-map :center="center" :zoom="zoom" @ready="handler" style="height:500px;" @click="getClickInfo" :scroll-wheel-zoom='true'>
+                </baidu-map>
+            </el-card>
 
         </el-col>
 
@@ -85,6 +94,10 @@ export default {
     name: 'xiangYaHospital',
     data() {
         return {
+            markerIcon:"http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png",
+            center: {lng: 112.991041, lat: 28.217917},
+            zoom: 20,
+            com:this.$route.params.com+"地址",
             positions:[],
             items: [
                 {
@@ -115,6 +128,30 @@ export default {
         // this.searchCompanyByRouteParams()
     },
     methods: {
+        getClickInfo(e) {
+            console.log(e.point.lng)
+            console.log(e.point.lat)
+            this.center.lng = e.point.lng
+            this.center.lat = e.point.lat
+            this.$message({
+                message: '湘雅医院经度'+e.point.lng+"纬度："+e.point.lat,
+                type: 'success'
+            });
+        },
+        handler({ BMap, map }) {
+            var point = new BMap.Point(112.991041, 28.217917)
+            map.centerAndZoom(point, 18)
+            var marker = new BMap.Marker(point) // 创建标注
+            map.addOverlay(marker) // 将标注添加到地图中
+            var circle = new BMap.Circle(point, 6, {
+                strokeColor: 'Red',
+                strokeWeight: 6,
+                strokeOpacity: 1,
+                Color: 'Red',
+                fillColor: '#f03'
+            })
+            map.addOverlay(circle)
+        },
         getPosition() {
             var that = this
             this.$axios.post('http://115.29.204.107:8084/yibole/getAllPositions')

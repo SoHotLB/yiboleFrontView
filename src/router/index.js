@@ -10,6 +10,11 @@ export default new Router({
             redirect: '/dashboard'
         },
         {
+            path:'/test',
+            name:'test',
+            component:()=>import("../components/company/test")
+        },
+        {
             path:'/bossRegister',
             name:'bossRegister',
             component:()=>import("../components/register/bossRegister")

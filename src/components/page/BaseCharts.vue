@@ -28,7 +28,7 @@
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
                 <div>
-                    <p><span>毕业院校：{{this.employSchool}}</span><span style='padding-left: 30%'>学历：{{this.employPoliticalStatus}}</span></p>
+                    <p><span>毕业院校：{{this.employSchool}}</span><span style='padding-left: 30%'>学历：{{this.employBackground}}</span></p>
                     <p><span>专业：{{this.employMajor}}</span><span style='padding-left: 30%'>是否结婚：{{this.employIsMarried}}</span></p>
                     <p></p>
                 </div>
@@ -72,9 +72,9 @@
                <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
               <div>
                 <p><span>性别：{{this.employSex}}</span><span style='padding-left: 30%'>年龄：{{this.employName}}</span></p>
-                <p><span>电话：{{employTel}}</span><span style='padding-left: 30%'>邮箱：{{employEmail}}</span></p>
-                <p><span>政治面貌：{{employBackground}}</span><span style='padding-left: 30%'>民族：{{employNation}}</span></p>
-                <p><span>当前地址：{{employTel}}</span></p>
+                <p><span>电话：{{this.employTel}}</span><span style='padding-left: 30%'>邮箱：{{this.employEmail}}</span></p>
+                <p><span>政治面貌：{{this.employBackground}}</span><span style='padding-left: 30%'>民族：{{this.employNation}}</span></p>
+                <p><span>当前地址：{{this.employTel}}</span></p>
                 <p></p>
               </div>
               </span>
@@ -82,17 +82,17 @@
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
                 <div>
-                    <p><span>毕业院校：{{"中南大学"}}</span><span style='padding-left: 30%'>学历：{{"博士"}}</span></p>
-                    <p><span>专业：{{"临床医学"}}</span><span style='padding-left: 30%'>学历：{{"博士"}}</span></p>
+                    <p><span>毕业院校：{{this.employSchool}}</span><span style='padding-left: 30%'>学历：{{this.employBackground}}</span></p>
+                    <p><span>专业：{{this.employMajor}}</span><span style='padding-left: 30%'>是否结婚：{{this.employIsMarried}}</span></p>
                     <p></p>
                 </div>
                 </span>
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>实习经历</el-divider>
                 <div>
-                    <p><span>实习医院：{{"中南大学"}}</span></p>
-                    <p><span>地址：{{"临床医学"}}</span></p>
-                    <p><span>实习评价：{{"临床医学"}}</span></p>
+                    <p><span>实习医院：{{this.employWorkExperience}}</span></p>
+                    <p><span>地址：{{this.employAddress}}</span></p>
+                    <p><span>实习评价：{{this.resumeSelfevaluation}}</span></p>
                     <p></p>
                 </div>
             </span>

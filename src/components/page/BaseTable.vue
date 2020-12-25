@@ -5,7 +5,7 @@
                 <div class="company-body">
                     <div class="conpany-content">
                         <div class="choseBody">
-                            <h5>人员规模</h5>
+                            <h5>公司类型</h5>
                             <div class="chose">
                                 <span :class="getClass(option1.check)" @click="choseAll(option1)">{{option1.optionName}}</span>
                                 <span v-for ='option in options.option1'
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="search" style="margin-right: 10%;margin-left: 15%">
+            <div class="search" style="background-color: white;padding-right: 10%;padding-left: 20%;padding-bottom: 10px">
                 <el-input style='width: 70%' clearable
                           placeholder="请输入公司" size='small'
                           v-model="cinput"
@@ -132,6 +132,30 @@ export default {
         }
     },
     methods: {
+        geyCompany(o){
+            var that = this
+            if(o=="私立医院"){
+                this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
+                    console.log(response.data)
+                    that.tableData = response.data.data
+                    if(that.tableData.companyType=="私立医院"){
+                        that.companies = that.tableData
+                        console.log(that.companies)
+                    }
+
+                }).catch(function(error) {
+                    that.$message.error(error.message);
+                })
+            }
+            this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
+                console.log(response.data)
+                that.tableData = response.data.data
+                that.companies = response.data.data
+                console.log(that.positionList)
+            }).catch(function(error) {
+                that.$message.error(error.message);
+            })
+        },
         GoToCompany(com){
             var that = this
             if (com=="长沙好医院") {
@@ -369,7 +393,7 @@ h5{
     overflow:auto;
 }
 .job-items{
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     padding:6px;
     background-color:#eee;
 }

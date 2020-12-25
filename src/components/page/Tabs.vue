@@ -27,7 +27,7 @@
                         <span style='padding: 6px;font-size: 18px;padding-top: 10px'>{{v.location}}</span>
                         <span style='padding-right: 20px'>
                           <el-button style="float: right; padding: 3px 0" type="text">
-                          <router-link style='font-size: 18px;color: lightskyblue' to ="/jobinformation" >{{v.company}}</router-link>
+                          <el-link style='font-size: 18px;color: lightskyblue' :underline='null' @click='gotoItCompany(v.company)'>{{v.company}}</el-link>
                         </el-button>
                         </span>
                     </div>
@@ -170,6 +170,15 @@ export default {
         }
     },
     methods: {
+        gotoItCompany(com) {
+            if(com=="北京大学第一医院"){
+                this.$router.push({name: 'beijingFirstHospital',params:{com: com}})
+
+            }else if(com=="湘雅医院"){
+                this.$router.push({name: 'xiangYaHospital',params:{com: com}})
+
+            }
+        },
         getData() {
             var that = this
             this.$axios.get('http://115.29.204.107:8084/yibole/getAllRecruitmentInformations')

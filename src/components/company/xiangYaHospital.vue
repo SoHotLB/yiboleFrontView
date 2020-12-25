@@ -16,11 +16,11 @@
 
                 <div class="jianli">
                     <i style='color: #5bb6aa' class="el-icon-upload"></i>&nbsp;
-                    <el-link style='font-weight: 300 ;color: #5bb6aa;font-size: 17px' :underline="false">新增附件简历</el-link>&nbsp;
+                    <el-link  style='font-weight: 300 ;color: #5bb6aa;font-size: 17px' :underline='false'>新增附件简历</el-link>&nbsp;
                 </div>
                 <div class="jianli">
                     <i style='color: #5bb6aa' class="el-icon-document-copy"></i>
-                    <el-link style='font-weight: 300 ;color: #5bb6aa;font-size: 17px' :underline="false">完善在线简历</el-link>
+                    <router-link style='font-weight: 300 ;color: #5bb6aa;font-size: 17px' to='/charts'>完善在线简历</router-link>
                 </div>
 
             </div>

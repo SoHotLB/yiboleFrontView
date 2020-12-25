@@ -152,6 +152,7 @@ export default {
     position: relative;
 }
 .item {
+    padding: 18px 0;
     display: inline-block;
     margin: 30px 50px;
 }

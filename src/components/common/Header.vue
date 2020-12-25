@@ -140,7 +140,7 @@ export default {
     data() {
         return {
           // 用户的数据信息
-        accountLocal:"",
+             accountLocal:"",
             employAccount:"",
             company:"",
             employAddress:"",

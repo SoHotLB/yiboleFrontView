@@ -9,7 +9,7 @@
                 <div class="grid-content bg-purple">
                     <div>
                     <span><el-avatar shape="square" :size="100" :fit="fit" :src="url"></el-avatar></span>
-                    <span style='padding-left:30%;padding-bottom:50px;font-size: 40px;margin: auto' v-model='getData'>{{employName}}</span>
+                    <span style='padding-left:30%;padding-bottom:50px;font-size: 40px;margin: auto' v-model='getData'>{{this.test}}</span>
                       <p style='padding-left: 38%'>{{"邮箱"}}|{{"地址"}}|{{"学历"}}</p>
 <!--                      <span>{{"邮箱"}}|{{"地址"}}</span>-->
                   </div>
@@ -96,6 +96,7 @@ export default {
     data () {
       return{
         tableData:[],
+          test:JSON.parse(localStorage.getItem("UserInfo")).employName
       }
     },
     methods: {

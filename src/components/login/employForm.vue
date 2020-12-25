@@ -187,20 +187,21 @@ export default {
         if(valid){
 console.log(valid)
           this.$axios.post(this.$store.state.URL+"checkEmployLoginByTel/"+this.TelruleForm.Telphone).then(function (response) {
-            console.log("普通用户")
+            console.log("手机登录")
             console.log(response.data)
               console.log(that.CODE+"code");
             console.log(response.data.code+"----"+that.TelruleForm.Telphone)
             if(response.data.code===0&&that.CODE===that.TelruleForm.Telcode){
               console.log(response.data.code)
               that.$router.push({path:'/',query:{account:that.TelruleForm.Telphone,flag:"employ"}})
+                console.log("恭喜将手机号"+that.TelruleForm.Telphone+"传送值”/“里面去");
             }else{
               that.$message({
                 message: '登录失败',
                 type: 'warning'
               });
             }
-
+              // window.location.reload()
           },function(err){
             this.$message({
               message: '服务端出问题啦'+err,
@@ -233,6 +234,7 @@ console.log(valid)
             if(response.data.code==0){
               console.log("成功");
               that.$router.push({path:'/',query:{account:that.ruleForm.account,flag:"employ"}})
+                window.location.reload()
         // 将值存在浏览器上
 // localStorage.setItem("LoginName",that.ruleForm.account);
             }else{

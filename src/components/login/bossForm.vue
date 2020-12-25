@@ -194,7 +194,7 @@ export default {
             if(response.data.code===0&&that.CODE===that.TelruleForm.Telcode){
               console.log(response.data.code)
                 //将应聘者的手机号带过来
-              that.$router.push({path:'/',query:{account:that.TelruleForm.Telcode,flag:"boss"}})
+              that.$router.push({path:'/',query:{account:that.TelruleForm.Telphone,flag:"boss"}})
             }else{
               that.$message({
                 message: '登录失败',
@@ -234,6 +234,7 @@ export default {
             if(response.data.code==0){
               console.log("成功");
               that.$router.push({path:'/',query:{account:that.ruleForm.account,flag:"boss"}})
+                window.location.reload()
             }else{
                 that.$message({
                 message: '登录失败',

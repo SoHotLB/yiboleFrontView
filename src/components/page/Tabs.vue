@@ -9,45 +9,14 @@
         <el-card class="box-card" style="padding-bottom: 10px;">
             <el-row style="padding: 20px;margin: auto;width: 80%">
                 <el-col :span="10">
-                 <el-input placeholder="请输入职位名称搜索" v-model="pname" class="handle-input mr10"></el-input>
+                 <el-input placeholder="请输入职位名称搜索" clearable v-model="pname" class="handle-input mr10"></el-input>
                 </el-col>
                 <el-col :span="6">
                     <el-button style='color: white;background-color: #3cac9b;border-radius: 8px' icon="el-icon-search" @click="searchJob()">搜索</el-button>
                 </el-col>
             </el-row>
         </el-card>
-        <!-- 职位卡片 -->
-<!--        <el-card class="box-card" style="padding-bottom: 10px;">-->
-<!--            <el-form :inline="true" :model="formInline" ref="formInline" class="demo-form-inline" style="margin: auto;width: 80%">-->
-<!--                <el-form-item label="职位选择" label-width="70px">-->
-<!--                    <el-select clearable v-model="formInline.post" placeholder="请选择职位">-->
-<!--                        <el-option v-for="item in posts" :key="item.value" :label="item.label" :value="item.value">-->
-<!--                        </el-option>-->
-<!--                    </el-select>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item label="城市" label-width="70px">-->
-<!--                    <el-select clearable v-model="formInline.city" placeholder="请选择职位所在城市">-->
-<!--                        <el-option v-for="item in citys" :key="item.value" :label="item.label" :value="item.value">-->
-<!--                        </el-option>-->
-<!--                    </el-select>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item label="学历" label-width="70px">-->
-<!--                    <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">-->
-<!--                        <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">-->
-<!--                        </el-option>-->
-<!--                    </el-select>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item label="性别" label-width="70px">-->
-<!--                    <el-radio-group v-model="formInline.radio" label-width="70px">-->
-<!--                        <el-radio :label="1">男</el-radio>-->
-<!--                        <el-radio :label="2">女</el-radio>-->
-<!--                    </el-radio-group>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item label-width="100px">-->
-<!--                    <el-button type="primary" @click="selecetForm">搜索</el-button>-->
-<!--                </el-form-item>-->
-<!--            </el-form>-->
-            <!-- 表格显示区域 -->
+
             <div class="" id="box">
                 <el-card class="box-card" v-for="v in tableData"><!--v-for="v in tableData"-->
                     <div slot="header" class="clearfix" style='padding-bottom: 15px;font-size:20px;color:lightskyblue'>
@@ -92,53 +61,7 @@
                            :current-page="currentPage4" :page-sizes="[100, 200, 300, 400]" :page-size="100" layout="total, sizes, prev, pager, next, jumper"
                            :total="400">
             </el-pagination>
-<!--      -->
-<!--        <el-dialog title="职位信息" :visible.sync="dialogFormVisible">-->
-<!--            <el-form :model="form">-->
-<!--                <el-form ref="form" :model="form" label-width="80px">-->
-<!--                    <el-form-item label="职位名称">-->
-<!--                        <el-input v-model="form.name"></el-input>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="职位地区">-->
-<!--                        <el-select v-model="form.region" placeholder="请选择职位地区">-->
-<!--                            <el-option label="重庆" value="重庆"></el-option>-->
-<!--                            <el-option label="成都" value="成都"></el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
-<!--                </el-form>-->
-<!--            </el-form>-->
-<!--            <div slot="footer" class="dialog-footer">-->
-<!--                <el-button @click="dialogFormVisible = false">取 消</el-button>-->
-<!--                <el-button type="primary" @click="savePostJob">添加职位信息</el-button>-->
-<!--            </div>-->
-<!--        </el-dialog>-->
 
-        <!-- 修改职位信息的弹出框 -->
-<!--        <el-dialog title="职位信息" :visible.sync="dialogFormVisible2">-->
-<!--            <el-form :model="formInline">-->
-<!--                <el-form ref="form" :model="formInline" label-width="80px">-->
-<!--                    <el-form-item label="职位名称">-->
-<!--                        <el-input v-model="formInline.post"></el-input>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="职位区域">-->
-<!--                        <el-select v-model="formInline.city" placeholder="请选择职位地区">-->
-<!--                            <el-option label="重庆" value="重庆"></el-option>-->
-<!--                            <el-option label="成都" value="成都"></el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="学历要求">-->
-<!--                        <el-select clearable v-model="formInline.education" placeholder="请选择职位学历要求">-->
-<!--                            <el-option v-for="item in educations" :key="item.value" :label="item.label" :value="item.value">-->
-<!--                            </el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
-<!--                </el-form>-->
-<!--            </el-form>-->
-<!--            <div slot="footer" class="dialog-footer">-->
-<!--                <el-button @click="dialogFormVisible2 = false">取 消</el-button>-->
-<!--                <el-button type="primary" @click="updateJob">修改职位信息</el-button>-->
-<!--            </div>-->
-<!--        </el-dialog>-->
     </div>
 </template>
 
@@ -146,15 +69,26 @@
 export default {
     name: 'Position',
     mounted() {
-        if(this.$route.params.value1 + this.$route.params.value2){
-            this.pname=this.$route.params.value1 + this.$route.params.value2
+        console.log("======================");
+        console.log(this.$route.params.value1);
+        console.log(this.$route.params.value2.length);
+
+        console.log("======================");
+        console.log(this.$route.params.value1=="undefined");
+        console.log(this.$route.params.value2.length==0);
+        if(!(this.$route.params.value1!='undefined' && this.$route.params.value2.length>0)){
+
+            console.log("if这一步");
+            this.getData()
+        }else if(this.$route.params.value1!='undefined' || this.$route.params.value2.length > 0 ){
+            console.log("else这一步");
+            console.log(this.$route.params.value1!="undefined");
+            console.log(this.$route.params.value2.length>0);
+            this.pname = this.$route.params.value1 + this.$route.params.value2
             console.log("-------****"+this.pname);
             this.searchJob()
-
-        }else{
-            this.getData()
-            // this.getRouterData()
         }
+        // if()
 
     },
     data () {
@@ -171,52 +105,9 @@ export default {
         currentPage4: 4, // 分页
       }
     },
-    //         formInline: {
-    //             positionId: '',
-    //             post: '', // 职位
-    //             city: '', // 城市
-    //             education: '', // 学历
-    //             radio: 2 // 性别
-    //
-    //         },
-    //         posts: [{
-    //             value: 'post1',
-    //             label: '开发'
-    //         }, {
-    //             value: 'post2',
-    //             label: '测试'
-    //         }],
-    //         citys: [{
-    //             value: 'city1',
-    //             label: '重庆'
-    //         }, {
-    //             value: 'city2',
-    //             label: '成都'
-    //         }],
-    //         educations: [{
-    //             value: '大专',
-    //             label: '大专'
-    //         }, {
-    //             value: '本科',
-    //             label: '本科'
-    //         }, {
-    //             value: '研究生',
-    //             label: '研究生'
-    //         }],
-    //         // 添加职位信息的弹出框
-    //         dialogFormVisible: false,
-    //         // 修改职位信息的弹出框
-    //         dialogFormVisible2: false,
-    //         form: {
-    //             name: '',
-    //             region: '',
-    //             delivery: false,
-    //             type: [],
-    //             resource: '',
-    //             desc: ''
-    //         }
-    //     }
-    // },
+    created() {
+        // this.pname = this.$route.params.value1 + this.$route.params.value2
+    },
     methods: {
         getData() {
             var that = this
@@ -226,34 +117,15 @@ export default {
                 }).catch(function(error) {
             })
         },
-        getRouterData() {
-            var that = this
-            let value = this.$route.params.value1+this.$route.params.value2
-            // var res = 0
-            // if (this.pname.length!=0){//传参不为0则搜索
-            //     // this.pname = value
-            //     // let val = value.replace(/\s*/g,'')
-            //
-            // }
-            this.$axios.post('http://115.29.204.107:8084/yibole/searchPositionByName/' + value)
-                .then(function(response) {
-                    console.log(response.data.data)
-                    this.tableData = response.data.data
-                    // if(dat!=null){
-                    //     that.tableData = dat
-                    // }else{
-                    //     this.$router.push({name:'table',params:{value:value}})
-                    // }
-                }).catch(function(error) {
-                that.$message.error(error.message);
-            })
-        },
 
         searchJob() {
         var that = this
-        this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByPositionName/' + this.pname).then(function(response) {
-          console.log(response.data)
-          that.tableData = response.data.data
+        this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByPositionName/' + this.pname)
+            .then(function(response) {
+                console.log("************searchJob*******************");
+                console.log(response.data.data)
+                console.log("********************************");
+                that.tableData = response.data.data
         }).catch(function(error) {
           that.$message.error(error.message);
         })

@@ -38,8 +38,8 @@
             </div>
             <div>
                 <ul class="job-items">
-                    <li v-for="company in companies" class="job-item">
-                        <p class="title-wrapper">
+                    <li v-for="company in companies" class="job-item" @click="GoToCompany(company.company)">
+                        <p class="title-wrapper" >
                             <span class="title">{{company.company}}</span>
                             <span class="price">{{company.companyLocation}}</span>
                         </p>
@@ -132,6 +132,23 @@ export default {
         }
     },
     methods: {
+        GoToCompany(com){
+            var that = this
+            if (com=="长沙好医院") {
+                // window.open("../src/components/company/changshaGoodHospital.vue")
+                // this.$refs.target.setAttribute('href',window.location.origin + '../components/company/changshaGoodHospital.vue')
+                this.$router.push({name: 'goodHospital',params: {com: com}})
+            }else if(com=="北京大学第一医院"){
+                this.$router.push({name: 'beijingFirstHospital',params: {com: com}})
+            }else if(com=="上海交通大学医学院附属瑞金医院"){
+                this.$router.push({name: 'shanghaiRuijinHospital',params: {com: com}})
+            }else if(com=="长沙皮肤医院"){
+                this.$router.push({name: 'changshaSkinHospital',params: {com: com}})
+            }else if(com=="湘雅医院"){
+                this.$router.push({name: 'xiangya',params: {com: com}})
+            }
+
+        },
         getAllCompanies() {
             var that = this
             this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
@@ -387,8 +404,7 @@ h5{
     color:rgba(7,17,27,0.7);
     /*font-weight: 700;*/
 }
-.content-wrapper{
-}
+
 .content-detail{
     margin-bottom:10px;
 }

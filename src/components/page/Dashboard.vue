@@ -335,9 +335,6 @@ export default {
             this.$nextTick(()=>{
                 this.bannerHeight=this.$refs.bannerHeight[0].height;
                 console.log(this.$refs.bannerHeight[0].height);
-                // document.getElementsByClassName拿到的是数组并非某一个对象
-                // var testH=document.getElementById("test-div");
-                // testH.style.height= this.bannerHeight+"px";
             })
         },
         searchJob() {
@@ -371,41 +368,13 @@ export default {
             console.log(this.searchInput);
             console.log("---------------");
             var that = this
-            // let val3 = this.input3
-            // let select = this.value
-
-                // if (this.value.length==0) {
-                //     // console.log("name")
-                //     // console.log(this.SearchCondition)
-                //     this.$router.push({
-                //         name:'tabs',
-                //         params:{val3:this.searchInput}
-                //     })
-                // } else {
-                    // let selectValue = this.value.strip('/')
-                    // let v = this.value[1]
-                    // let inputValue = this.input3
-                    // let value1 = (v+inputValue).replace(/\s*/g,'').replace(/\//g,'');
-                    // console.log("position")
-                    this.$router.push({name:'tabs',params:{value1:this.value[1],value2:this.searchInput}})
-                    // this.$axios.post(this.$store.state.URL + "searchPositionByName/" + value).then((res) => {
-                    //     console.log(res.data.data)
-                    //     this.tableData = res.data.data
-                    // }, (err) => {
-                    //     console.log(err)
-                    // })
-                // }
-            // }
+            this.$router.push({name:'tabs',params:{value1:this.value[1],value2:this.searchInput}})
         }
     },
     mounted() {
         this.searchJob();
         this.imgLoad();
         this.searchCompany();
-        // window.addEventListener('resize',() =>{
-        //     this.bannerHeight=this.$refs.bannerHeight[0].height;
-        //     this.imgLoad();
-        // },false)
     }
 };
 </script>

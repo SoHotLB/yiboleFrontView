@@ -195,29 +195,6 @@ export default {
                     index: 'tabs',
                     title: '职位'
                 },
-                // {
-                //     icon: 'el-icon-lx-calendar',
-                //     index: '3',
-                //     title: '账号设置',
-                //     subs: [
-                //         {
-                //             index: 'form',
-                //             title: '手机账号'
-                //         },
-                //         {
-                //             index: 'editor',
-                //             title: '设置密码'
-                //         },
-                //         {
-                //             index: 'markdown',
-                //             title: '绑定微信号'
-                //         },
-                //         {
-                //             index: 'upload',
-                //             title: '常用语'
-                //         }
-                //     ]
-                // },
                 {
                     icon: 'el-icon-lx-emoji',
                     index: 'icon',
@@ -238,10 +215,6 @@ export default {
         };
     },
     computed: {
-        // username() {
-        //     let username = localStorage.getItem('ms_username');
-        //     return username ? username : this.name;
-        // },
         onRoutes() {
             return this.$route.path.replace('/', '');
         }
@@ -362,9 +335,9 @@ export default {
     },
 
     mounted() {
-        if (document.body.clientWidth < 1500) {
-            this.collapseChage();
-        }
+        // if (document.body.clientWidth < 1500) {
+        //     this.collapseChage();
+        // }
         //flag用于判断是招聘者还是应聘者
         console.log(this.flag);
 

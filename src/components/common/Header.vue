@@ -195,29 +195,6 @@ export default {
                     index: 'tabs',
                     title: '职位'
                 },
-                // {
-                //     icon: 'el-icon-lx-calendar',
-                //     index: '3',
-                //     title: '账号设置',
-                //     subs: [
-                //         {
-                //             index: 'form',
-                //             title: '手机账号'
-                //         },
-                //         {
-                //             index: 'editor',
-                //             title: '设置密码'
-                //         },
-                //         {
-                //             index: 'markdown',
-                //             title: '绑定微信号'
-                //         },
-                //         {
-                //             index: 'upload',
-                //             title: '常用语'
-                //         }
-                //     ]
-                // },
                 {
                     icon: 'el-icon-lx-emoji',
                     index: 'icon',
@@ -246,7 +223,7 @@ export default {
             return this.$route.path.replace('/', '');
         }
     },
-    methods: {
+        methods: {
         //注册
         registerBtn(){
 
@@ -310,13 +287,12 @@ export default {
             console.log(this.flag);
             //应聘者
             if(this.flag=="employ"){
-
                 this.$axios.post(this.$store.state.URL+"searchEmployByTel/"+ this.account).then((res)=>{
                     console.log("应聘者+------");
                     console.log(res.data.data);
                     //将数据存在浏览器中
                     localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
-                    this.employId=res.data.data.employId,
+                        this.employId=res.data.data.employId,
                         this.employName=res.data.data.employName,
                         this.employAccount=res.data.data.employAccount,
                         this.employPassword=res.data.data.employPassword,
@@ -343,7 +319,7 @@ export default {
                     console.log(res.data.data);
                     //将数据存在浏览器中
                     localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
-                    this.recruiterId=res.data.data.recruiterId,
+                        this.recruiterId=res.data.data.recruiterId,
                         this.recruiterName=res.data.data.recruiterName,
                         this.companys=res.data.data.company,
                         this.recruiterAccount=res.data.data.recruiterAccount,
@@ -358,7 +334,7 @@ export default {
                     console.log(err);
                 })
             }
-    },
+        },
     },
 
     mounted() {
@@ -371,7 +347,7 @@ export default {
         // this.searchInfo();
         //打印存在浏览器中的值
         console.log("打印存在浏览器中的值");
-        console.log(JSON.parse(localStorage.getItem("UserInfo")));
+        console.log(JSON.parse(localStorage.getItem("UserInfo")).employName);
     },
     created() {
         this.account=this.$route.query.account;
@@ -379,7 +355,6 @@ export default {
         this.searchInfo();
         console.log("this.Info");
         console.log(this.Info);
-
     }
 };
 </script>

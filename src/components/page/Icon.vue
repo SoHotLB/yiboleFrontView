@@ -107,7 +107,7 @@
 <!--      </el-carousel>-->
 <!--    </el-card>-->
 
-    <div style='width:100%;margin: auto;padding: 10px'>
+    <div style='width:80%;margin: auto;padding: 10px'>
       <el-card>
           <h1 style='padding-bottom: 20px;color: #324157'><router-link to="/zixun1" style='padding-right:5px'>面试黑话：</router-link>面试官向你传达的不能说的秘密</h1>
         <p>在面试中，除了注意自己一言一行，我们还能关注面试官的回应，既可以提前大概判断自己的面试结

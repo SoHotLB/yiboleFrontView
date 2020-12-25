@@ -69,26 +69,51 @@
 export default {
     name: 'Position',
     mounted() {
-        console.log("======================");
-        console.log(this.$route.params.value1);
-        console.log(this.$route.params.value2.length);
+        this.getData()
 
-        console.log("======================");
-        console.log(this.$route.params.value1=="undefined");
-        console.log(this.$route.params.value2.length==0);
-        if(!(this.$route.params.value1!='undefined' && this.$route.params.value2.length>0)){
-
-            console.log("if这一步");
-            this.getData()
-        }else if(this.$route.params.value1!='undefined' || this.$route.params.value2.length > 0 ){
-            console.log("else这一步");
-            console.log(this.$route.params.value1!="undefined");
-            console.log(this.$route.params.value2.length>0);
-            this.pname = this.$route.params.value1 + this.$route.params.value2
-            console.log("-------****"+this.pname);
-            this.searchJob()
-        }
-        // if()
+        // console.log("======================");
+        // console.log(this.$route.params.value1);
+        // console.log(this.$route.params.value2.length);
+        //
+        // console.log("======================");
+        // console.log(this.$route.params.value1=="undefined");
+        // console.log(this.$route.params.value2.length==0);
+        // if((this.$route.params.value1!='undefined' && this.$route.params.value2.length>0)) {//两者都无值   success
+        //     console.log("else这一步" + "3");
+        //     console.log(this.$route.params.value1 != "undefined");
+        //     console.log(this.$route.params.value2.length > 0);
+        //     this.pname = this.$route.params.value1 + this.$route.params.value2
+        //     console.log("-------****" + this.pname);
+        //     this.searchJob()
+        //
+        //     }else if(!(this.$route.params.value1=='undefined' && this.$route.params.value2.length > 0)) {//1无  2有
+        //         console.log("else这一步" + "1");
+        //         console.log(this.$route.params.value1 != "undefined");
+        //         console.log(this.$route.params.value2.length > 0);
+        //         this.pname = this.$route.params.value2
+        //         console.log("-------****" + this.pname);
+        //         this.searchJob()
+        //     }else if((this.$route.params.value1 != 'undefined' && this.$route.params.value2.length == 0)) {//1有  2无
+        //         console.log("else这一步" + "2");
+        //         console.log(this.$route.params.value1 != "undefined");
+        //         console.log(this.$route.params.value2.length > 0);
+        //         this.pname = this.$route.params.value1
+        //         console.log("-------****" + this.pname);
+        //         this.searchJob()
+        //     }
+        //     // else if((this.$route.params.value1 != 'undefined' && this.$route.params.value2.length > 0)) {//两者都有值    success
+        //     //     console.log("else这一步" + "3");
+        //     //     console.log(this.$route.params.value1 != "undefined");
+        //     //     console.log(this.$route.params.value2.length > 0);
+        //     //     this.pname = this.$route.params.value1 + this.$route.params.value2
+        //     //     console.log("-------****" + this.pname);
+        //     //     this.searchJob()
+        //     // }
+        //
+        // else {
+        //     console.log("if这一步");
+        //     this.getData()
+        // }
 
     },
     data () {
@@ -107,6 +132,42 @@ export default {
     },
     created() {
         // this.pname = this.$route.params.value1 + this.$route.params.value2
+        if((this.$route.params.value1!='undefined' && this.$route.params.value2.length>0)) {//两者都无值   success
+            console.log("else这一步" + "3");
+            console.log(this.$route.params.value1 != "undefined");
+            console.log(this.$route.params.value2.length > 0);
+            this.pname = this.$route.params.value1 + this.$route.params.value2
+            console.log("-------****" + this.pname);
+            this.searchJob()
+
+        }else if(!(this.$route.params.value1=='undefined' && this.$route.params.value2.length > 0)) {//1无  2有
+            console.log("else这一步" + "1");
+            console.log(this.$route.params.value1 != "undefined");
+            console.log(this.$route.params.value2.length > 0);
+            this.pname = this.$route.params.value2
+            console.log("-------****" + this.pname);
+            this.searchJob()
+        }else if((this.$route.params.value1 != 'undefined' && this.$route.params.value2.length == 0)) {//1有  2无
+            console.log("else这一步" + "2");
+            console.log(this.$route.params.value1 != "undefined");
+            console.log(this.$route.params.value2.length > 0);
+            this.pname = this.$route.params.value1
+            console.log("-------****" + this.pname);
+            this.searchJob()
+        }
+            // else if((this.$route.params.value1 != 'undefined' && this.$route.params.value2.length > 0)) {//两者都有值    success
+            //     console.log("else这一步" + "3");
+            //     console.log(this.$route.params.value1 != "undefined");
+            //     console.log(this.$route.params.value2.length > 0);
+            //     this.pname = this.$route.params.value1 + this.$route.params.value2
+            //     console.log("-------****" + this.pname);
+            //     this.searchJob()
+        // }
+
+        else {
+            console.log("if这一步");
+            this.getData()
+        }
     },
     methods: {
         getData() {

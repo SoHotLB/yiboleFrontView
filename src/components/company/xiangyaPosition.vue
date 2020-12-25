@@ -9,7 +9,7 @@
                         :src="url"
                         :fit="scale-down"></el-image>
                 </div>
-                <span class="title">北京大学第一医院</span>
+                <span class="title">湘雅医院</span>
                 <span class="price">在招职位：6</span>
             </div>
             <div style='display: inline'>
@@ -31,10 +31,10 @@
 
         </div>
         <template class='list-position' >
-            <el-col :span="24" style=''>
+            <el-col :span="24" style='margin-top: 10px'>
                 <el-row :gutter="20">
-                    <el-col :span="24"  v-for="item in allPosition" v-if='item.company=="北京大学第一医院"' >
-                        <div class="grid-company-content bg-purple" style='padding: 10px;margin-top: 5px'>
+                    <el-col :span="24"  v-for="item in allPosition" v-if='item.company=="湘雅医院"' >
+                        <div class="grid-company-content bg-purple" style=';'>
 
                             <el-card :positionName='item.positionName'
                                      :jobRequirements='item.jobRequirements'
@@ -43,9 +43,9 @@
                                      :salaryLimit='item.salaryLimit'
                                      :body-style="{padding: '15px'}">
                                 <div class="grid-cont-right clearfix"  >
-                                    <div class="grid-company-name" style='font-size: 20px;color: #3cac9b;margin-bottom: 10px'>{{item.positionName}} [北京]</div>
-                                    <div style='float: right;padding-right: 15px;'>刘美丽 | 招聘者</div>
-                                    <img style='float: right;margin-right: 15px;border-radius: 30px;' src="https://img2.bosszhipin.com/boss/avatar/avatar_10.png?x-oss-process=image/resize,w_40,limit_0">
+                                    <div class="grid-company-name" style='font-size: 20px;color: #3cac9b;margin-bottom: 5px'>{{item.positionName}} [长沙]</div>
+                                    <div style='float: right;padding-right: 15px;'>刘波 | 招聘者</div>
+                                    <img style='float: right;margin-right: 15px;border-radius: 30px;' src="https://img.bosszhipin.com/beijin/mcs/useravatar/20180228/e40f3b201b4348235b422e9d8459a7e6b4e81f15463d4d379c76f9dd3f73b71d_s.jpg?x-oss-process=image/resize,w_40,limit_0?x-oss-process=image/resize,w_40,limit_0">
                                     <div style='display: inline;color: orange'>{{item.salaryLimit}}-{{item.salaryCeiling}}K</div> &nbsp;<div style='display: inline'>{{item.jobRequirements}}</div>·<div style='display: inline'>{{item.location}}</div>
                                 </div>
                             </el-card>
@@ -55,19 +55,16 @@
             </el-col>
         </template>
 
-
-
     </div>
 </template>
 
 <script>
 export default {
-    name: 'beijingHospitalPosition',
+    name: 'xiangyaPosition',
     data() {
         return{
+            url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=558304197,1490888614&fm=26&gp=0.jpg',
             allPosition: [],
-            url: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2227126611,2600594640&fm=26&gp=0.jpg'
-
         }
     },
     mounted() {
@@ -91,7 +88,7 @@ export default {
         },
         gotoBjMessage() {
             // let name = this.title.value
-            this.$router.push({name:'beijingFirstHospital',params: { name: "北京大学第一医院" }})
+            this.$router.push({name:'xiangYaHospital',params: { name: "湘雅医院" }})
         },
     },
 };

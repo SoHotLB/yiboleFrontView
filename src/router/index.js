@@ -206,9 +206,9 @@ export default new Router({
                     meta: {title: '湘雅医院'}
                 },
                 {
-                    path: '/xiangya',
-                    name: 'xiangya',
-                    component:() => import('../components/company/xiangYaHospital.vue')
+                    path: '/xyPosition',
+                    name: 'xyPosition',
+                    component:() => import('../components/company/xiangyaPosition.vue')
                 }
             ]
         },

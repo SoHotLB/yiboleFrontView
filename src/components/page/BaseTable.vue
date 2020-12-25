@@ -145,7 +145,7 @@ export default {
             }else if(com=="长沙皮肤医院"){
                 this.$router.push({name: 'changshaSkinHospital',params: {com: com}})
             }else if(com=="湘雅医院"){
-                this.$router.push({name: 'xiangya',params: {com: com}})
+                this.$router.push({name: 'xiangYaHospital',params: {com: com}})
             }
 
         },

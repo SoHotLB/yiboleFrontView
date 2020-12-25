@@ -314,6 +314,8 @@ export default {
                 this.$axios.post(this.$store.state.URL+"searchEmployByTel/"+ this.account).then((res)=>{
                     console.log("应聘者+------");
                     console.log(res.data.data);
+                    //将数据存在浏览器中
+                    localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
                     this.employId=res.data.data.employId,
                         this.employName=res.data.data.employName,
                         this.employAccount=res.data.data.employAccount,
@@ -339,7 +341,8 @@ export default {
                 this.$axios.post(this.$store.state.URL+"searchRecruiterByTel/"+ this.account).then((res)=>{
                     console.log("招聘者+------");
                     console.log(res.data.data);
-
+                    //将数据存在浏览器中
+                    localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
                     this.recruiterId=res.data.data.recruiterId,
                         this.recruiterName=res.data.data.recruiterName,
                         this.companys=res.data.data.company,
@@ -364,9 +367,11 @@ export default {
         }
         //flag用于判断是招聘者还是应聘者
         console.log(this.flag);
-       //将登录传过来的参数拿到
-        console.log(this.$route.query);
+
         // this.searchInfo();
+        //打印存在浏览器中的值
+        console.log("打印存在浏览器中的值");
+        console.log(JSON.parse(localStorage.getItem("UserInfo")));
     },
     created() {
         this.account=this.$route.query.account;

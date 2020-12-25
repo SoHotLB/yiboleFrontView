@@ -36,7 +36,7 @@
                                 <div style="position: relative ;top: -150px;left: -100px;background: #ff8282;width: 100px;text-align: right;border-radius: 15px;margin-left:70px;font-family: 华文宋体 ;color: white">{{item.goodsIntegral}}积分</div>
                   <div class="bottom clearfix">
 
-                    <el-button type="primary"  style="width: 210px; margin-top: 5px; margin-left: 30px" v-on:click="buyBtn(item.goodsImage,item.goodsDetail,item.goodsIntegral)">兑换</el-button>
+                    <el-button type="primary"  style="width: 210px; margin-top: 5px; margin-left: 30px" v-on:click="buyBtn(item.goodsImage,item.goodsDetail,item.goodsIntegral,item.goodsId)">兑换</el-button>
                   </div>
                 </div>
               </el-card>
@@ -54,7 +54,7 @@
 
             :before-close="handleClose">
           <div >
-            <img  style="width: 100%;height:250px;" :src="formImg"/>
+            <img  style="width: 100%;height:250px;margin-left: 50px" :src="formImg"/>
           </div>
           <div style="margin-top: 2%">
             <div style="font-size: larger;font-weight: 300;font-family: 'arial black' ;font-weight: bold">商品详情</div>
@@ -66,7 +66,7 @@
           </div>
           <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    <el-button type="primary" @click="checkGood(goodsId)">确 定</el-button>
   </span>
         </el-dialog>
       </div>
@@ -87,7 +87,8 @@ data(){
    MallNum:16,
     formImg:"",
     formDetai:"",
-    goodsIntegral:""
+    goodsIntegral:"",
+        goodsId:""
 	}
 
 },
@@ -118,14 +119,33 @@ data(){
        console.log(this.MallList)
   },
     //兑换
-    buyBtn(res,detail,goodsIntegral){
-     console.log(res)
-      console.log(detail)
+    buyBtn(res,detail,goodsIntegral,goodId){
+     console.log("res--"+res)
+      console.log("detail---"+detail)
+        console.log("GoodsId---"+goodId);
       this.formImg=res
       this.formDetai=detail
       this.goodsIntegral=goodsIntegral
+        this.goodsId=goodId
       this.dialogVisible=true
-    }
+    },
+      checkGood(goodsId){
+          console.log("goodsIntegral-----checkGood-----"+goodsId);
+          console.log("accountUser"+goodsId);
+          // 先进行数量判断
+          this.$axios.post(this.$store.state.URL+"checkGoodsNum/"+goodsId).then((res)=>{
+              console.log(res);
+              //如果数量够，就需要对登录人员的积分进行修改
+              if(res.data.code==0){
+                  this.$axios.post(this.$store.state.URL+"updateUserIntegration",{
+
+                  })
+              }
+          },(err)=>{
+              this.$message.error('错了哦，这是一条错误消息'+err);
+          })
+          this.dialogVisible=false
+      }
   }
 
 }

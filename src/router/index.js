@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
     routes: [
@@ -61,6 +61,12 @@ export default new Router({
                     name: 'table',
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
                     meta: { title: '公司' }
+                    // children:[{
+                    //     path: '/goodHospital',
+                    //     name: 'goodHospital',
+                    //     component: () => import('../components/company/changshaGoodHospital.vue'),
+                    //     meta: { title: '长沙好医院'}
+                    // }]
                 },
                 {
                     path: '/tabs',
@@ -161,6 +167,48 @@ export default new Router({
                     path: '/zixun5',
                     component: () => import(/* webpackChunkName: "403" */ '../components/page/zixun5.vue'),
                     meta: { title: 'zixun5' }
+                },
+                {
+                    path: '/goodHospital',
+                    name: 'goodHospital',
+                    component: () => import('../components/company/changshaGoodHospital.vue'),
+                    meta: {title: '长沙好医院'}
+                },
+                {
+                    path: '/beijingFirstHospital',
+                    name: 'beijingFirstHospital',
+                    component: () => import('../components/company/beijingFirstHospital.vue'),
+                    meta: {title: '北京大学第一医院'},
+
+                },
+                {
+                    path: '/bjPosition',
+                    name: 'bjPosition',
+                    component: () => import('../components/company/beijingHospitalPosition.vue'),
+                    meta: {title: 'bjPosition'}
+                },
+                {
+                    path: '/shanghaiRuijinHospital',
+                    name: 'shanghaiRuijinHospital',
+                    component: () => import('../components/company/shanghaiRuijinHospital.vue'),
+                    meta: {title: '上海交通大学医学院附属瑞金医院'}
+                },
+                {
+                    path: '/changshaSkinHospital',
+                    name: 'changshaSkinHospital',
+                    component: () => import('../components/company/changshaSkinHospital.vue'),
+                    meta: {title: '长沙皮肤医院'}
+                },
+                {
+                    path: '/xiangYaHospital',
+                    name: 'xiangYaHospital',
+                    component: () => import('../components/company/xiangYaHospital.vue'),
+                    meta: {title: '湘雅医院'}
+                },
+                {
+                    path: '/xyPosition',
+                    name: 'xyPosition',
+                    component:() => import('../components/company/xiangyaPosition.vue')
                 }
             ]
         },

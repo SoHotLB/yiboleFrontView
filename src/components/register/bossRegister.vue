@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="header">招聘者注册界面</div>
+
     <div class="box" >
       <div class="steps">
       <el-steps :active="active" simple>
@@ -14,12 +14,18 @@
           <el-form-item label="公司名" prop="company">
             <el-input type="text" v-model="ruleFormOne.company" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="姓名" prop="account">
-            <el-input type="text" v-model="ruleFormOne.account" autocomplete="off"></el-input>
+          <el-form-item label="姓名" prop="name">
+            <el-input type="text" v-model="ruleFormOne.name" autocomplete="off"></el-input>
           </el-form-item>
+            <el-form-item label="账号" prop="account">
+                <el-input type="text" v-model="ruleFormOne.account" autocomplete="off"></el-input>
+            </el-form-item>
           <el-form-item label="邮箱" prop="email">
             <el-input type="email" v-model="ruleFormOne.email" autocomplete="off"></el-input>
           </el-form-item>
+            <el-form-item label="手机号" prop="tel">
+                <el-input type="email" v-model="ruleFormOne.tel" autocomplete="off"></el-input>
+            </el-form-item>
           <el-form-item label="密码" prop="pass">
             <el-input type="password" v-model="ruleFormOne.pass" autocomplete="off"></el-input>
           </el-form-item>
@@ -29,8 +35,8 @@
 
           <el-form-item label="性别" prop="sex">
             <el-select v-model="ruleFormOne.sex" placeholder="请选择性别" style="width: 790px">
-              <el-option label="男" value="male"></el-option>
-              <el-option label="女" value="female"></el-option>
+              <el-option label="男" value="男"></el-option>
+              <el-option label="女" value="女"></el-option>
             </el-select>
           </el-form-item>
 
@@ -38,6 +44,24 @@
               <el-select v-model="ruleFormOne.age" placeholder="请选择年龄"  style="width: 790px">
               <el-option label="20" value="20"></el-option>
               <el-option label="21" value="21"></el-option>
+                  <el-option label="22" value="22"></el-option>
+                  <el-option label="23" value="23"></el-option>
+                  <el-option label="24" value="24"></el-option>
+                  <el-option label="25" value="25"></el-option>
+                  <el-option label="26" value="26"></el-option>
+                  <el-option label="27" value="27"></el-option>
+                  <el-option label="28" value="28"></el-option>
+                  <el-option label="29" value="29"></el-option>
+                  <el-option label="30" value="30"></el-option>
+                  <el-option label="31" value="31"></el-option>
+                  <el-option label="32" value="32"></el-option>
+                  <el-option label="33" value="33"></el-option>
+                  <el-option label="34" value="34"></el-option>
+                  <el-option label="35" value="35"></el-option>
+                  <el-option label="36" value="36"></el-option>
+                  <el-option label="37" value="37"></el-option>
+                  <el-option label="38" value="38"></el-option>
+                  <el-option label="39" value="39"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
@@ -66,6 +90,9 @@
             </el-col>
           </el-form-item>
 
+            <el-form-item label="经营状态:" prop="operatingState">
+                <el-input v-model="ruleFormTow.operatingState"></el-input>
+            </el-form-item>
           <el-form-item label="医院类型" prop="resource" style="width: 700px;margin-left: 30px">
             <el-radio-group v-model="ruleFormTow.resource">
               <el-radio label="私有医院"></el-radio>
@@ -182,8 +209,34 @@ var validatecheckSex=(rule, value, callback) => {
     callback();
   }
 };
-  return{
 
+      var   validatename=(rule, value, callback) => {
+          if (!value) {
+              callback(new Error('请输入用户名'));
+          } else {
+              callback();
+          }
+      };
+      var validatetel=(rule, value, callback) => {
+          if (!value) {
+              callback(new Error('请输入手机号'));
+          }else if(value.length<11){
+              callback(new Error('请输入11位手机号'));
+          }
+          else {
+              callback();
+          }
+      };
+      var validateoperatingState=(rule, value, callback) => {
+          if (!value) {
+              callback(new Error('请输入输入经营状态'));
+          }
+          else {
+              callback();
+          }
+      };
+  return{
+      count:"",
       imgurl:"",
    // fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
     dialogOfUpload: true,
@@ -193,6 +246,8 @@ var validatecheckSex=(rule, value, callback) => {
     },
     //表单数据
     data:{
+          name:"",
+        tel:"",
       account:"",
       pass:"",
       company:"",
@@ -204,7 +259,8 @@ var validatecheckSex=(rule, value, callback) => {
       money:'',
       date:'',
       resource:'',
-      location:""
+      location:"",
+        operatingState:"",
     },
     dialogImageUrl: '',
     dialogVisible: false,
@@ -213,6 +269,8 @@ var validatecheckSex=(rule, value, callback) => {
     active: 0, //步骤条参数
     //第一个表单的校验数据
     ruleFormOne: {
+          name:"",
+        tel:"",
       account:"",
       pass: '',
       checkPass: '',
@@ -223,6 +281,15 @@ var validatecheckSex=(rule, value, callback) => {
     },
     //第一步规则
     rulesOne: {
+        operatingState:[
+            { validator: validateoperatingState, trigger: 'blur' }
+        ],
+          name:[
+              { validator: validatename, trigger: 'blur' }
+          ],
+        tel:[
+            { validator: validatetel, trigger: 'blur' }
+        ],
       pass: [
         { validator: validatePass, trigger: 'blur' }
       ],
@@ -280,16 +347,9 @@ var validatecheckSex=(rule, value, callback) => {
       handlesuccess(response, file, fileList) {
           console.log("success")
           console.log(response)
+          //将图片路径赋值
           this.imgurl = response.data.data
-          this.$axios.post(this.$store.state.URL+"regisCompany",{
-                  businessLicenseImg: response.data.data
-              }
-          ).then((res)=>{
 
-              console.log(res)
-          },(err)=>{
-              console.log(err)
-          })
 
       },
 //上一步
@@ -322,7 +382,9 @@ var validatecheckSex=(rule, value, callback) => {
           this.data.email=this.ruleFormOne.email
           this.data.sex=this.ruleFormOne.sex
           this.data.account=this.ruleFormOne.account
-          console.log( this.data.age+"---"+ this.data.company+"--"+ this.data.email+"----"+this.data.sex+"---"+this.data.account)
+            this.data.name=this.ruleFormOne.name
+            this.data.tel=this.ruleFormOne.tel
+          console.log( this.data.age+"---"+ this.data.company+"--"+ this.data.email+"----"+this.data.sex+"---"+this.data.account+"---"+ this.data.pass+"--"+ this.data.name+"--"+ this.data.tel)
           this.next()
         } else {
           this.$message.error('请按照正确格式输入');
@@ -340,36 +402,83 @@ var validatecheckSex=(rule, value, callback) => {
           this.data.date=this.ruleFormTow.date
           this.data.resource=this.ruleFormTow.resource
           this.data.location=this.ruleFormTow.location
+            this.data.operatingState=this.ruleFormTow.operatingState
           console.log(this.data.hostipalName+"---"+ this.data.lawName+"---"+ this.data.money+"--"+ this.data.date+"----"+this.data.resource+"---"+this.data.location)
           //将data的数据（包括用户注册和公司执照相关的东西放入数据库）
-         //用户的招聘者的信息
-          this.$axios.post(this.$store.state.URL+"resgisRecruiter",{
-            recruiterName:this.data.account,
-            recruiterPassword:this.data.pass,
-            recruiterSex:this.data.sex,
-            recruiterAge:this.data.age,
-            recruiterEmail:this.data.email
-
-          }).then(function (response) {
-            console.log(response)
-          },function (err) {
-            console.log(err)
-          })
 
 
-          //医院的信息
-          this.$axios.post(this.$store.state.URL+"regisCompany",{
-            company:this.data.hostipalName,
-            companyLocation:this.data.location,
-            legalRepresentative:this.data.lawName,
-            RegisMoney:this.data.money,
-            companyType:this.data.resource,
-            setupTime:this.data.date
-          }).then(function (response) {
-            console.log(response)
-          },function (err) {
-            console.log(err)
-          })
+//First
+            //用户的招聘者的信息
+            this.$axios.post(this.$store.state.URL+"resgisRecruiter",{
+                // console.log( this.data.age+"---"+ this.data.company+"" +
+                //     "--"+ this.data.email+"----"+this.data.sex+"---"+this.data.account+"---"+ this.data.pass)
+                recruiterName:this.data.account,
+                recruiterPassword:this.data.pass,
+                recruiterSex:this.data.sex,
+                recruiterAge:this.data.age,
+                recruiterEmail:this.data.email,
+                company:this.data.company,
+                recruiterAccount:this.data.name,
+                recruiterTel:this.data.tel
+
+            }).then((res)=> {
+                console.log("第一步注册");
+                console.log(res.data)
+                if(res.data.code==500){
+                    this.$message.error(res.data.msg);
+                }else{
+                     console.log("----------regisCompany--------");
+                    console.log(this.data.hostipalName+"---"+ this.data.lawName+"---"+ this.data.money+"--"+ this.data.date+"----"+this.data.resource+"---"+this.data.location)
+                    //医院的信息
+                    this.$axios.post(this.$store.state.URL+"regisCompany",{
+                        // console.log(this.data.hostipalName+"---"+ this.data.lawName+"---"+
+                        //     this.data.money+"--"+ this.data.date+"----"+this.data.resource+"---"+this.data.location)
+                        businessLicenseImg: this.imgurl,
+                        company:this.data.hostipalName,
+                        companyLocation:this.data.location,
+                        legalRepresentative:this.data.lawName,
+                        RegisMoney:this.data.money,
+                        companyType:this.data.resource,
+                        operatingState:this.data.operatingState,
+                        setupTime:this.data.date
+                    }).then((res)=> {
+                        console.log("第二步注册");
+                        console.log(res.data)
+                        if(res.data.code=="500"){
+                            this.$message.error(res.data.msg);
+                        }else{
+                            this.$message.error("注册你注册成功，5秒钟后自动跳转到登录界面");
+                            const TIME_COUNT = 5;
+                            if(!this.timer){
+                                this.count = TIME_COUNT;
+                                this.$message.error(this.count+"秒钟后自动跳转到登录界面");
+                                this.timer = setInterval(()=>{
+                                    if(this.count > 0 && this.count <= TIME_COUNT){
+                                        this.count--;
+                                    }else{
+                                        clearInterval(this.timer);
+                                        this.timer = null;
+                                        //跳转的页面写在此处
+                                        this.$router.push({
+                                            path: '/login'
+                                        });
+                                    }
+                                },1000)
+                            }
+
+                        }
+
+                    },(err)=> {
+                        this.$message.error('错了哦，这是一条错误消息'+err);
+                    })
+
+                 }
+                console.log(res)
+            },(err)=>{
+                console.log(err)
+            })
+
+
         }
 
 
@@ -400,7 +509,7 @@ var validatecheckSex=(rule, value, callback) => {
   height: 70%;
   width: 60%;
   position:absolute;
-  top: 0;left:0;right:0;bottom:0;
+  top: -20%;left:0;right:0;bottom:0;
   margin: auto;
 border-radius: 30px;
 

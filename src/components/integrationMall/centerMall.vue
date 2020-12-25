@@ -29,14 +29,15 @@
           <el-row :gutter="20">
             <el-col :span="8" v-for="item in MallList" >
               <el-card id="card" :body-style="{ padding: '0px' }" shadow="hover">
-                <img :src="item.goodsImage"  style="width: 300px;height:150px" class="image">
+<!--                <img :src="item.goodsImage"  style="width: 300px;height:150px" class="image">-->
+                  <el-image :src="item.goodsImage" style="width: 300px;height:200px;margin-left: 70px;margin-top: 15px" class="image" ></el-image>
                 <div style="padding: 14px;">
 
-                                <span style="text-align: center ; margin-left:80px;height:30px;line-height:30px;">{{item.goodsName}}</span>
-                                <div style="position: relative ;top: -150px;left: -100px;background: #ff8282;width: 100px;text-align: right;border-radius: 15px;margin-left:70px;font-family: 华文宋体 ;color: white">{{item.goodsIntegral}}积分</div>
+                                <span style="text-align: center ; margin-left:140px;height:30px;line-height:30px;">{{item.goodsName}}</span>
+                                <div style="position: relative ;top: -230px;left: -15px;background: #ff8282;width: 60px;text-align: right;border-radius: 15px;margin-left:70px;font-family: 华文宋体 ;color: white">{{item.goodsIntegral}}积分</div>
                   <div class="bottom clearfix">
 
-                    <el-button type="primary"  style="width: 210px; margin-top: 5px; margin-left: 30px" v-on:click="buyBtn(item.goodsImage,item.goodsDetail,item.goodsIntegral,item.goodsId)">兑换</el-button>
+                    <el-button type="primary"  style="width: 210px;height: 50px;  margin-left: 90px" v-on:click="buyBtn(item.goodsImage,item.goodsDetail,item.goodsIntegral,item.goodsId)">兑换</el-button>
                   </div>
                 </div>
               </el-card>
@@ -53,8 +54,9 @@
             width="50%"
 
             :before-close="handleClose">
-          <div >
-            <img  style="width: 100%;height:250px;margin-left: 50px" :src="formImg"/>
+          <div  >
+              <el-image :src="formImg"  style="width: 80%;height:400px;margin-left: 50px" ></el-image>
+<!--            <img  style="width: 100%;height:250px;margin-left: 50px" :src="formImg"/>-->
           </div>
           <div style="margin-top: 2%">
             <div style="font-size: larger;font-weight: 300;font-family: 'arial black' ;font-weight: bold">商品详情</div>
@@ -132,17 +134,33 @@ data(){
       checkGood(goodsId){
           console.log("goodsIntegral-----checkGood-----"+goodsId);
           console.log("accountUser"+goodsId);
-          // 先进行数量判断
-          this.$axios.post(this.$store.state.URL+"checkGoodsNum/"+goodsId).then((res)=>{
-              console.log(res);
-              //如果数量够，就需要对登录人员的积分进行修改
-              if(res.data.code==0){
-                  this.$axios.post(this.$store.state.URL+"updateUserIntegration",{
+          console.log(JSON.parse(localStorage.getItem("UserInfo")).employAccount);
+          this.$axios.post(this.$store.state.URL+"exchangeGoods",{
+              goodsId:goodsId,
+              userAcccount:JSON.parse(localStorage.getItem("UserInfo")).employAccount
 
-                  })
+          }).then((res)=>{
+              console.log(res.data.msg);
+              console.log()
+              if(res.data.msg=="兑换成功"){
+                  this.$message({
+                      message: '恭喜你，成功兑换'+"共消耗"+this.goodsIntegral,
+                      type: 'success'
+                  });
+              }else  if(res.data.msg=="缺货中，请选择其他商品！"){
+                  this.$message({
+                      message: '缺货中，请选择其他商品！',
+                      type: 'warning'
+                  });
+              }else if(res.data.msg=="用户积分不足！"){
+                  this.$message({
+                      message: '用户积分不足！！兑换失败',
+                      type: 'warning'
+                  });
               }
+              console.log(res);
           },(err)=>{
-              this.$message.error('错了哦，这是一条错误消息'+err);
+              console.log(err);
           })
           this.dialogVisible=false
       }

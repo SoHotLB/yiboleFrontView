@@ -88,7 +88,7 @@
                         </div>
 
 <!--                        已经登录-->
-                        <div id="right" style="display: flex;margin-left: 15px" v-if="this.account!=''" >
+                        <div id="right" style="display: flex;margin-left: 15px" v-if="this.accountLocal!=''" >
                             <!-- 用户头像 -->
                             <div  class="login" style="display: flex;" >
                                 <div class="user-avator">
@@ -97,8 +97,8 @@
                                 <!-- 用户名下拉菜单 -->
                                 <el-dropdown class="user-name"  style="margin-top: 10px" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
-<!--                        {{this.account}}-->
-                        {{this.employAccount}}
+
+                       {{this.accountLocal}}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                                     <el-dropdown-menu slot="dropdown" style="margin-bottom: 5px">
@@ -114,7 +114,7 @@
                         <!--  //未登录状态-->
                         <div style="margin-left: 100px;margin-top: 1px" v-else >
                             <el-button type="info" icon="el-icon-message" circle></el-button>
-                            <el-button type="text"  id="login" v-on:click="loginBtn">登录</el-button>
+                            <el-button type="text"  id="login" style="height: 100px;width: 100px;font-weight: bold;font-size: medium" v-on:click="loginBtn">登录</el-button>
 <!--                            <el-button type="text"  id="register" v-on:click="registerBtn">注册</el-button>-->
                         </div>
                     </div>
@@ -131,10 +131,16 @@
 import bus from '../common/bus';
 import employForm from '@/components/login/employForm';
 export default {
+    //判断用户信息，通过浏览器拿值
+    username() {
+        let username =JSON.parse(localStorage.getItem("UserInfo")).employName;
+
+        return username
+    },
     data() {
         return {
           // 用户的数据信息
-
+        accountLocal:"",
             employAccount:"",
             company:"",
             employAddress:"",
@@ -195,6 +201,7 @@ export default {
                     index: 'tabs',
                     title: '职位'
                 },
+
                 {
                     icon: 'el-icon-lx-emoji',
                     index: 'icon',
@@ -215,15 +222,13 @@ export default {
         };
     },
     computed: {
-        // username() {
-        //     let username = localStorage.getItem('ms_username');
-        //     return username ? username : this.name;
-        // },
+
+
         onRoutes() {
             return this.$route.path.replace('/', '');
         }
     },
-        methods: {
+    methods: {
         //注册
         registerBtn(){
 
@@ -238,12 +243,19 @@ export default {
             if (command == 'loginout') {
                 this.flag="",
                     this.account=""
+                this.accountLocal=""
+                console.log("******------");
+                console.log(this.accountLocal!='');
+                //将浏览器的值清除
+                localStorage.removeItem('UserInfo')
+
+                console.log(localStorage.getItem("UserInfo"));
                 this.$message({
                     message: '恭喜你，退出成功',
                     type: 'success'
                 });
-                // localStorage.removeItem('ms_username');
-                // this.$router.push('/login');
+
+
             }
         },
         handleSelect(key, keyPath) {
@@ -283,16 +295,22 @@ export default {
         },
         //根据登录穿过来的用户值进行查询
         searchInfo(){
+
             console.log("searchInfo");
             console.log(this.flag);
             //应聘者
             if(this.flag=="employ"){
+                console.log("employTEL"+this.account);
+
                 this.$axios.post(this.$store.state.URL+"searchEmployByTel/"+ this.account).then((res)=>{
                     console.log("应聘者+------");
                     console.log(res.data.data);
                     //将数据存在浏览器中
                     localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
-                        this.employId=res.data.data.employId,
+
+                    this.accountLocal=JSON.parse(localStorage.getItem("UserInfo")).employName
+
+                    this.employId=res.data.data.employId,
                         this.employName=res.data.data.employName,
                         this.employAccount=res.data.data.employAccount,
                         this.employPassword=res.data.data.employPassword,
@@ -319,7 +337,7 @@ export default {
                     console.log(res.data.data);
                     //将数据存在浏览器中
                     localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
-                        this.recruiterId=res.data.data.recruiterId,
+                    this.recruiterId=res.data.data.recruiterId,
                         this.recruiterName=res.data.data.recruiterName,
                         this.companys=res.data.data.company,
                         this.recruiterAccount=res.data.data.recruiterAccount,
@@ -334,27 +352,29 @@ export default {
                     console.log(err);
                 })
             }
-        },
     },
+    },
+updated() {
 
+},
     mounted() {
+
         if (document.body.clientWidth < 1500) {
             this.collapseChage();
         }
         //flag用于判断是招聘者还是应聘者
         console.log(this.flag);
 
-        // this.searchInfo();
-        //打印存在浏览器中的值
-        console.log("打印存在浏览器中的值");
-        console.log(JSON.parse(localStorage.getItem("UserInfo")).employName);
+
     },
     created() {
+
         this.account=this.$route.query.account;
+
         this.flag=this.$route.query.flag
+
         this.searchInfo();
-        console.log("this.Info");
-        console.log(this.Info);
+
     }
 };
 </script>

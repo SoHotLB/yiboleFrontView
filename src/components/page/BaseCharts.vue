@@ -8,7 +8,7 @@
       <div class="text item">
         <div class="grid-content bg-purple">
           <div>
-            <span><el-avatar shape="square" :size="100" :fit="fit" :src="url"></el-avatar></span>
+            <span><el-avatar shape="square" :size="100" :fit="none" :src="url"></el-avatar></span>
             <span style='padding-left:30%;padding-bottom:50px;font-size: 40px;margin: auto' >{{this.employName}}</span>
             <p style='padding-left: 30%' >{{this.employEmail}} | {{this.employTel}} | {{this.employSchool}}</p>
             <!--                      <span>{{"邮箱"}}|{{"地址"}}</span>-->
@@ -197,6 +197,7 @@ export default {
   // },
   data () {
     return{
+       url: 'http://y2.ifengimg.com/a/2014_39/30bf500f445be4e.jpg',
        dialogVisible: false,
        tableData:[],
         // test:JSON.parse(localStorage.getItem("UserInfo")).employName,
@@ -267,6 +268,32 @@ export default {
               done();
             })
             .catch(_ => {});
+      },
+      onUpdateCommit() {
+        var that = this
+        this.$axios.post('http://localhost:8080/springboot/update', {
+          id: this.updateForm.id,
+          name: this.updateForm.name,
+          cover: this.updateForm.cover,
+          price: this.updateForm.price,
+          intro: this.updateForm.intro,
+          type_id: this.updateForm.type_id
+        })
+            .then(function(response) {
+              console.log()
+              if (response.data.code == 0) {
+                that.$message({
+                  message: response.data.msg,
+                  type: 'success'
+                })
+                that.updateBookVisible = false
+                that.findBook()
+              } else {
+                that.$message.error(response.data.msg);
+              }
+            }).catch(function(error) {
+          that.$message.error(error.message);
+        })
       },
       searchInfo(){
         console.log("searchInfo");

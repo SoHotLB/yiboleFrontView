@@ -81,7 +81,7 @@
                                 placement="center"
                             >
                                 <router-link to="/tabs">
-                                    <label style='font-size: 12px;color: #fff;line-height: 100px'>上传</label>
+                                    <label style='font-size: 12px;color: #fff;line-height: 100px'>投递</label>
                                 </router-link>
                             </el-tooltip>
                             <!--                    <span class="btn-bell-badge" v-if="message">/span>-->
@@ -102,10 +102,10 @@
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                                     <el-dropdown-menu slot="dropdown" style="margin-bottom: 5px">
-                                        <a href="https://gitee.com/hnucm/dashboard/programs/140463/projects/hnucm/medicine-recruit-wechat/" target="_blank">
+                                        <router-link to='/editor'>
                                             <el-dropdown-item>{{this.flag =='boss'? "招聘者":"应聘者"}}</el-dropdown-item>
                                             <el-dropdown-item>个人中心</el-dropdown-item>
-                                        </a>
+                                        </router-link>
                                         <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
                                     </el-dropdown-menu>
                                 </el-dropdown>

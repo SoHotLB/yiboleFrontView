@@ -257,6 +257,19 @@ export default {
                     this.option3.check = false;
                 }
             }
+            if(option.optionName=="私立医院"){
+                this.$axios.post('http://115.29.204.107:8084/yibole/getAllCompanies').then(function(response) {
+                    console.log(response.data)
+                    that.tableData = response.data.data
+                    if(that.tableData.companyType=="私立医院"){
+                        that.companies = that.tableData
+                        console.log(that.companies)
+                    }
+
+                }).catch(function(error) {
+                    that.$message.error(error.message);
+                })
+            }
         },
 
         // 获取 easy-mock 的模拟数据

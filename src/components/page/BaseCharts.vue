@@ -6,7 +6,7 @@
     </div>
     <el-card class="box-card" style="margin-bottom: 20px;">
       <div class="text item">
-        <div class="grid-content bg-purple" :data='person'>
+        <div class="grid-content bg-purple" :data='form'>
             <span style='float: left'><el-avatar shape="square" :size="50" :fit="none" :src="url"></el-avatar></span>
 
             <div>
@@ -25,7 +25,7 @@
 <!--                  border: 1px solid red;-->
                   <p>
                       <span style='width: 700px' prop='employSex'>性别：{{this.employSex}}</span>
-                      <span style='position: absolute;margin-left:30%' prop='employAge'>年龄：{{this.employAge}}</span>
+                      <span style='position: absolute;margin-left:23%' prop='employAge'>年龄：{{this.employAge}}</span>
                   </p>
                   <p>
                       <span style='width: 700px' prop='employTel'>电话：{{this.employTel}}</span>
@@ -91,8 +91,8 @@
                 <span>
                     <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
                     <div>
-                        <p><span class='item text'>性别:<el-input v-model='employSex' class='sex' style='width: 70%' placeholder="请输入性别">{{this.employSex}}</el-input></span></p>
-                        <p> <span class='item text'>年龄：<el-input v-model='employAge' class='age' style='width: 70%' placeholder="请输入年龄">{{this.employSex}}</el-input></span></p>
+                        <p><span class='item text'>性别:<el-input v-model='employSex' class='sex' style='width: 70%' placeholder="请输入性别"></el-input></span></p>
+                        <p> <span class='item text'>年龄：<el-input v-model='employAge' class='age' style='width: 70%' placeholder="请输入年龄"></el-input></span></p>
                         <p><span class='item text'>电话：<el-input v-model='employTel' class='tel' style='width: 70%' placeholder="请输入电话"></el-input></span></p>
                         <p> <span class='item text'>邮箱：<el-input v-model='employEmail' class='email' style='width: 70%' placeholder="请输入邮箱"></el-input></span></p>
                     </div>
@@ -197,8 +197,10 @@ export default {
         employWorkExperience:JSON.parse(localStorage.getItem("UserInfo")).employWorkExperience,
         resumeSelfevaluation:JSON.parse(localStorage.getItem("UserInfo")).resumeSelfevaluation,
         employNation:JSON.parse(localStorage.getItem("UserInfo")).employNation,
+        employId:JSON.parse(localStorage.getItem("UserInfo")).employId,
         // 用户的数据信息
         form: {
+            employId:this.employId,
             employSex:this.employSex,
             employAge:this.employAge,
             employTel:this.employTel,
@@ -209,6 +211,7 @@ export default {
             employIsMarried:this.employIsMarried
         },
         updateForm: {
+            employId:'',
             employSex:'',
             employAge:0,
             employTel:'',
@@ -278,6 +281,7 @@ export default {
           console.log("-----------------");
 
           // console.log(updat);
+          this.updateForm.employId = person.employId
           this.updateForm.employSex = person.employSex
           this.updateForm.employAge = person.employAge
           this.updateForm.employTel = person.employTel
@@ -291,7 +295,12 @@ export default {
       },
       onUpdateCommit() {
         var that = this
-        this.$axios.post(this.$store.state.URL+"updateEmploy", {
+          console.log("----------------");
+          console.log(this.employId);
+          console.log("----------------");
+
+          this.$axios.post(this.$store.state.URL+"updateEmploy2", {
+            employId: this.updateForm.employId,
             employSex: this.updateForm.employSex,
             employAge: this.updateForm.employAge,
             employTel: this.updateForm.employTel,
@@ -301,14 +310,14 @@ export default {
             employMajor: this.updateForm.employMajor,
             employIsMarried: this.updateForm.employIsMarried,
         })
-            .then(function(response) {
-              console.log()
+            .then((response)=> {
+              console.log(response)
               if (response.data.code == 0) {
                 that.$message({
                   message: response.data.msg,
                   type: 'success'
                 })
-                that.updatePersonMessage = false
+                this.updatePersonMessage = false
                 that.searchInfo()
               } else {
                 that.$message.error(response.data.msg);

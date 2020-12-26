@@ -123,38 +123,7 @@
                                             <el-link :underline="false" href="/c101250100-p210123/">急诊收费窗口</el-link>&nbsp;
                                         </div>
                                     </li>
-                                    <hr class="style2_hr"/>
-                                    <li>
-                                        <b style='font-size: 14px'>化验室</b>
-                                        <div class="text">
-                                            <el-link :underline="false" href="/c101250100-p210121/">生化室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210105/">检验室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210122/">病理室</el-link>
-                                        </div>
-                                    </li>
-                                    <hr class="style2_hr"/>
-                                    <li>
-                                        <b style='font-size: 14px'>放射科</b>
-                                        <div class="text">
-                                            <el-link :underline="false" href="/c101250100-p210803/">拍片室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210802/">CT室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210801/">透视室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210118/">磁共振室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210118/">ECT室</el-link>
-                                        </div>
-                                    </li>
-                                    <hr class="style2_hr"/>
-                                    <li>
-                                        <b style='font-size: 14px'>其他医疗健康职位</b>
-                                        <div class="text">
-                                            <el-link :underline="false" href="/c101250100-p210701/">手术室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210118/">B超室</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210118/">宣传科</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210118/">防保人员</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210118/">医保办</el-link>&nbsp;
-                                            <el-link :underline="false" href="/c101250100-p210118/">人事科</el-link>
-                                        </div>
-                                    </li>
+
                                 </ul>
                             </div>
                         </dl>
@@ -163,8 +132,8 @@
             </el-col>
 
             <el-col :span="16">
-                <p style="font-size: 20px;color: #1f2f3d; padding-left: 45%;margin-right: 10px;margin-left: 10px;margin-top: 20px">
-                    <b>热招职位</b>
+                <p style="font-size: 24px;font-weight: 500;color: #1f2f3d;margin-right: 10px;margin-left:45%;margin-top: 20px">
+                    热招职位
                 </p>
                 <div>
                     <el-row :gutter="20">
@@ -172,6 +141,7 @@
                             <div class="grid-content bg-purple" style='margin-top: 10px'>
 
                                   <el-card shadow="hover"
+                                           style='border-radius: 8px'
                                            :positionName='item.positionName'
                                            :jobRequirements='item.jobRequirements'
                                            :salaryCeiling='item.salaryCeiling'
@@ -180,14 +150,21 @@
                                            :company='item.company'
                                            :body-style="{padding: '0px'}">
 
-                                      <div class="grid-cont-right clearfix" slot="header" style='display: flex'>
-                                          <div class="grid-name">{{item.positionName}}</div>
-                                          <div class='right_one'>{{item.salaryCeiling}}</div><br/>
-                                          <div>{{item.jobRequirements}}</div>
+                                      <div class="grid-cont-right clearfix" slot="header">
+                                          <div style='display: inline'>
+                                              <div class="grid-name">{{item.positionName}}</div>
+                                              <div style='float: right;font-size: 22px;display: flex;color: orange'>
+                                                  <div class='right_one'>{{item.salaryLimit}}</div>
+                                                  -
+                                                  <div class='right_one'>{{item.salaryCeiling}}</div>K
+                                              </div>
+                                          </div>
+                                          <div style='margin-top: 5px;font-size:14px;float: left'>{{item.jobRequirements}}</div>
+
                                       </div>
-                                      <div class='bottom clearfix' style='height: 40%'>
-                                          <div>{{item.copmany}}</div>
-                                          <div>{{item.location}}</div>
+                                      <div class='bottom clearfix' style='height: 40px; display: flex'>
+                                          <div style='padding-left: 10px'>{{item.company}}</div>
+                                          <div style='margin-left:90px;padding-right: 10px'>{{item.location}}</div>
                                       </div>
                                   </el-card>
                             </div>
@@ -201,15 +178,16 @@
 
         </el-row>
         <el-col :span="24">
-            <p style="font-size: 20px;color: #1f2f3d; padding-left: 45%;margin-right: 10px;margin-left: 10px;margin-top: 20px">
-                <b>热门企业</b>
+            <p style="font-size: 24px;font-weight: 500;color: #1f2f3d; padding-left: 45%;margin-right: 10px;margin-left: 10px;margin-top: 0px;margin-bottom: 20px">
+                热门企业
             </p>
             <div>
                 <el-row :gutter="20">
-                    <el-col :span="12"  v-for="(item,index) in companylist" v-if='index < 8'>
-                        <div class="grid-company-content bg-purple" style='margin-top: 10px'>
+                    <el-col :span="6"  v-for="(item,index) in companylist" v-if='index < 8'>
+                        <div class="grid-company-content bg-purple" style='margin-top: 10px;'>
 
                             <el-card shadow="hover"
+                                     class='card-company'
                                      :positionName='item.company'
                                      :jobRequirements='item.jobRequirements'
                                      :salaryCeiling='item.legalRepresentative'
@@ -218,15 +196,13 @@
                                      :company='item.setupTime'
                                      :body-style="{padding: '0px'}">
 
-                                <div class="grid-cont-right clearfix" slot="header" style='display: flex'>
-                                    <div class="grid-company-name">{{item.company}}</div>
-                                    <div class='right_one'>{{item.legalRepresentative}}</div><br/>
-                                </div>
-                                <div class='bottom clearfix' style='height: 40%'>
-                                    <div>成立时间：{{item.setupTime}}</div>
-                                    <div>{{item.companyType}}</div>
+                                <div class="grid-company-name">{{item.company}}</div>
+                                <div class='owner'>{{item.legalRepresentative}}</div><br/>
+                                <div class='middle' style='height: 40%'>
+                                    <div>{{item.companyType}}</div><el-divider direction="vertical"></el-divider>
                                     <div>{{item.companyLocation}}</div>
                                 </div>
+                                <div class='time'>成立于<p style='color: orange;text-align: center;'>{{getYMD(item.setupTime)}}</p></div>
                             </el-card>
                         </div>
                     </el-col>
@@ -369,6 +345,16 @@ export default {
             console.log("---------------");
             var that = this
             this.$router.push({name:'tabs',params:{value1:this.value[1],value2:this.searchInput}})
+        },
+        getYMD (timestamp) {
+            let time = new Date(timestamp)
+            let year = time.getFullYear()
+            let month = time.getMonth() + 1
+            let date = time.getDate()
+
+            if (month < 10) { month = '0' + month }
+            if (date < 10) { date = '0' + date }
+            return year + '-' + month + '-' + date + ' '
         }
     },
     mounted() {
@@ -382,6 +368,10 @@ export default {
 
 
 <style scoped>
+.card-company{
+    border-radius: 8px;
+    height: 100%;
+}
 .el-select .el-input {
     width: 130px;
 }
@@ -395,7 +385,7 @@ export default {
 .grid-content {
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 150px;
     width: 280px;
 }
 .grid-company-content{
@@ -414,9 +404,33 @@ export default {
 
 .grid-name {
     font-size: 17px;
+    width: 50%;
+    /*float: left;*/
+}
+.middle{
+    font-size: 14px;
+    padding-left: 30%;
+    /*padding-right: 20%;*/
+    display: flex;
+}
+.owner{
+    text-align: center;
+    margin-top: 20px;
+}
+.time{
+    width: 100%;
+    float: left;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px
 }
 .grid-company-name{
-    font-size: 17px;
+    padding-left:5px;
+    padding-right: 5px;
+    padding-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
 }
 .grid-company-content:hover .grid-company-name{
     color: #3cac9b;
@@ -563,10 +577,7 @@ export default {
     margin: 0;
 }
 
-.right_one{
-    float: right;
-    padding: 3px 0;
-}
+
 .schart {
     width: 100%;
     height: 300px;

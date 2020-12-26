@@ -103,6 +103,7 @@
                     </span>
                                     <el-dropdown-menu slot="dropdown" style="margin-bottom: 5px">
                                         <a href="https://gitee.com/hnucm/dashboard/programs/140463/projects/hnucm/medicine-recruit-wechat/" target="_blank">
+                                            <el-dropdown-item>{{this.flag =='boss'? "招聘者":"应聘者"}}</el-dropdown-item>
                                             <el-dropdown-item>个人中心</el-dropdown-item>
                                         </a>
                                         <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
@@ -307,7 +308,7 @@ export default {
                     console.log(res.data.data);
                     //将数据存在浏览器中
                     localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
-
+                    console.log("JSON.parse(localStorage.getItem(\"UserInfo\")).employName-----"+JSON.parse(localStorage.getItem("UserInfo")).employName);
                     this.accountLocal=JSON.parse(localStorage.getItem("UserInfo")).employName
 
                     this.employId=res.data.data.employId,
@@ -337,6 +338,7 @@ export default {
                     console.log(res.data.data);
                     //将数据存在浏览器中
                     localStorage.setItem("UserInfo", JSON.stringify(res.data.data))
+                    this.accountLocal=JSON.parse(localStorage.getItem("UserInfo")).recruiterName
                     this.recruiterId=res.data.data.recruiterId,
                         this.recruiterName=res.data.data.recruiterName,
                         this.companys=res.data.data.company,
@@ -374,6 +376,7 @@ updated() {
         this.flag=this.$route.query.flag
 
         this.searchInfo();
+        console.log("this.accountLocal+++"+this.accountLocal);
 
     }
 };

@@ -75,8 +75,8 @@
             <el-card class="box-card">
 
                 <div style="color: #8c8b8b">
-                    <img style="width: 20px;height: 20px" src="http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png">
-                    <span style="font-size: larger">湖南省长沙市开福区湘雅路87号</span></div>
+                    <img style="width: 20px;height: 20px" src="https://img-blog.csdnimg.cn/20201226131821512.png">
+                    <span style="font-size: larger;margin-left: 10px">湖南省长沙市开福区湘雅路87号</span></div>
                 <baidu-map :center="center" :zoom="zoom" @ready="handler" style="height:500px;" @click="getClickInfo" :scroll-wheel-zoom='true'>
                 </baidu-map>
             </el-card>
@@ -94,7 +94,7 @@ export default {
     name: 'xiangYaHospital',
     data() {
         return {
-            markerIcon:"http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png",
+            markerIcon:"https://img-blog.csdnimg.cn/20201226131821512.png",
             center: {lng: 112.991041, lat: 28.217917},
             zoom: 20,
             com:this.$route.params.com+"地址",
@@ -113,7 +113,7 @@ export default {
 
             ],
             companies: [],
-            url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=558304197,1490888614&fm=26&gp=0.jpg'
+            url: 'https://img-blog.csdnimg.cn/20201226131821512.png'
         }
     },
     computed: {

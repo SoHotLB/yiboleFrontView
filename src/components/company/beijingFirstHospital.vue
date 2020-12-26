@@ -72,11 +72,11 @@
 
             <b style='font-size: 20px;color: #1f2f3d;margin-right: 10px;margin-left: 10px;margin-top: 10px'>{{this.com}}</b>
 
-                <el-card class="box-card">
+                <el-card class="box-card" >
 
                     <div style="color: #8c8b8b">
-                        <img style="width: 20px;height: 20px" src="http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png">
-                        <span style="font-size: larger">北京市, 北京市, 西城区, 地安门西大街, 甲147号</span></div>
+                        <img style="width: 20px;height: 20px" src="https://img-blog.csdnimg.cn/20201226131821512.png">
+                        <span style="font-size: larger;margin-left: 10px">北京市, 北京市, 西城区, 地安门西大街, 甲147号</span></div>
                     <baidu-map :center="center" :zoom="zoom" @ready="handler" style="height:500px;" @click="getClickInfo" :scroll-wheel-zoom='true'>
                     </baidu-map>
                 </el-card>
@@ -101,7 +101,7 @@ export default {
         return {
 
 
-            markerIcon:"http://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png",
+            markerIcon:"https://img-blog.csdnimg.cn/20201226131821512.png",
             center: {lng: 116.387052, lat: 39.938046},
             zoom: 20,
             com:this.$route.params.com+"地址",
@@ -120,7 +120,7 @@ export default {
 
             ],
             companies: [],
-            url: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2227126611,2600594640&fm=26&gp=0.jpg'
+            url: 'https://img-blog.csdnimg.cn/20201226131821512.png'
         }
     },
     computed: {

@@ -159,7 +159,7 @@
                                                   <div class='right_one'>{{item.salaryCeiling}}</div>K
                                               </div>
                                           </div>
-                                          <div style='margin-top: 5px;font-size:14px;float: left'>{{item.jobRequirements}}</div>
+                                          <div style='margin-top: 5px;font-size:14px;float: left;color: #8c939d'>{{item.jobRequirements}}</div>
 
                                       </div>
                                       <div class='bottom clearfix' style='height: 40px; display: flex'>
@@ -198,11 +198,11 @@
 
                                 <div class="grid-company-name">{{item.company}}</div>
                                 <div class='owner'>{{item.legalRepresentative}}</div><br/>
-                                <div class='middle' style='height: 40%'>
+                                <div class='middle' style='height: 40%;color: #8c939d'>
                                     <div>{{item.companyType}}</div><el-divider direction="vertical"></el-divider>
                                     <div>{{item.companyLocation}}</div>
                                 </div>
-                                <div class='time'>成立于<p style='color: orange;text-align: center;'>{{getYMD(item.setupTime)}}</p></div>
+                                <div class='time'>成立于<p style='color: #f5ce7f;text-align: center;'>{{getYMD(item.setupTime)}}</p></div>
                             </el-card>
                         </div>
                     </el-col>

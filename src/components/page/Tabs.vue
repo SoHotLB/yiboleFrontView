@@ -69,8 +69,38 @@
 export default {
     name: 'Position',
     mounted() {
-        this.getData()
+        if((this.$route.params.value1=='undefined' && this.$route.params.value2.length > 0)) {//1无  2有
+            console.log("else这一步" + "0");
+            console.log(this.$route.params.value1 != "undefined");
+            console.log(this.$route.params.value2.length > 0);
+            this.pname = this.$route.params.value2
+            console.log("-------****" + this.pname);
+            this.searchJob()
+        }else if((this.$route.params.value1!='undefined' && this.$route.params.value2.length>0)) {//两者都有值   success
+            console.log("else这一步" + "1");
+            console.log(this.$route.params.value1 != "undefined");
+            console.log(this.$route.params.value2.length > 0);
+            this.pname = this.$route.params.value1 + this.$route.params.value2
+            console.log("-------****" + this.pname);
+            this.searchJob()
 
+        } else if((this.$route.params.value1 != 'undefined' && this.$route.params.value2.length == 0)) {//1有  2无    success
+            console.log("else这一步" + "2");
+            console.log(this.$route.params.value1 != "undefined");
+            console.log(this.$route.params.value2.length > 0);
+            this.pname = this.$route.params.value1
+            console.log("-------****" + this.pname);
+            this.searchJob()
+        }
+        else if(!(this.$route.params.value1!='undefined' && this.$route.params.value2.length>0)) {//两者都无值
+            console.log("else这一步" + "3");
+            console.log(this.$route.params.value1 != "undefined");
+            console.log(this.$route.params.value2.length > 0);
+            // this.pname = this.$route.params.value1 + this.$route.params.value2
+            console.log("-------****" + this.pname);
+            // this.searchJob()
+            this.getData()
+        }
         // console.log("======================");
         // console.log(this.$route.params.value1);
         // console.log(this.$route.params.value2.length);
@@ -130,45 +160,16 @@ export default {
         currentPage4: 4, // 分页
       }
     },
-    created() {
-        // this.pname = this.$route.params.value1 + this.$route.params.value2
-        if((this.$route.params.value1!='undefined' && this.$route.params.value2.length>0)) {//两者都无值   success
-            console.log("else这一步" + "3");
-            console.log(this.$route.params.value1 != "undefined");
-            console.log(this.$route.params.value2.length > 0);
-            this.pname = this.$route.params.value1 + this.$route.params.value2
-            console.log("-------****" + this.pname);
-            this.searchJob()
 
-        }else if(!(this.$route.params.value1=='undefined' && this.$route.params.value2.length > 0)) {//1无  2有
-            console.log("else这一步" + "1");
-            console.log(this.$route.params.value1 != "undefined");
-            console.log(this.$route.params.value2.length > 0);
-            this.pname = this.$route.params.value2
-            console.log("-------****" + this.pname);
-            this.searchJob()
-        }else if((this.$route.params.value1 != 'undefined' && this.$route.params.value2.length == 0)) {//1有  2无
-            console.log("else这一步" + "2");
-            console.log(this.$route.params.value1 != "undefined");
-            console.log(this.$route.params.value2.length > 0);
-            this.pname = this.$route.params.value1
-            console.log("-------****" + this.pname);
-            this.searchJob()
-        }
-            // else if((this.$route.params.value1 != 'undefined' && this.$route.params.value2.length > 0)) {//两者都有值    success
-            //     console.log("else这一步" + "3");
-            //     console.log(this.$route.params.value1 != "undefined");
-            //     console.log(this.$route.params.value2.length > 0);
-            //     this.pname = this.$route.params.value1 + this.$route.params.value2
-            //     console.log("-------****" + this.pname);
-            //     this.searchJob()
-        // }
-
-        else {
-            console.log("if这一步");
-            this.getData()
-        }
-    },
+    // created() {
+    //     this.pname = this.$route.params.value1 + this.$route.params.value2
+    //
+    //
+    //     else {
+    //         console.log("if这一步");
+    //         this.getData()
+    //     }
+    // },
     methods: {
         gotoItCompany(com) {
             if(com=="北京大学第一医院"){
@@ -246,7 +247,8 @@ export default {
       // changeSwitch(row) {
       //   console.log(row)
       // }
-    }
+    },
+
 }
 </script>
 

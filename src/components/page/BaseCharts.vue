@@ -10,17 +10,17 @@
           <div>
             <span><el-avatar shape="square" :size="100" :fit="fit" :src="url"></el-avatar></span>
             <span style='padding-left:30%;padding-bottom:50px;font-size: 40px;margin: auto' >{{this.employName}}</span>
-            <p style='padding-left: 38%' >{{this.employEmail}} | {{this.employTel}} | {{this.employSchool}}</p>
+            <p style='padding-left: 30%' >{{this.employEmail}} | {{this.employTel}} | {{this.employSchool}}</p>
             <!--                      <span>{{"邮箱"}}|{{"地址"}}</span>-->
           </div>
         </div>
         <span>
               <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
               <div>
-                <p><span>性别：{{this.employSex}}</span><span style='padding-left: 30%'>年龄：{{this.employAge}}</span></p>
+                <p><span>性别：{{this.employSex}}</span><span style='padding-left: 36%'>年龄：{{this.employAge}}</span></p>
                 <p><span>电话：{{this.employTel}}</span><span style='padding-left: 30%'>邮箱：{{this.employEmail}}</span></p>
-                <p><span>政治面貌：{{this.employBackground}}</span><span style='padding-left: 30%'>民族：{{this.employNation}}</span></p>
-                <p><span>当前地址：{{this.employNowAddress}}</span></p>
+                <p><span>政治面貌：{{this.employPoliticalStatus}}</span><span style='padding-left: 32.5%'>民族：{{this.employNation}}</span></p>
+                <p><span>当前地址：{{this.employNowAddress}}</span><span style='padding-left: 32.5%'>是否结婚：{{this.employIsMarried}}</span></p>
                 <p></p>
               </div>
               </span>
@@ -29,7 +29,7 @@
                 <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
                 <div>
                     <p><span>毕业院校：{{this.employSchool}}</span><span style='padding-left: 30%'>学历：{{this.employBackground}}</span></p>
-                    <p><span>专业：{{this.employMajor}}</span><span style='padding-left: 30%'>是否结婚：{{this.employIsMarried}}</span></p>
+                    <p><span>专业：{{this.employMajor}}</span></p>
                     <p></p>
                 </div>
                 </span>
@@ -38,7 +38,7 @@
                 <div>
                     <p><span>实习医院：{{this.employWorkExperience}}</span></p>
                     <p><span>地址：{{this.employAddress}}</span></p>
-                    <p><span>实习评价：{{this.employWorkExperience}}</span></p>
+                    <p><span>实习评价：{{this.resumeSelfevaluation}}</span></p>
                     <p></p>
                 </div>
                 </span>
@@ -66,15 +66,19 @@
       <el-dialog
           title="修改简历"
           :visible.sync="dialogVisible"
-          width="30%"
+          width="60%"
           :before-close="handleClose">
             <span>
                <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
               <div>
-                <p><span>性别：{{this.employSex}}</span><span style='padding-left: 30%'>年龄：{{this.employName}}</span></p>
-                <p><span>电话：{{this.employTel}}</span><span style='padding-left: 30%'>邮箱：{{this.employEmail}}</span></p>
-                <p><span>政治面貌：{{this.employBackground}}</span><span style='padding-left: 30%'>民族：{{this.employNation}}</span></p>
-                <p><span>当前地址：{{this.employTel}}</span></p>
+                <p><span>性别:<el-input style='width: 70%' placeholder="请输入性别">{{this.employSex}}</el-input></span></p>
+                <p></p>
+                <p> <span>年龄：<el-input style='width: 70%' placeholder="请输入年龄">{{this.employSex}}</el-input></span></p>
+                <p><span>电话：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p> <span>邮箱：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p><span>政治面貌：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p> <span>民族：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p><span>当前地址：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
                 <p></p>
               </div>
               </span>
@@ -82,20 +86,23 @@
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
                 <div>
-                    <p><span>毕业院校：{{this.employSchool}}</span><span style='padding-left: 30%'>学历：{{this.employBackground}}</span></p>
-                    <p><span>专业：{{this.employMajor}}</span><span style='padding-left: 30%'>是否结婚：{{this.employIsMarried}}</span></p>
+                  <p><span>毕业院校：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p> <span>学历：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p><span>专业：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p>  <span>是否结婚：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
                     <p></p>
                 </div>
                 </span>
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>实习经历</el-divider>
                 <div>
-                    <p><span>实习医院：{{this.employWorkExperience}}</span></p>
-                    <p><span>地址：{{this.employAddress}}</span></p>
-                    <p><span>实习评价：{{this.resumeSelfevaluation}}</span></p>
+                    <p><span>实习医院：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p><span>地址：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p><span>实习评价：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
                     <p></p>
                 </div>
             </span>
+
         <span slot="footer" class="dialog-footer">
               <el-button @click="dialogVisible = false">取 消</el-button>
               <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -202,7 +209,7 @@ export default {
         // employId:"",
         // employIntegration:"",
         // employPassword:"",
-        test:JSON.parse(localStorage.getItem("UserInfo")).employName
+        // test:JSON.parse(localStorage.getItem("UserInfo")).employName
       }
     },
     computed: {
@@ -215,15 +222,15 @@ export default {
     }
   },
     methods: {
-      getData()
-      {
-        var that = this
-        this.$axios.get('http://115.29.204.107:8084/yibole/searchResumeByName/'+this.employName)
-            .then(function(response) {
-              that.tableData = response.data.data
-            }).catch(function(error) {
-        })
-      },
+      // getData()
+      // {
+      //   var that = this
+      //   this.$axios.get('http://115.29.204.107:8084/yibole/searchResumeByName/'+this.employName)
+      //       .then(function(response) {
+      //         that.tableData = response.data.data
+      //       }).catch(function(error) {
+      //   })
+      // },
       handleClose(done) {
         this.$confirm('确认关闭？')
             .then(_ => {

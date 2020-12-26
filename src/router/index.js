@@ -215,18 +215,6 @@ export default new Router({
                     name: 'xyPosition',
                     component:() => import('../components/company/xiangyaPosition.vue')
                 },
-                {
-                    path: '/interview',
-                    name: 'interview',
-                    component: () => import('../components/imterviewAndWritten/Interview.vue'),
-                    meta: {title: '面试页面'}
-                },
-                {
-                    path: '/written',
-                    name: 'written',
-                    component:() =>import('../components/imterviewAndWritten/Written.vue'),
-                    meta: {title: '笔试页面'}
-                }
             ]
         },
         {

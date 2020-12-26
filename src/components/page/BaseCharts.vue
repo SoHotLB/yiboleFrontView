@@ -6,42 +6,59 @@
     </div>
     <el-card class="box-card" style="margin-bottom: 20px;">
       <div class="text item">
-        <div class="grid-content bg-purple">
-          <div>
-            <span><el-avatar shape="square" :size="100" :fit="none" :src="url"></el-avatar></span>
-            <span style='padding-left:30%;padding-bottom:50px;font-size: 40px;margin: auto' >{{this.employName}}</span>
-            <p style='padding-left: 30%' >{{this.employEmail}} | {{this.employTel}} | {{this.employSchool}}</p>
+        <div class="grid-content bg-purple" :data='person'>
+            <span style='float: left'><el-avatar shape="square" :size="50" :fit="none" :src="url"></el-avatar></span>
+
+            <div>
+            <span style='display: inline;;padding-bottom:40px;font-size: 20px;margin: auto' >{{this.employName}}</span><br>
+<!--            <p style='float: right'>-->
+<!--                <i @click='openEdit1' style='color: #57cff1' class='el-icon-edit'>编辑</i>-->
+<!--            </p>-->
+            <p style='padding-left: 30px'>{{this.employEmail}} | {{this.employTel}} | {{this.employSchool}}</p>
             <!--                      <span>{{"邮箱"}}|{{"地址"}}</span>-->
+
           </div>
         </div>
         <span>
               <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
               <div>
-                <p><span>性别：{{this.employSex}}</span><span style='padding-left: 36%'>年龄：{{this.employAge}}</span></p>
-                <p><span>电话：{{this.employTel}}</span><span style='padding-left: 30%'>邮箱：{{this.employEmail}}</span></p>
-                <p><span>政治面貌：{{this.employPoliticalStatus}}</span><span style='padding-left: 32.5%'>民族：{{this.employNation}}</span></p>
-                <p><span>当前地址：{{this.employNowAddress}}</span><span style='padding-left: 32.5%'>是否结婚：{{this.employIsMarried}}</span></p>
-                <p></p>
+<!--                  border: 1px solid red;-->
+                  <p>
+                      <span style='width: 700px' prop='employSex'>性别：{{this.employSex}}</span>
+                      <span style='position: absolute;margin-left:30%' prop='employAge'>年龄：{{this.employAge}}</span>
+                  </p>
+                  <p>
+                      <span style='width: 700px' prop='employTel'>电话：{{this.employTel}}</span>
+                      <span style='position: absolute;margin-left:185px' prop='employEmail'>邮箱：{{this.employEmail}}</span>
+                  </p>
+                  <p></p>
               </div>
               </span>
         <p></p>
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
                 <div>
-                    <p><span>毕业院校：{{this.employSchool}}</span><span style='padding-left: 30%'>学历：{{this.employBackground}}</span></p>
-                    <p><span>专业：{{this.employMajor}}</span></p>
+                    <p>
+                        <span prop='employSchool'>毕业院校：{{this.employSchool}}</span>
+                        <span prop='employBackground' style='padding-left: 175px'>学历：{{this.employBackground}}</span>
+                    </p>
+                    <p>
+                        <span prop='employMajor'>专业：{{this.employMajor}}</span>
+                        <span prop='employIsMarried' style='padding-left: 245px'>是否婚配：{{this.employIsMarried}}</span>
+                    </p>
                     <p></p>
                 </div>
                 </span>
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>实习经历</el-divider>
                 <div>
-                    <p><span>实习医院：{{this.employWorkExperience}}</span></p>
-                    <p><span>地址：{{this.employAddress}}</span></p>
-                    <p><span>实习评价：{{this.resumeSelfevaluation}}</span></p>
-                    <p></p>
+                    <p class='experience'></p>
+<!--                    <p><span>实习医院：{{this.employWorkExperience}}</span></p>-->
+<!--                    <p><span>地址：{{this.employAddress}}</span></p>-->
+<!--                    <p><span>实习评价：{{this.resumeSelfevaluation}}</span></p>-->
+<!--                    <p></p>-->
                 </div>
-                </span>
+        </span> <br>
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>获奖荣誉</el-divider>
                 <div>
@@ -61,81 +78,40 @@
       <div class='topMask square'></div><div class='topMask circular'></div>
     </el-card>
     <el-card>
-      <el-button type="text" @click="dialogVisible = true">点击修改简历</el-button>
+        <el-button type="text" @click="updateperson(form)">点击修改简历</el-button>
 
-      <el-dialog
+
+
+        <el-dialog
           title="修改简历"
-          :visible.sync="dialogVisible"
+          :visible.sync="updatePersonMessage"
           width="60%"
           :before-close="handleClose">
-            <span>
-               <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
-              <div>
-                <p><span class='item text'>性别:<el-input style='width: 70%' placeholder="请输入性别">{{this.employSex}}</el-input></span></p>
-                <p> <span class='item text'>年龄：<el-input style='width: 70%' placeholder="请输入年龄">{{this.employSex}}</el-input></span></p>
-                <p><span class='item text'>电话：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                <p> <span class='item text'>邮箱：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                <p><span class='item text'>政治面貌：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
-                <p> <span class='item text'>民族：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                <p><span class='item text'>当前地址：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
-                <p></p>
-              </div>
-              </span>
-        <p></p>
-        <span>
-                <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
-                <div>
-                  <p><span class='item text'>毕业院校：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
-                    <p> <span class='item text'>学历：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p><span class='item text'>专业：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p>  <span class='item text'>是否结婚：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
-                    <p></p>
-                </div>
+            <div v-model='updateForm'>
+                <span>
+                    <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
+                    <div>
+                        <p><span class='item text'>性别:<el-input v-model='employSex' class='sex' style='width: 70%' placeholder="请输入性别">{{this.employSex}}</el-input></span></p>
+                        <p> <span class='item text'>年龄：<el-input v-model='employAge' class='age' style='width: 70%' placeholder="请输入年龄">{{this.employSex}}</el-input></span></p>
+                        <p><span class='item text'>电话：<el-input v-model='employTel' class='tel' style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                        <p> <span class='item text'>邮箱：<el-input v-model='employEmail' class='email' style='width: 70%' placeholder="请输入邮箱"></el-input></span></p>
+                    </div>
                 </span>
-        <span>
-                <el-divider content-position="left"><i class="el-icon-edit"></i>实习经历</el-divider>
-                <div>
-                    <p><span class='item text'>实习医院：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
-                    <p><span class='item text'>地址：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p><span class='item text'>实习评价：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
-                    <p></p>
-                </div>
-            </span>
-            <span>
-                <el-divider content-position="left"><i class="el-icon-edit"></i>荣誉</el-divider>
-                <div>
-                    <p>&nbsp;</p>
-                      <p>
-                       <el-input
-                           type="textarea"
-                           :rows="2"
-                           placeholder="请输入内容"
-                           v-model="textarea">
-                       </el-input>
-                     </p>
-<!--                 <p><span><el-input style='width: 100%' placeholder="请输入获奖荣誉"></el-input></span></p>-->
-                  <p>&nbsp;</p>
-                </div>
-            </span>
-        <span>
-                <el-divider content-position="left"><i class="el-icon-edit"></i>自我评价</el-divider>
-                <div>
-                  <p>&nbsp;</p>
-                     <p>
-                       <el-input
-                           type="textarea"
-                           :rows="2"
-                           placeholder="请输入内容"
-                           v-model="textarea">
-                       </el-input>
-                     </p>
-<!--                    <p><span><el-input style='width: 100%' placeholder="请输入自我评价"></el-input></span></p>-->
-                  <p>&nbsp;</p>
-                </div>
-            </span>
+                <span>
+                    <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
+                    <div>
+                        <p><span class='item text'>毕业院校：<el-input v-model='employSchool' class='school' style='width: 60%' placeholder="请输入毕业院校"></el-input></span></p>
+                        <p> <span class='item text'>学历：<el-input v-model='employBackground' class='study' style='width: 70%' placeholder="请输入学历"></el-input></span></p>
+                        <p><span class='item text'>专业：<el-input v-model='employMajor' class='major' style='width: 70%' placeholder="请输入专业"></el-input></span></p>
+                        <p>  <span class='item text'>是否结婚：<el-input v-model='employIsMarried' class='marry' style='width: 60%' placeholder="请输入婚姻状况"></el-input></span></p>
+                        <p></p>
+                    </div>
+                </span>
+            </div>
+        <p></p>
         <span slot="footer" class="dialog-footer">
-              <el-button @click="dialogVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+              <el-button @click="updatePersonMessage = false">取 消</el-button>
+              <el-button type="primary" @click="onUpdateCommit">确 定</el-button>
             </span>
       </el-dialog>
     </el-card>
@@ -171,7 +147,7 @@ export default {
     // console.log(employName);
     // console.log(this.employSchool);
     console.log("this.Info");
-    console.log(this.Info);
+    // console.log(this.Info);
     this.userinfo=JSON.parse(localStorage.getItem("UserInfo")).employName;
   },
   //  mounted() {
@@ -197,13 +173,13 @@ export default {
   // },
   data () {
     return{
-       url: 'http://y2.ifengimg.com/a/2014_39/30bf500f445be4e.jpg',
-       dialogVisible: false,
-       tableData:[],
+        url: 'http://y2.ifengimg.com/a/2014_39/30bf500f445be4e.jpg',
+        updatePersonMessage: false,
+        tableData:[],
         // test:JSON.parse(localStorage.getItem("UserInfo")).employName,
         // test1:JSON.parse(localStorage.getItem("UserInfo")).employEmail,
         flag:'',
-         userinfo:'',
+        userinfo:'',
     //简历信息
         employName:JSON.parse(localStorage.getItem("UserInfo")).employName,
         employSex:JSON.parse(localStorage.getItem("UserInfo")).employSex,
@@ -222,6 +198,26 @@ export default {
         resumeSelfevaluation:JSON.parse(localStorage.getItem("UserInfo")).resumeSelfevaluation,
         employNation:JSON.parse(localStorage.getItem("UserInfo")).employNation,
         // 用户的数据信息
+        form: {
+            employSex:this.employSex,
+            employAge:this.employAge,
+            employTel:this.employTel,
+            employEmail:this.employEmail,
+            employSchool:this.employSchool,
+            employBackground:this.employSchool,
+            employMajor:this.employMajor,
+            employIsMarried:this.employIsMarried
+        },
+        updateForm: {
+            employSex:'',
+            employAge:0,
+            employTel:'',
+            employEmail:'',
+            employSchool:'',
+            employBackground:'',
+            employMajor:'',
+            employIsMarried:''
+        },
         // employAddress:"",
         // employAge:"",
         // employBackground:"",
@@ -262,6 +258,13 @@ export default {
       //       }).catch(function(error) {
       //   })
       // },
+      //   openEdit1(){
+      //       this.$prompt('邮箱','提示',{
+      //           confirmButtonText: 'Sure',
+      //           cancelButtonText: 'Cancel',
+      //           inpu
+      //       })
+      //   },
       handleClose(done) {
         this.$confirm('确认关闭？')
             .then(_ => {
@@ -269,15 +272,34 @@ export default {
             })
             .catch(_ => {});
       },
+      updateperson(person){
+          console.log("-----------------");
+          console.log(person);
+          console.log("-----------------");
+
+          // console.log(updat);
+          this.updateForm.employSex = person.employSex
+          this.updateForm.employAge = person.employAge
+          this.updateForm.employTel = person.employTel
+          this.updateForm.employEmail = person.employEmail
+          this.updateForm.employSchool = person.employSchool
+          this.updateForm.employBackground = person.employBackground
+          this.updateForm.employMajor = person.employMajor
+          this.updateForm.employIsMarried = person.employIsMarried
+
+          this.updatePersonMessage = true
+      },
       onUpdateCommit() {
         var that = this
-        this.$axios.post('http://localhost:8080/springboot/update', {
-          id: this.updateForm.id,
-          name: this.updateForm.name,
-          cover: this.updateForm.cover,
-          price: this.updateForm.price,
-          intro: this.updateForm.intro,
-          type_id: this.updateForm.type_id
+        this.$axios.post(this.$store.state.URL+"updateEmploy", {
+            employSex: this.updateForm.employSex,
+            employAge: this.updateForm.employAge,
+            employTel: this.updateForm.employTel,
+            employEmail: this.updateForm.employEmail,
+            employSchool: this.updateForm.employSchool,
+            employBackground: this.updateForm.employBackground,
+            employMajor: this.updateForm.employMajor,
+            employIsMarried: this.updateForm.employIsMarried,
         })
             .then(function(response) {
               console.log()
@@ -286,8 +308,8 @@ export default {
                   message: response.data.msg,
                   type: 'success'
                 })
-                that.updateBookVisible = false
-                that.findBook()
+                that.updatePersonMessage = false
+                that.searchInfo()
               } else {
                 that.$message.error(response.data.msg);
               }
@@ -302,27 +324,34 @@ export default {
         if(this.flag=="employ"){
           this.$axios.post(this.$store.state.URL+"searchResumeByName/"+ this.employName).then((res)=>{
             console.log("应聘者+------");
-  console.log(res.data.data);
-  this.employNation=data.data.employNation,
-  this.employName=res.data.data.employName,
-  this.employNowAddress=res.data.data.employNowAddress,
-  this.resumeSelfevaluation=res.data.data.resumeSelfevaluation,
-  this.employSex=res.data.data.employSex,
-  this.employIsMarried=res.data.data.employIsMarried,
-  this.employAge=res.data.data.employAge,
-  this.employEmail=res.data.data.employEmail,
-  this.employTel=res.data.data.employTel,
-  this.employBackground=res.data.data.employBackground,
-  this.employMajor=res.data.data.employMajor,
-  this.employSchool=res.data.data.employSchool,
-  this.employAddress=res.data.data.employAddress,
-  this.employWorkExperience=res.data.data.employWorkExperience,
-  this.employPoliticalStatus=res.data.data.employPoliticalStatus,
-  this.resumeImage=res.data.data.resumeImage,
-  console.log("================="+this.employName);
-  },(err)=>{
-  console.log(err);
-  })
+          console.log(res.data.data);
+          this.employNation=data.data.employNation,
+          this.employName=res.data.data.employName,
+          this.employNowAddress=res.data.data.employNowAddress,
+          this.resumeSelfevaluation=res.data.data.resumeSelfevaluation,
+          this.employSex=res.data.data.employSex,
+          // this.updateForm.employSex=res.data.data.employSex,
+          this.employIsMarried=res.data.data.employIsMarried,
+          this.employAge=res.data.data.employAge,
+          // this.updateForm.employAge=res.data.data.employAge,
+          this.employEmail=res.data.data.employEmail,
+          // this.updateForm.employEmail=res.data.data.employEmail,
+          this.employTel=res.data.data.employTel,
+          // this.updateForm.employTel=res.data.data.employTel,
+          this.employBackground=res.data.data.employBackground,
+          // this.updateForm.employBackground=res.data.data.employBackground,
+          this.employMajor=res.data.data.employMajor,
+          // this.updateForm.employMajor=res.data.data.employMajor,
+          this.employSchool=res.data.data.employSchool,
+          // this.updateForm.employSc/hool=res.data.data.employSchool,
+          this.employAddress=res.data.data.employAddress,
+          this.employWorkExperience=res.data.data.employWorkExperience,
+          this.employPoliticalStatus=res.data.data.employPoliticalStatus,
+          this.resumeImage=res.data.data.resumeImage,
+          console.log("================="+this.employName);
+          },(err)=>{
+          console.log(err);
+          })
   }
     //招聘者
   else if(this.flag=="boss"){

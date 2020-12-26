@@ -12,18 +12,19 @@
 <!--        </div>-->
         <el-divider>个人信息</el-divider>
         <div style='padding-left: 20%'>
-        <div class='text item'><i class='el-icon-paperclip'></i>我的昵称：{{this.employName}}</div>
-        <div class='text item'><i class='el-icon-paperclip'></i>账号：{{this.employAccount}}</div>
-        <div class='text item'><i class='el-icon-paperclip'></i>性别：{{this.employSex}}</div>
-        <div class='text item'><i class='el-icon-paperclip'></i>年龄：{{this.employAge}}</div>
+        <div class='text item'><i class='el-icon-paperclip'></i>我的昵称：{{this.employName}}{{this.recruiterName}}</div>
+        <div class='text item'><i class='el-icon-paperclip'></i>账号：{{this.employAccount}}{{this.recruiterAccount}}</div>
+        <div class='text item'><i class='el-icon-paperclip'></i>性别：{{this.employSex}}{{this.recruiterSex}}</div>
+        <div class='text item'><i class='el-icon-paperclip'></i>年龄：{{this.employAge}}{{this.recruiterAge}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>是否结婚：{{this.employIsMarried}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>地址：{{this.employAddress}}</div>
-        <div class='text item'><i class='el-icon-paperclip'></i>电话：{{this.employTel}}</div>
-        <div class='text item'><i class='el-icon-paperclip'></i>邮箱：{{this.employEmail}}</div>
+        <div class='text item'><i class='el-icon-paperclip'></i>电话：{{this.employTel}}{{this.recruiterTel}}</div>
+        <div class='text item'><i class='el-icon-paperclip'></i>邮箱：{{this.employEmail}}{{this.recruiterEmail}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>学校：{{this.employSchool}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>学历：{{this.employBackground}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>专业：{{this.employMajor}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>毕业时间：{{this.employGraduationTime}}</div>
+          <div class='text item'><i class='el-icon-paperclip'></i>公司：{{this.company}}</div>
         </div>
       </el-card>
     </div>
@@ -64,7 +65,7 @@
           //招聘者的数据
           recruiterId:JSON.parse(localStorage.getItem("UserInfo")).recruiterId,
           recruiterName:JSON.parse(localStorage.getItem("UserInfo")).recruiterName,
-          companys:JSON.parse(localStorage.getItem("UserInfo")).companys,
+          // company:JSON.parse(localStorage.getItem("UserInfo")).company,
           recruiterAccount:JSON.parse(localStorage.getItem("UserInfo")).recruiterAccount,
           recruiterPassword:JSON.parse(localStorage.getItem("UserInfo")).recruiterPassword,
           recruiterAge:JSON.parse(localStorage.getItem("UserInfo")).recruiterAge,

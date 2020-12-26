@@ -234,7 +234,7 @@ export default {
             if(response.data.code==0){
               console.log("成功");
               that.$router.push({path:'/',query:{account:that.ruleForm.account,flag:"boss"}})
-                window.location.reload()
+              
             }else{
                 that.$message({
                 message: '登录失败',

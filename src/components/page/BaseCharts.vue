@@ -71,14 +71,13 @@
             <span>
                <el-divider content-position="left"><i class="el-icon-edit"></i>基本信息</el-divider>
               <div>
-                <p><span>性别:<el-input style='width: 70%' placeholder="请输入性别">{{this.employSex}}</el-input></span></p>
-                <p></p>
-                <p> <span>年龄：<el-input style='width: 70%' placeholder="请输入年龄">{{this.employSex}}</el-input></span></p>
-                <p><span>电话：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                <p> <span>邮箱：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                <p><span>政治面貌：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                <p> <span>民族：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                <p><span>当前地址：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p><span class='item text'>性别:<el-input style='width: 70%' placeholder="请输入性别">{{this.employSex}}</el-input></span></p>
+                <p> <span class='item text'>年龄：<el-input style='width: 70%' placeholder="请输入年龄">{{this.employSex}}</el-input></span></p>
+                <p><span class='item text'>电话：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p> <span class='item text'>邮箱：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p><span class='item text'>政治面貌：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
+                <p> <span class='item text'>民族：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                <p><span class='item text'>当前地址：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
                 <p></p>
               </div>
               </span>
@@ -86,23 +85,54 @@
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>教育经历</el-divider>
                 <div>
-                  <p><span>毕业院校：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p> <span>学历：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p><span>专业：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p>  <span>是否结婚：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                  <p><span class='item text'>毕业院校：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
+                    <p> <span class='item text'>学历：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p><span class='item text'>专业：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p>  <span class='item text'>是否结婚：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
                     <p></p>
                 </div>
                 </span>
         <span>
                 <el-divider content-position="left"><i class="el-icon-edit"></i>实习经历</el-divider>
                 <div>
-                    <p><span>实习医院：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p><span>地址：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
-                    <p><span>实习评价：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p><span class='item text'>实习医院：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
+                    <p><span class='item text'>地址：<el-input style='width: 70%' placeholder="请输入电话"></el-input></span></p>
+                    <p><span class='item text'>实习评价：<el-input style='width: 60%' placeholder="请输入电话"></el-input></span></p>
                     <p></p>
                 </div>
             </span>
-
+            <span>
+                <el-divider content-position="left"><i class="el-icon-edit"></i>荣誉</el-divider>
+                <div>
+                    <p>&nbsp;</p>
+                      <p>
+                       <el-input
+                           type="textarea"
+                           :rows="2"
+                           placeholder="请输入内容"
+                           v-model="textarea">
+                       </el-input>
+                     </p>
+<!--                 <p><span><el-input style='width: 100%' placeholder="请输入获奖荣誉"></el-input></span></p>-->
+                  <p>&nbsp;</p>
+                </div>
+            </span>
+        <span>
+                <el-divider content-position="left"><i class="el-icon-edit"></i>自我评价</el-divider>
+                <div>
+                  <p>&nbsp;</p>
+                     <p>
+                       <el-input
+                           type="textarea"
+                           :rows="2"
+                           placeholder="请输入内容"
+                           v-model="textarea">
+                       </el-input>
+                     </p>
+<!--                    <p><span><el-input style='width: 100%' placeholder="请输入自我评价"></el-input></span></p>-->
+                  <p>&nbsp;</p>
+                </div>
+            </span>
         <span slot="footer" class="dialog-footer">
               <el-button @click="dialogVisible = false">取 消</el-button>
               <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -167,12 +197,12 @@ export default {
   // },
   data () {
     return{
-      dialogVisible: false,
-      tableData:[],
+       dialogVisible: false,
+       tableData:[],
         // test:JSON.parse(localStorage.getItem("UserInfo")).employName,
         // test1:JSON.parse(localStorage.getItem("UserInfo")).employEmail,
         flag:'',
-  userinfo:'',
+         userinfo:'',
     //简历信息
         employName:JSON.parse(localStorage.getItem("UserInfo")).employName,
         employSex:JSON.parse(localStorage.getItem("UserInfo")).employSex,
@@ -376,5 +406,12 @@ export default {
   top:80px;
   left: 80%;
   background-color: rgba(255, 208, 75,0.2);
+}
+.text {
+  font-size: 14px;
+}
+
+.item {
+  padding: 5px;
 }
 </style>

@@ -12,8 +12,8 @@
 <!--        </div>-->
         <el-divider>个人信息</el-divider>
         <div style='padding-left: 20%'>
-        <div class='text item'><i class='el-icon-paperclip'></i>我的昵称：{{this.employName}}{{this.recruiterName}}</div>
-        <div class='text item'><i class='el-icon-paperclip'></i>账号：{{this.employAccount}}{{this.recruiterAccount}}</div>
+        <div class='text item'><p><i class='el-icon-paperclip'></i>我的昵称：{{this.employName}}{{this.recruiterName}}</p></div>
+        <div class='text item'><p><i class='el-icon-paperclip'></i>账号：{{this.employAccount}}{{this.recruiterAccount}}</p></div>
         <div class='text item'><i class='el-icon-paperclip'></i>性别：{{this.employSex}}{{this.recruiterSex}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>年龄：{{this.employAge}}{{this.recruiterAge}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>是否结婚：{{this.employIsMarried}}</div>

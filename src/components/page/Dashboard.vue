@@ -142,7 +142,7 @@
 
                                   <el-card shadow="hover"
                                            style='border-radius: 8px'
-                                           :positionName='item.positionName'
+                                           :recruitmentPositionName='item.recruitmentPositionName'
                                            :jobRequirements='item.jobRequirements'
                                            :salaryCeiling='item.salaryCeiling'
                                            :salaryLimit='item.salaryLimit'
@@ -152,7 +152,7 @@
 
                                       <div class="grid-cont-right clearfix" slot="header">
                                           <div style='display: inline'>
-                                              <div class="grid-name">{{item.positionName}}</div>
+                                              <div class="grid-name">{{item.recruitmentPositionName}}</div>
                                               <div style='float: right;font-size: 22px;display: flex;color: orange'>
                                                   <div class='right_one'>{{item.salaryLimit}}</div>
                                                   -

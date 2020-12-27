@@ -238,30 +238,6 @@ export default {
           console.log(index, row)
         }
       ,
-
-        // 添加职位
-        // postJob() {
-        // 	this.dialogFormVisible = true;
-        // },
-        // savePostJob() {
-        // 	this.dialogFormVisible = false;
-        // 	console.log(this.form);
-        // 	this.form = {}
-        // },
-        // // 修改职位
-        // upJob(index, row) {
-        // 	this.dialogFormVisible2 = true;
-        // 	this.handleEdit(index, row);
-        // 	this.formInline = row;
-        // },
-        // updateJob() {
-        //   this.dialogFormVisible2 = false
-        //   console.log(this.formInline)
-        //   this.formInline = {}
-        // },
-        // changeSwitch(row) {
-        //   console.log(row)
-        // }
       }
 }
 </script>

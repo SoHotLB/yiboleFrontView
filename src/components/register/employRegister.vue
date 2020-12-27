@@ -131,7 +131,8 @@ name: "employRegister",
                   message: '恭喜注册成功',
                   type: 'success'
                 });
-                that.$router.push({path:'/',query:{account:that.ruleForm.account}})
+                  that.$router.push({path:'/login'})
+                //that.$router.push({path:'/',query:{account:that.ruleForm.account}})
               }else{
                 that.$message({
                   message: '注册失败',

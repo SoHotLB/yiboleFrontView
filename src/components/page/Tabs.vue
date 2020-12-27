@@ -57,10 +57,10 @@
                 </el-card>
             </div>
             <!-- 分页 -->
-            <el-pagination style="padding-top: 15px" @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                           :current-page="currentPage4" :page-sizes="[20]" :page-size="20" layout="total, sizes, prev, pager, next, jumper"
-                           :total="11">
-            </el-pagination>
+<!--            <el-pagination style="padding-top: 15px" @size-change="handleSizeChange" @current-change="handleCurrentChange"-->
+<!--                           :current-page="currentPage4" :page-sizes="[20]" :page-size="20" layout="total, sizes, prev, pager, next, jumper"-->
+<!--                           :total="11">-->
+<!--            </el-pagination>-->
 
     </div>
 </template>
@@ -68,6 +68,20 @@
 <script>
 export default {
     name: 'Position',
+    data () {
+    return {
+      pname: '',
+      tableData: [],
+      positionId:'',
+      positionName:'',
+      jobRequirements:'',
+      location:'',
+      departmentName:'',
+      company:'',
+      value1: true,
+      // currentPage4: 4, // 分页
+    }
+  },
     mounted() {
         if((this.$route.params.value1=='undefined' && this.$route.params.value2.length > 0)) {//1无  2有
             console.log("else这一步" + "0");
@@ -98,7 +112,7 @@ export default {
             console.log(this.$route.params.value2.length > 0);
             // this.pname = this.$route.params.value1 + this.$route.params.value2
             console.log("-------****" + this.pname);
-            // this.searchJob()
+            this.searchJob()
             this.getData()
         }
         // console.log("======================");
@@ -146,109 +160,109 @@ export default {
         // }
 
     },
-    data () {
-      return {
-        pname: '',
-        tableData: [],
-        // positionId:'',
-        // positionName:'',
-        // jobRequirements:'',
-        // location:'',
-        // departmentName:'',
-        // company:''
-        value1: true,
-        currentPage4: 4, // 分页
-      }
-    },
+      created() {
+          // this.pname = this.$route.params.value1 + this.$route.params.value2
+          //
+          //
+          // else {
+          //     console.log("if这一步");
+              this.getData()
+          // }
+      },
+      methods: {
+        gotoItCompany(com)
+        {
+          if (com == "北京大学第一医院") {
+            this.$router.push({ name: 'beijingFirstHospital', params: { com: com } })
 
-    // created() {
-    //     this.pname = this.$route.params.value1 + this.$route.params.value2
-    //
-    //
-    //     else {
-    //         console.log("if这一步");
-    //         this.getData()
-    //     }
-    // },
-    methods: {
-        gotoItCompany(com) {
-            if(com=="北京大学第一医院"){
-                this.$router.push({name: 'beijingFirstHospital',params:{com: com}})
+          } else if (com == "湘雅医院") {
+            this.$router.push({ name: 'xiangYaHospital', params: { com: com } })
 
-            }else if(com=="湘雅医院"){
-                this.$router.push({name: 'xiangYaHospital',params:{com: com}})
-
-            }
-        },
-        getData() {
-            var that = this
-            this.$axios.get('http://115.29.204.107:8084/yibole/getAllRecruitmentInformations')
-                .then(function(response) {
-                    that.tableData = response.data.data
-                }).catch(function(error) {
-            })
-        },
-
-        searchJob() {
-        var that = this
-        this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByPositionName/' + this.pname)
-            .then(function(response) {
+          }
+        }
+      ,
+        getData()
+        {
+          var that = this
+          this.$axios.get('http://115.29.204.107:8084/yibole/getAllRecruitmentInformations')
+              .then(function(response) {
+                console.log('----------zhiwei----------' + response.data)
+                that.tableData = response.data.data
+              }).catch(function(error) {
+          })
+        }
+      ,
+        searchJob()
+        {
+          var that = this
+          this.$axios.post('http://115.29.204.107:8084/yibole/searchCompanyByPositionName/' + this.pname)
+              .then(function(response) {
                 console.log("************searchJob*******************");
                 console.log(response.data.data)
                 console.log("********************************");
                 that.tableData = response.data.data
-        }).catch(function(error) {
-          that.$message.error(error.message);
-        })
-      },
-      // selecetForm() {
-      //   console.log(this.formInline)
-      //   this.formInline = {}
-      // },
-      resetForm(formInline) {
-        console.log(this.formInline)
-        if (this.$refs[formInline] !== undefined) {
-          this.$refs[formInline].resetFields()
+              }).catch(function(error) {
+            that.$message.error(error.message);
+          })
         }
-      },
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`)
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`)
-      },
-      handleEdit(index, row) {
-        console.log(index, row)
-      },
-      handleDelete(index, row) {
-        console.log(index, row)
-      },
+      ,
+        // selecetForm() {
+        //   console.log(this.formInline)
+        //   this.formInline = {}
+        // },
+        resetForm(formInline)
+        {
+          console.log(this.formInline)
+          if (this.$refs[formInline] !== undefined) {
+            this.$refs[formInline].resetFields()
+          }
+        }
+      ,
+      //   handleSizeChange(val)
+      //   {
+      //     console.log(`每页 ${val} 条`)
+      //   }
+      // ,
+      //   handleCurrentChange(val)
+      //   {
+      //     console.log(`当前页: ${val}`)
+      //   }
+      // ,
+        handleEdit(index, row)
+        {
+          console.log(index, row)
+        }
+      ,
+        handleDelete(index, row)
+        {
+          console.log(index, row)
+        }
+      ,
 
-      // 添加职位
-      // postJob() {
-      // 	this.dialogFormVisible = true;
-      // },
-      // savePostJob() {
-      // 	this.dialogFormVisible = false;
-      // 	console.log(this.form);
-      // 	this.form = {}
-      // },
-      // // 修改职位
-      // upJob(index, row) {
-      // 	this.dialogFormVisible2 = true;
-      // 	this.handleEdit(index, row);
-      // 	this.formInline = row;
-      // },
-      // updateJob() {
-      //   this.dialogFormVisible2 = false
-      //   console.log(this.formInline)
-      //   this.formInline = {}
-      // },
-      // changeSwitch(row) {
-      //   console.log(row)
-      // }
-    },
-
+        // 添加职位
+        // postJob() {
+        // 	this.dialogFormVisible = true;
+        // },
+        // savePostJob() {
+        // 	this.dialogFormVisible = false;
+        // 	console.log(this.form);
+        // 	this.form = {}
+        // },
+        // // 修改职位
+        // upJob(index, row) {
+        // 	this.dialogFormVisible2 = true;
+        // 	this.handleEdit(index, row);
+        // 	this.formInline = row;
+        // },
+        // updateJob() {
+        //   this.dialogFormVisible2 = false
+        //   console.log(this.formInline)
+        //   this.formInline = {}
+        // },
+        // changeSwitch(row) {
+        //   console.log(row)
+        // }
+      }
 }
 </script>
 

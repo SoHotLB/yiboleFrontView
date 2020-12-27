@@ -120,7 +120,7 @@ export default {
 
             ],
             companies: [],
-            url: 'https://img-blog.csdnimg.cn/20201226131821512.png'
+            url: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2227126611,2600594640&fm=26&gp=0.jpg"
         }
     },
     computed: {

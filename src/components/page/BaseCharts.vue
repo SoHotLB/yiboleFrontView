@@ -296,11 +296,11 @@ export default {
       onUpdateCommit() {
         var that = this
           console.log("----------------");
-          console.log(this.employId);
+          console.log(this.form.employId);
           console.log("----------------");
 
           this.$axios.post(this.$store.state.URL+"updateEmploy2", {
-            employId: this.updateForm.employId,
+            employId: this.employId,
             employSex: this.updateForm.employSex,
             employAge: this.updateForm.employAge,
             employTel: this.updateForm.employTel,
@@ -309,8 +309,7 @@ export default {
             employBackground: this.updateForm.employBackground,
             employMajor: this.updateForm.employMajor,
             employIsMarried: this.updateForm.employIsMarried,
-        })
-            .then((response)=> {
+        }).then((response)=> {
               console.log(response)
               if (response.data.code == 0) {
                 that.$message({

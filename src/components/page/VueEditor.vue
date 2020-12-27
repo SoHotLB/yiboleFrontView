@@ -23,7 +23,7 @@
         <div class='text item'><i class='el-icon-paperclip'></i>学校：{{this.employSchool}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>学历：{{this.employBackground}}</div>
         <div class='text item'><i class='el-icon-paperclip'></i>专业：{{this.employMajor}}</div>
-        <div class='text item'><i class='el-icon-paperclip'></i>毕业时间：{{this.employGraduationTime}}</div>
+        <div class='text item'><i class='el-icon-paperclip'></i>毕业时间：{{getYMD(this.employGraduationTime)}}</div>
           <div class='text item'><i class='el-icon-paperclip'></i>公司：{{this.company}}</div>
         </div>
       </el-card>
@@ -109,6 +109,16 @@
           quillEditor
       },
       methods: {
+          getYMD (timestamp) {
+              let time = new Date(timestamp)
+              let year = time.getFullYear()
+              let month = time.getMonth() + 1
+              let date = time.getDate()
+
+              if (month < 10) { month = '0' + month }
+              if (date < 10) { date = '0' + date }
+              return year + '-' + month + '-' + date + ' '
+          },
         onEditorChange({ editor, html, text }) {
             this.content = html;
         },
